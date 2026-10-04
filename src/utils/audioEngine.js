@@ -1,0 +1,298 @@
+/**
+ * Audio Engine for "A UNIVERSE CALLED US"
+ * Built with Web Audio API synthesizer for zero-dependency romantic ambient
+ * soundtracks, soothing lo-fi chords, Taylor Swift "Paper Rings" melodies, and interactive sound effects.
+ */
+
+class AudioEngine {
+  constructor() {
+    this.ctx = null;
+    this.isPlayingAmbient = false;
+    this.ambientInterval = null;
+    this.isMuted = false;
+    this.masterGain = null;
+    this.currentMode = 'ambient'; // 'ambient' or 'paper-rings'
+  }
+
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
+        this.masterGain = this.ctx.createGain();
+        this.masterGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+        this.masterGain.connect(this.ctx.destination);
+      }
+    }
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 0.7, this.ctx.currentTime);
+    }
+    return this.isMuted;
+  }
+
+  // Play a soft romantic tone
+  playTone(freq, duration = 1.2, type = 'sine', gainVal = 0.15) {
+    if (!this.ctx || this.isMuted) return;
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      const filter = this.ctx.createBiquadFilter();
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(1400, this.ctx.currentTime);
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+      gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(gainVal, this.ctx.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.masterGain);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + duration);
+    } catch {
+      // Audio context might be restricted before interaction
+    }
+  }
+
+  // Play sweet interactive sound effects
+  playChime() {
+    this.init();
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    notes.forEach((f, i) => {
+      setTimeout(() => this.playTone(f, 0.8, 'sine', 0.1), i * 75);
+    });
+  }
+
+  playHeartClick() {
+    this.init();
+    this.playTone(440, 0.5, 'sine', 0.12);
+    setTimeout(() => this.playTone(659.25, 0.7, 'sine', 0.15), 60);
+  }
+
+  playMatchSound() {
+    this.init();
+    const chord = [392.00, 493.88, 587.33, 783.99, 987.77];
+    chord.forEach((f, idx) => {
+      setTimeout(() => this.playTone(f, 1.8, 'triangle', 0.12), idx * 90);
+    });
+  }
+
+  playEnvelopeOpen() {
+    this.init();
+    this.playTone(280, 0.3, 'sine', 0.08);
+    setTimeout(() => this.playTone(560, 0.4, 'sine', 0.09), 80);
+    setTimeout(() => this.playTone(840, 0.6, 'sine', 0.1), 160);
+  }
+
+  playConstellationChime() {
+    this.init();
+    const starNotes = [659.25, 783.99, 880, 1046.50, 1318.51];
+    starNotes.forEach((f, idx) => {
+      setTimeout(() => this.playTone(f, 1.4, 'sine', 0.08), idx * 110);
+    });
+  }
+
+  playCassetteClick() {
+    this.init();
+    this.playTone(180, 0.15, 'square', 0.06);
+    setTimeout(() => this.playTone(220, 0.2, 'square', 0.05), 100);
+  }
+
+  playDoorOpen() {
+    this.init();
+    const chord = [220, 277.18, 329.63, 440, 554.37];
+    chord.forEach((f, i) => {
+      setTimeout(() => this.playTone(f, 2.5, 'sine', 0.08), i * 60);
+    });
+  }
+
+  playProposalSwell() {
+    this.init();
+    const deepChord = [130.81, 196.00, 261.63, 329.63, 392.00, 523.25];
+    deepChord.forEach((f, i) => {
+      setTimeout(() => this.playTone(f, 3.5, 'triangle', 0.1), i * 120);
+    });
+  }
+
+  playHeartbeat() {
+    this.init();
+    this.playTone(72, 0.28, 'sine', 0.22);
+    setTimeout(() => {
+      this.playTone(58, 0.38, 'sine', 0.25);
+    }, 140);
+  }
+
+  // Taylor Swift — Paper Rings Upbeat Pop Chorus Synthesizer Hook
+  playPaperRingsHook() {
+    this.init();
+    // Bouncy G -> D -> Em -> C progression with the vocal hook rhythm:
+    // "I like shiny things, but I'd marry you with paper rings, uh-huh, that's right!"
+    const hookNotes = [
+      { f: 392.00, d: 0.22, delay: 0 },    // G4 ("I")
+      { f: 440.00, d: 0.22, delay: 180 },  // A4 ("like")
+      { f: 493.88, d: 0.25, delay: 360 },  // B4 ("shi-")
+      { f: 392.00, d: 0.25, delay: 540 },  // G4 ("ny")
+      { f: 329.63, d: 0.35, delay: 720 },  // E4 ("things")
+      { f: 392.00, d: 0.22, delay: 1080 }, // G4 ("but")
+      { f: 440.00, d: 0.22, delay: 1260 }, // A4 ("I'd")
+      { f: 493.88, d: 0.22, delay: 1440 }, // B4 ("mar-")
+      { f: 493.88, d: 0.22, delay: 1620 }, // B4 ("ry")
+      { f: 440.00, d: 0.22, delay: 1800 }, // A4 ("you")
+      { f: 392.00, d: 0.25, delay: 1980 }, // G4 ("with")
+      { f: 493.88, d: 0.30, delay: 2160 }, // B4 ("pa-")
+      { f: 440.00, d: 0.30, delay: 2360 }, // A4 ("per")
+      { f: 392.00, d: 0.50, delay: 2560 }, // G4 ("rings!")
+      { f: 493.88, d: 0.18, delay: 2950 }, // B4 ("uh-")
+      { f: 587.33, d: 0.35, delay: 3130 }, // D5 ("huh,")
+      { f: 493.88, d: 0.20, delay: 3400 }, // B4 ("that's")
+      { f: 392.00, d: 0.45, delay: 3600 }, // G4 ("right!")
+    ];
+
+    hookNotes.forEach((n) => {
+      setTimeout(() => {
+        this.playTone(n.f, n.d, 'triangle', 0.12);
+        // Add subtle octave bass punch
+        this.playTone(n.f / 2, n.d, 'sine', 0.08);
+      }, n.delay);
+    });
+  }
+
+  // Taylor Swift — Paper Rings Full Audio Track (Real MP3 + Synth fallback)
+  playPaperRingsTrack() {
+    this.init();
+    this.stopAmbientMusic();
+    if (!this.paperRingsAudio) {
+      this.paperRingsAudio = new Audio('/assets/paper_rings.mp3');
+      this.paperRingsAudio.loop = true;
+      if (this.isMuted) this.paperRingsAudio.volume = 0;
+      else this.paperRingsAudio.volume = 0.85;
+    }
+    this.paperRingsAudio.play().catch(() => {
+      // Fallback to synthesized melody loop if browser restricts audio file autoplay
+      this.startPaperRingsSynth();
+    });
+    this.isPlayingPaperRings = true;
+  }
+
+  startPaperRingsSynth() {
+    // Upbeat pop tempo (~108 BPM, 450ms per beat)
+    const paperRingsPattern = [
+      { bass: 196.00, chord: [392.00, 493.88], melody: 392.00 },
+      { bass: 196.00, chord: [392.00, 493.88], melody: 440.00 },
+      { bass: 164.81, chord: [329.63, 392.00], melody: 493.88 },
+      { bass: 164.81, chord: [329.63, 392.00], melody: 392.00 },
+      { bass: 130.81, chord: [261.63, 329.63], melody: 440.00 },
+      { bass: 130.81, chord: [261.63, 329.63], melody: 392.00 },
+      { bass: 146.83, chord: [293.66, 369.99], melody: 493.88 },
+      { bass: 146.83, chord: [293.66, 369.99], melody: 587.33 }
+    ];
+
+    let step = 0;
+    const tick = () => {
+      if (!this.isPlayingPaperRings) return;
+      const bar = paperRingsPattern[step % paperRingsPattern.length];
+      this.playTone(bar.bass, 0.35, 'triangle', 0.12);
+      bar.chord.forEach((f) => this.playTone(f, 0.22, 'sine', 0.05));
+      if (bar.melody) this.playTone(bar.melody, 0.28, 'triangle', 0.09);
+      step++;
+    };
+    tick();
+    this.paperRingsInterval = setInterval(tick, 450);
+  }
+
+  stopPaperRingsTrack() {
+    this.isPlayingPaperRings = false;
+    if (this.paperRingsAudio) {
+      this.paperRingsAudio.pause();
+    }
+    if (this.paperRingsInterval) {
+      clearInterval(this.paperRingsInterval);
+      this.paperRingsInterval = null;
+    }
+  }
+
+  togglePaperRingsTrack() {
+    if (this.isPlayingPaperRings) {
+      this.stopPaperRingsTrack();
+      return false;
+    } else {
+      this.playPaperRingsTrack();
+      return true;
+    }
+  }
+
+  // Ambient Soundtrack: Ethereal lo-fi chord progressions in cyclical loops
+  startAmbientMusic() {
+    this.init();
+    if (this.isPlayingAmbient) return;
+    this.isPlayingAmbient = true;
+
+    // Romantic dreamy chord progression
+    const chordProgressions = [
+      [261.63, 329.63, 392.00, 493.88], // Cmaj7
+      [220.00, 261.63, 329.63, 392.00], // Am7
+      [174.61, 220.00, 261.63, 329.63], // Fmaj7
+      [196.00, 246.94, 293.66, 392.00], // G
+    ];
+
+    let currentChordIndex = 0;
+
+    const playNextChord = () => {
+      if (!this.isPlayingAmbient) return;
+      const chord = chordProgressions[currentChordIndex];
+      chord.forEach((freq, idx) => {
+        setTimeout(() => {
+          if (this.isPlayingAmbient) {
+            this.playTone(freq, 4.0, 'sine', 0.035);
+          }
+        }, idx * 180);
+      });
+
+      // Subtle celestial melody note
+      setTimeout(() => {
+        if (this.isPlayingAmbient) {
+          const melodyNote = chord[Math.floor(Math.random() * chord.length)] * 2;
+          this.playTone(melodyNote, 2.5, 'sine', 0.025);
+        }
+      }, 1800);
+
+      currentChordIndex = (currentChordIndex + 1) % chordProgressions.length;
+    };
+
+    playNextChord();
+    this.ambientInterval = setInterval(playNextChord, 4800);
+  }
+
+  stopAmbientMusic() {
+    this.isPlayingAmbient = false;
+    if (this.ambientInterval) {
+      clearInterval(this.ambientInterval);
+      this.ambientInterval = null;
+    }
+  }
+
+  toggleAmbientMusic() {
+    if (this.isPlayingAmbient) {
+      this.stopAmbientMusic();
+      return false;
+    } else {
+      this.startAmbientMusic();
+      return true;
+    }
+  }
+}
+
+export const sound = new AudioEngine();
+
