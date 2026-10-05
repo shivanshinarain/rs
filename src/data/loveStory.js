@@ -454,6 +454,16 @@ export const loveStoryData = {
     { id: "constellation-center", name: "Heart of the Sky", hint: "Tap the center connecting star in Chapter 09.", secret: "Cosmic Reading: 'Scorpio + Virgo = Soulmate Alignment 99.9%'." },
     { id: "love-key", name: "Type L-O-V-E", hint: "Press the keys L - O - V - E on desktop keyboard.", secret: "Cosmic Aurora Borealis light display unlocked!" },
     { id: "polaroid-flip", name: "Secret Polaroid Backside", hint: "Click any Polaroid in Chapter 10 twice.", secret: "Flipped to read: 'not temporary, it's permanent commitment frm my side 🤧'." },
-    { id: "coordinates", name: "GPS of Fate", hint: "Click the footer coordinates icon.", secret: "Coordinates of where our love story began copied to your heart!" }
+    { id: "coordinates", name: "GPS of Fate", hint: "Click the footer coordinates icon.", secret: "Coordinates of where our love story began copied to your heart!" },
+    { id: "save-rashi", name: "Save Rashi ♡", hint: "Click the 'pssst…' doodle in Rashi's Room or Sanctuary.", secret: "Emergency resolved! Rashi ate her food and took her medicine." }
+  ],
+
+  // Rashi's Favourite K-Pop Artists (Editable placeholders for Save Rashi ♡)
+  favoriteKpop: [
+    // add Rashi's actual favourites here:
+    { name: "BTS", bias: "Jungkook / Jimin" },
+    { name: "BLACKPINK", bias: "Jennie / Jisoo" },
+    { name: "Stray Kids", bias: "Hyunjin / Felix" },
+    { name: "ENHYPEN", bias: "Jungwon / Sunoo" }
   ]
 };

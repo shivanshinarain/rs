@@ -12,6 +12,11 @@ import {
   X
 } from 'lucide-react';
 import { sound } from '../../utils/audioEngine';
+import SaveRashiMiniGame from '../Games/SaveRashiMiniGame';
+
+interface RoomForYouProps {
+  onEasterEggUnlock?: (id: string) => void;
+}
 
 interface RoomObject {
   id: string;
@@ -125,9 +130,10 @@ const ROOM_OBJECTS: RoomObject[] = [
   }
 ];
 
-export default function RoomForYou() {
+export default function RoomForYou({ onEasterEggUnlock }: RoomForYouProps = {}) {
   const [inspectedObjects, setInspectedObjects] = useState<string[]>([]);
   const [activeObject, setActiveObject] = useState<RoomObject | null>(null);
+  const [isSaveRashiOpen, setIsSaveRashiOpen] = useState(false);
 
   const handleInspect = (obj: RoomObject) => {
     sound.playHeartClick();
@@ -219,6 +225,25 @@ export default function RoomForYou() {
             </div>
           )}
 
+          {/* Secret Hidden Mini-Game Trigger: "pssst… save rashi ♡" */}
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              sound.playChime();
+              setIsSaveRashiOpen(true);
+            }}
+            className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 cursor-pointer group flex flex-col items-center touch-manipulation hover:scale-110 active:scale-95 transition-all"
+            title="pssst… click to save rashi!"
+          >
+            <div className="mb-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-universe-crimson to-universe-glowingRed border border-universe-blush/60 text-[9px] sm:text-[10px] font-mono text-white shadow-glow-red animate-bounce flex items-center gap-1">
+              <span className="font-bold">pssst…</span>
+              <span className="text-universe-gold">save rashi ♡</span>
+            </div>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-universe-wine/60 border-2 border-universe-blush flex items-center justify-center shadow-lg group-hover:border-universe-gold group-hover:shadow-glow-gold transition-all">
+              <span className="text-xl sm:text-2xl animate-wiggle">🧸</span>
+            </div>
+          </div>
+
           {/* Progress Pill */}
           <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-universe-black/80 border border-universe-wine/40 text-[10px] font-mono text-universe-blush flex items-center gap-1.5">
             <CheckCircle2 className="w-3 h-3 text-universe-gold" />
@@ -226,6 +251,13 @@ export default function RoomForYou() {
           </div>
 
         </div>
+
+        {/* Save Rashi Hidden Mini-Game Modal */}
+        <SaveRashiMiniGame
+          isOpen={isSaveRashiOpen}
+          onClose={() => setIsSaveRashiOpen(false)}
+          onEasterEggUnlock={onEasterEggUnlock}
+        />
 
         {/* Climax Epilogue */}
         {isCompleted && (

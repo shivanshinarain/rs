@@ -3,11 +3,13 @@ import confetti from 'canvas-confetti';
 import { Lock, Unlock, Sparkles, X, Heart, KeyRound, Check } from 'lucide-react';
 import { loveStoryData } from '../data/loveStory';
 import { sound } from '../utils/audioEngine';
+import SaveRashiMiniGame from './Games/SaveRashiMiniGame';
 
 export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set(), onUnlockEgg }) {
   const [passcode, setPasscode] = useState('');
   const [passcodeError, setPasscodeError] = useState(false);
   const [vaultUnlocked, setVaultUnlocked] = useState(false);
+  const [isSaveRashiOpen, setIsSaveRashiOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -169,11 +171,26 @@ export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set
                   <p className="text-[10px] sm:text-[11px] text-universe-lavender/70 font-sans mt-0.5 sm:mt-1">
                     {isFound ? egg.secret : `Hint: ${egg.hint}`}
                   </p>
+                  {egg.id === 'save-rashi' && (
+                    <button
+                      onClick={() => setIsSaveRashiOpen(true)}
+                      className="mt-2 w-full py-1.5 px-3 rounded-lg bg-universe-crimson/30 hover:bg-universe-crimson/60 border border-universe-glowingRed/50 text-[10px] font-mono text-universe-blush flex items-center justify-center gap-1.5 transition-all"
+                    >
+                      <span>Launch 'Save Rashi ♡' Mini-Game 🎮</span>
+                    </button>
+                  )}
                 </div>
               );
             })}
           </div>
         </div>
+
+        {/* Save Rashi Mini-Game */}
+        <SaveRashiMiniGame
+          isOpen={isSaveRashiOpen}
+          onClose={() => setIsSaveRashiOpen(false)}
+          onEasterEggUnlock={onUnlockEgg}
+        />
 
       </div>
     </div>

@@ -36,7 +36,7 @@ export default function World04_InnerSanctuary({ onEasterEggUnlock, onNextWorld 
       </section>
 
       {/* The Room I Made For You */}
-      <RoomForYou />
+      <RoomForYou onEasterEggUnlock={onEasterEggUnlock} />
 
       {/* The Mirror */}
       <TheMirror />
