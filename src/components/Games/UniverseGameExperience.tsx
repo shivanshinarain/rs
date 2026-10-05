@@ -169,6 +169,7 @@ export default function UniverseApp({
   const [activeEnvelope, setActiveEnvelope] = useState<typeof INITIAL_ENVELOPES[0] | null>(null);
   const [riddleInput, setRiddleInput] = useState('');
   const [riddleError, setRiddleError] = useState('');
+  const [failedEnvelopeAttempts, setFailedEnvelopeAttempts] = useState<Record<string, number>>({});
 
   // Birthday State & Date Gate
   const [isBirthdayUnlockedDate, setIsBirthdayUnlockedDate] = useState(false);
@@ -282,6 +283,7 @@ export default function UniverseApp({
       setRiddleInput('');
     } else {
       sound.playTone(180, 0.25);
+      setFailedEnvelopeAttempts(prev => ({ ...prev, [envId]: (prev[envId] || 0) + 1 }));
       const msgs = ["hmm… you know this one, baby.", "not this one ♡", "think about us.", "close, but try again love!"];
       setRiddleError(msgs[Math.floor(Math.random() * msgs.length)]);
     }
@@ -749,7 +751,29 @@ export default function UniverseApp({
                   </div>
 
                   {riddleError && (
-                    <p className="text-rose-400 text-xs text-center">{riddleError}</p>
+                    <div className="space-y-2 text-center animate-fade-in">
+                      <p className="text-rose-400 text-xs">{riddleError}</p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          sound.playMatchSound();
+                          confetti({
+                            particleCount: 60,
+                            spread: 70,
+                            origin: { y: 0.6 },
+                            colors: ['#f43f5e', '#ec4899', '#ffd166', '#ffffff']
+                          });
+                          setEnvelopes(prev => prev.map(item => item.id === activeEnv.id ? { ...item, unlocked: true } : item));
+                          setActiveEnvelope(prev => (prev ? { ...prev, unlocked: true } : null));
+                          setRiddleError('');
+                          setRiddleInput('');
+                        }}
+                        className="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-500/20 to-pink-500/20 hover:from-rose-500/30 hover:to-pink-500/30 border border-rose-400/40 text-rose-200 text-xs font-mono transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+                      >
+                        <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400" />
+                        <span>Open anyway (I love you too much to keep it locked ♡)</span>
+                      </button>
+                    </div>
                   )}
 
                   <button

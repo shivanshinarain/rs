@@ -342,10 +342,29 @@ export default function Chapter08_OpenWhen() {
 
                     {/* Playful Wrong Answer Feedback (No answers revealed!) */}
                     {feedback && (
-                      <div className="p-2.5 rounded-xl bg-universe-crimson/20 border border-universe-crimson/50 text-center animate-fadeIn">
-                        <p className="font-serif italic text-xs sm:text-sm text-universe-blush">
-                          {feedback}
-                        </p>
+                      <div className="space-y-2 text-center animate-fadeIn">
+                        <div className="p-2.5 rounded-xl bg-universe-crimson/20 border border-universe-crimson/50 text-center">
+                          <p className="font-serif italic text-xs sm:text-sm text-universe-blush">
+                            {feedback}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            sound.playMatchSound();
+                            saveUnlocked(activeEnvelope.id);
+                            confetti({
+                              particleCount: 80,
+                              spread: 70,
+                              colors: ['#ff285e', '#f5b8c6', '#ffd166', '#ffffff']
+                            });
+                            setFeedback(null);
+                          }}
+                          className="w-full py-2.5 rounded-full bg-gradient-to-r from-universe-wine/40 to-universe-darkBurgundy/80 hover:bg-universe-wine/60 border border-universe-gold/50 text-universe-gold text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                        >
+                          <Heart className="w-3.5 h-3.5 text-universe-gold fill-universe-gold" />
+                          <span>Open anyway (I love you too much to keep it locked ♡)</span>
+                        </button>
                       </div>
                     )}
 
