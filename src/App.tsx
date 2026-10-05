@@ -13,11 +13,25 @@ import World02_TheLittleUniverse from './components/Worlds/World02_TheLittleUniv
 import World03_ARGLoveGame from './components/Worlds/World03_ARGLoveGame';
 import World04_InnerSanctuary from './components/Worlds/World04_InnerSanctuary';
 import World05_BirthdayWorld from './components/Worlds/World05_BirthdayWorld';
+import Chapter01_BeforeWeMet from './components/Chapter01_BeforeWeMet';
+import Chapter02_TinderMatch from './components/Chapter02_TinderMatch';
+import Chapter03_SpecialDate from './components/Chapter03_SpecialDate';
+import Chapter04_OurUniverse from './components/Chapter04_OurUniverse';
+import Chapter05_Timeline from './components/Chapter05_Timeline';
+import Chapter06_ReasonsILoveYou from './components/Chapter06_ReasonsILoveYou';
+import Chapter07_TheApology from './components/Chapter07_TheApology';
+import Chapter08_OpenWhen from './components/Chapter08_OpenWhen';
+import Chapter09_Birthdays from './components/Chapter09_Birthdays';
+import Chapter10_Scrapbook from './components/Chapter10_Scrapbook';
+import Chapter11_OurMusic from './components/Chapter11_OurMusic';
+import Chapter13_TheFuture from './components/Chapter13_TheFuture';
+import Chapter14_TheProposal from './components/Chapter14_TheProposal';
+import TwentyMomentsGallery from './components/TwentyMomentsGallery';
 import PermanentRedThread from './components/Effects/PermanentRedThread';
 import HeartbeatSoundManager from './components/Effects/HeartbeatSoundManager';
 import UniverseGameExperience from './components/Games/UniverseGameExperience';
 import { sound } from './utils/audioEngine';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, BookOpen } from 'lucide-react';
 
 export default function App() {
   return (
@@ -96,6 +110,38 @@ function MainUniverseApp() {
     window.location.reload();
   };
 
+  const CHAPTER_TO_WORLD: Record<string, WorldId> = {
+    'chapter-1': 'WORLD_01_BEFORE_US',
+    'chapter-2': 'WORLD_01_BEFORE_US',
+    'chapter-3': 'WORLD_02_LITTLE_UNIVERSE',
+    'chapter-4': 'WORLD_02_LITTLE_UNIVERSE',
+    'chapter-5': 'WORLD_02_LITTLE_UNIVERSE',
+    'chapter-6': 'WORLD_02_LITTLE_UNIVERSE',
+    'chapter-7': 'WORLD_04_SANCTUARY',
+    'chapter-8': 'WORLD_04_SANCTUARY',
+    'chapter-9': 'WORLD_05_BIRTHDAY',
+    'chapter-10': 'WORLD_04_SANCTUARY',
+    'chapter-11': 'WORLD_05_BIRTHDAY',
+    'chapter-13': 'WORLD_05_BIRTHDAY',
+    'chapter-14': 'WORLD_05_BIRTHDAY',
+  };
+
+  const handleNavigateToChapter = (chapterId: string, targetWorld?: WorldId) => {
+    sound.playHeartClick();
+    const world = targetWorld || CHAPTER_TO_WORLD[chapterId] || 'WORLD_05_BIRTHDAY';
+    if (currentWorld !== world && currentWorld !== 'ALL_CHAPTERS') {
+      setCurrentWorld(world);
+    }
+    setTimeout(() => {
+      const el = document.getElementById(chapterId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        el.classList.add('ring-2', 'ring-rose-500/50', 'transition-all');
+        setTimeout(() => el.classList.remove('ring-2', 'ring-rose-500/50'), 2500);
+      }
+    }, 180);
+  };
+
   const handleSwitchWorld = (w: WorldId) => {
     setCurrentWorld(w);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -118,9 +164,10 @@ function MainUniverseApp() {
         unlockedEggsCount={unlockedEggs.size}
         onEasterEggUnlock={unlockEasterEgg}
         onLockUniverse={handleLockUniverse}
+        onNavigateToChapter={handleNavigateToChapter}
       />
 
-      {/* 5 Connected Worlds Switcher Dock */}
+      {/* 5 Connected Worlds Switcher Dock + Full Story Mode + Taylor Swift Direct */}
       <WorldNavigationDock
         currentWorld={currentWorld}
         onSelectWorld={handleSwitchWorld}
@@ -128,6 +175,7 @@ function MainUniverseApp() {
         isPlayingAudio={isPlayingAudio}
         onToggleAudio={handleToggleAudio}
         onOpenUniverseGame={() => setIsUniverseGameOpen(true)}
+        onOpenTaylorSwift={() => handleNavigateToChapter('chapter-11', 'WORLD_05_BIRTHDAY')}
       />
 
       {/* Global Permanent Red Thread of Fate */}
@@ -139,6 +187,38 @@ function MainUniverseApp() {
 
       {/* Main Experience Worlds */}
       <main className="relative z-10 pb-16">
+        {/* Full Story Mode: All 14 Chapters In Sequence */}
+        {currentWorld === 'ALL_CHAPTERS' && (
+          <div className="space-y-16 sm:space-y-24">
+            <section className="text-center pt-8 px-4 space-y-3">
+              <span className="text-[10px] uppercase font-mono tracking-[0.3em] text-universe-gold px-3.5 py-1.5 rounded-full border border-universe-gold/40 bg-universe-black/50 inline-block shadow-glow-gold">
+                COMPLETE CHRONOLOGICAL STORY
+              </span>
+              <h1 className="font-serif text-3xl sm:text-5xl text-universe-cream">
+                All 14 Chapters of Us
+              </h1>
+              <p className="font-serif italic text-sm sm:text-base text-universe-blush max-w-lg mx-auto">
+                "From our first right swipe on Tinder to the sacred paper ring vow — our complete story in one unbroken constellation."
+              </p>
+            </section>
+
+            <Chapter01_BeforeWeMet />
+            <Chapter02_TinderMatch />
+            <Chapter03_SpecialDate />
+            <Chapter04_OurUniverse onEasterEggUnlock={unlockEasterEgg} />
+            <Chapter05_Timeline />
+            <Chapter06_ReasonsILoveYou />
+            <TwentyMomentsGallery />
+            <Chapter07_TheApology onEasterEggUnlock={unlockEasterEgg} />
+            <Chapter08_OpenWhen />
+            <Chapter09_Birthdays onEasterEggUnlock={unlockEasterEgg} />
+            <Chapter10_Scrapbook onEasterEggUnlock={unlockEasterEgg} />
+            <Chapter11_OurMusic onEasterEggUnlock={unlockEasterEgg} />
+            <Chapter13_TheFuture />
+            <Chapter14_TheProposal />
+          </div>
+        )}
+
         {currentWorld === 'WORLD_01_BEFORE_US' && (
           <World01_BeforeUs
             onEasterEggUnlock={unlockEasterEgg}

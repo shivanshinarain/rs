@@ -6,6 +6,7 @@ import TwentyMomentsGallery from '../TwentyMomentsGallery';
 import Chapter03_SpecialDate from '../Chapter03_SpecialDate';
 import Chapter04_OurUniverse from '../Chapter04_OurUniverse';
 import Chapter05_Timeline from '../Chapter05_Timeline';
+import Chapter06_ReasonsILoveYou from '../Chapter06_ReasonsILoveYou';
 import TinyCharacters from '../Effects/TinyCharacters';
 import { sound } from '../../utils/audioEngine';
 
@@ -53,6 +54,9 @@ export default function World02_TheLittleUniverse({ onEasterEggUnlock, onNextWor
 
       {/* Chapter 05: Milestone Timeline */}
       <Chapter05_Timeline />
+
+      {/* Chapter 06: 21 Reasons Why */}
+      <Chapter06_ReasonsILoveYou />
 
       {/* 20 Curated Story Moments Archive */}
       <TwentyMomentsGallery />

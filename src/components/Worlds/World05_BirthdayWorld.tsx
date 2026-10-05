@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BirthdayWorld from '../World05/BirthdayWorld';
 import Chapter09_Birthdays from '../Chapter09_Birthdays';
 import Chapter11_OurMusic from '../Chapter11_OurMusic';
+import Chapter13_TheFuture from '../Chapter13_TheFuture';
 import Chapter14_TheProposal from '../Chapter14_TheProposal';
 import TinyCharacters from '../Effects/TinyCharacters';
 import { isBirthdaySessionUnlocked } from '../../config/birthdayConfig';
@@ -36,20 +37,18 @@ export default function World05_BirthdayWorld({ onEasterEggUnlock }: World05Prop
       {/* Birthday World: Date-Gating Countdown ('not yet, love...'), Password Gate, and 21 Little Reasons */}
       <BirthdayWorld onUnlockChange={setIsUnlocked} />
 
-      {/* Only reveal full celebration, constellations, music, and final proposal once unlocked */}
-      {isUnlocked && (
-        <>
-          {/* Chapter 09: Celestial Birthdays & Constellations (Scorpio & Virgo) */}
-          <Chapter09_Birthdays onEasterEggUnlock={onEasterEggUnlock} />
+      {/* Chapters in World 05 — Always fully accessible and visible */}
+      {/* Chapter 09: Celestial Birthdays & Constellations (Scorpio & Virgo) */}
+      <Chapter09_Birthdays onEasterEggUnlock={onEasterEggUnlock} />
 
-          {/* Chapter 11: Our Music (Paper Rings) */}
-          <Chapter11_OurMusic onEasterEggUnlock={onEasterEggUnlock} />
+      {/* Chapter 11: Our Music (Taylor Swift: Paper Rings) — Always accessible */}
+      <Chapter11_OurMusic onEasterEggUnlock={onEasterEggUnlock} />
 
-          {/* Chapter 14: The Proposal & Sacred Final Vow */}
-          <Chapter14_TheProposal />
-        </>
-      )}
+      {/* Chapter 13: The Future (4 Doors to Our Future) */}
+      <Chapter13_TheFuture />
 
+      {/* Chapter 14: The Proposal & Sacred Final Vow */}
+      <Chapter14_TheProposal />
     </div>
   );
 }

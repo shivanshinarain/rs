@@ -45,11 +45,11 @@ export default function World04_InnerSanctuary({ onEasterEggUnlock, onNextWorld 
       {/* If You Really Know Me... (Personal Trivia Quiz) */}
       <IfYouReallyKnowMe />
 
-      {/* Open When Digital Emergency Letters */}
-      <Chapter08_OpenWhen />
-
       {/* Chapter 07: The Apology & Coma Hospital Letter */}
       <Chapter07_TheApology onEasterEggUnlock={onEasterEggUnlock} />
+
+      {/* Chapter 08: Open When Digital Emergency Letters */}
+      <Chapter08_OpenWhen />
 
       {/* The Things We Learned */}
       <TheThingsWeLearned />

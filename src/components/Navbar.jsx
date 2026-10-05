@@ -9,7 +9,8 @@ export default function Navbar({
   onOpenVault,
   unlockedEggsCount = 0,
   onEasterEggUnlock,
-  onLockUniverse
+  onLockUniverse,
+  onNavigateToChapter
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoClicks, setLogoClicks] = useState(0);
@@ -25,23 +26,27 @@ export default function Navbar({
   };
 
   const chapters = [
-    { num: '01', title: 'Before We Met', id: 'chapter-1' },
-    { num: '02', title: 'Tinder Match', id: 'chapter-2' },
-    { num: '03', title: '22 November 2025', id: 'chapter-3' },
-    { num: '04', title: 'Our Little Universe', id: 'chapter-4' },
-    { num: '05', title: 'Our Timeline', id: 'chapter-5' },
-    { num: '06', title: '21 Reasons Why', id: 'chapter-6' },
-    { num: '07', title: 'The Apology', id: 'chapter-7' },
-    { num: '08', title: 'Open When...', id: 'chapter-8' },
-    { num: '09', title: 'Our Birthdays', id: 'chapter-9' },
-    { num: '10', title: 'The Scrapbook', id: 'chapter-10' },
-    { num: '11', title: 'Our Music', id: 'chapter-11' },
-    { num: '13', title: 'The Future', id: 'chapter-13' },
-    { num: '14', title: 'The Proposal', id: 'chapter-14' },
+    { num: '01', title: 'Before We Met', id: 'chapter-1', world: 'WORLD_01_BEFORE_US' },
+    { num: '02', title: 'Tinder Match', id: 'chapter-2', world: 'WORLD_01_BEFORE_US' },
+    { num: '03', title: '22 November 2025', id: 'chapter-3', world: 'WORLD_02_LITTLE_UNIVERSE' },
+    { num: '04', title: 'Our Little Universe', id: 'chapter-4', world: 'WORLD_02_LITTLE_UNIVERSE' },
+    { num: '05', title: 'Our Timeline', id: 'chapter-5', world: 'WORLD_02_LITTLE_UNIVERSE' },
+    { num: '06', title: '21 Reasons Why', id: 'chapter-6', world: 'WORLD_02_LITTLE_UNIVERSE' },
+    { num: '07', title: 'The Apology & Coma Letter', id: 'chapter-7', world: 'WORLD_04_SANCTUARY' },
+    { num: '08', title: 'Open When...', id: 'chapter-8', world: 'WORLD_04_SANCTUARY' },
+    { num: '09', title: 'Celestial Birthdays', id: 'chapter-9', world: 'WORLD_05_BIRTHDAY' },
+    { num: '10', title: 'The Scrapbook', id: 'chapter-10', world: 'WORLD_04_SANCTUARY' },
+    { num: '11', title: 'Taylor Swift: Paper Rings 🎵', id: 'chapter-11', world: 'WORLD_05_BIRTHDAY', isFeatured: true },
+    { num: '13', title: 'The Future (4 Doors)', id: 'chapter-13', world: 'WORLD_05_BIRTHDAY' },
+    { num: '14', title: 'The Proposal & Sacred Vow 💍', id: 'chapter-14', world: 'WORLD_05_BIRTHDAY', isFeatured: true },
   ];
 
-  const scrollToChapter = (id) => {
+  const scrollToChapter = (id, world) => {
     setMenuOpen(false);
+    if (onNavigateToChapter) {
+      onNavigateToChapter(id, world);
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -150,22 +155,36 @@ export default function Navbar({
               Journey Through Our Stars
             </h2>
 
-            <div className="pt-2 sm:pt-4 grid grid-cols-1 gap-2 text-left">
+            {/* Continuous Story Mode Quick Switch */}
+            <button
+              onClick={() => scrollToChapter('chapter-1', 'ALL_CHAPTERS')}
+              className="w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-900/60 via-universe-darkBurgundy/80 to-purple-900/60 border border-rose-500/50 hover:border-rose-400 text-rose-200 hover:text-white text-xs font-mono flex items-center justify-center gap-2 shadow-md hover:scale-[1.01] transition-all cursor-pointer touch-manipulation"
+            >
+              <span>📖</span>
+              <span className="font-semibold">View All 14 Chapters in Sequence (Story Mode)</span>
+              <span>→</span>
+            </button>
+
+            <div className="pt-2 sm:pt-3 grid grid-cols-1 gap-2 text-left">
               {chapters.map((ch) => (
                 <div
                   key={ch.num}
-                  onClick={() => scrollToChapter(ch.id)}
-                  className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-universe-darkBurgundy/40 border border-universe-wine/30 hover:border-universe-glowingRed hover:bg-universe-wine/30 active:scale-[0.98] transition-all cursor-pointer flex items-center justify-between group touch-manipulation"
+                  onClick={() => scrollToChapter(ch.id, ch.world)}
+                  className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border transition-all cursor-pointer flex items-center justify-between group touch-manipulation active:scale-[0.98] ${
+                    ch.isFeatured
+                      ? 'bg-gradient-to-r from-rose-950/60 to-purple-950/60 border-rose-500/60 hover:border-rose-400 shadow-glow-red/20'
+                      : 'bg-universe-darkBurgundy/40 border-universe-wine/30 hover:border-universe-glowingRed hover:bg-universe-wine/30'
+                  }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-universe-dustyPink">
+                    <span className={`font-mono text-xs ${ch.isFeatured ? 'text-universe-gold font-bold' : 'text-universe-dustyPink'}`}>
                       {ch.num}
                     </span>
-                    <span className="font-serif text-sm sm:text-base text-universe-cream group-hover:text-universe-blush transition-colors">
+                    <span className={`font-serif text-sm sm:text-base group-hover:text-universe-blush transition-colors ${ch.isFeatured ? 'text-white font-medium' : 'text-universe-cream'}`}>
                       {ch.title}
                     </span>
                   </div>
-                  <span className="text-universe-wine group-hover:text-universe-blush transition-colors text-sm">
+                  <span className={`${ch.isFeatured ? 'text-rose-400' : 'text-universe-wine'} group-hover:text-universe-blush transition-colors text-sm`}>
                     ♡
                   </span>
                 </div>
