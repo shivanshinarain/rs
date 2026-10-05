@@ -5,6 +5,7 @@ import { loveStoryData } from '../data/loveStory';
 import { sound } from '../utils/audioEngine';
 import SaveRashiMiniGame from './Games/SaveRashiMiniGame';
 import UniverseGameExperience from './Games/UniverseGameExperience';
+import CharacterInspectorModal from './Characters3D/CharacterInspectorModal';
 
 export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set(), onUnlockEgg }) {
   const [passcode, setPasscode] = useState('');
@@ -12,6 +13,7 @@ export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set
   const [vaultUnlocked, setVaultUnlocked] = useState(false);
   const [isSaveRashiOpen, setIsSaveRashiOpen] = useState(false);
   const [isUniverseGameOpen, setIsUniverseGameOpen] = useState(false);
+  const [isInspectorOpen, setIsInspectorOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -187,8 +189,16 @@ export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set
           </div>
         </div>
 
-        {/* Secret Games Quick Launcher */}
-        <div className="pt-2 border-t border-universe-wine/30">
+        {/* Secret Games & 3D Character Launchers */}
+        <div className="pt-2 border-t border-universe-wine/30 space-y-2">
+          <button
+            onClick={() => setIsInspectorOpen(true)}
+            className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-950/70 via-universe-wine/50 to-pink-950/70 hover:from-purple-900 hover:to-pink-900 border border-purple-400/50 text-xs font-mono text-purple-200 flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
+          >
+            <Sparkles className="w-4 h-4 text-universe-gold animate-bounce" />
+            <span>Meet 3D Shivi & Rashi (Original Stylized Characters) 💫</span>
+          </button>
+
           <button
             onClick={() => setIsUniverseGameOpen(true)}
             className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-950/60 via-universe-wine/40 to-pink-950/60 hover:from-rose-900/80 hover:to-pink-900/80 border border-rose-500/40 text-xs font-mono text-rose-200 flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
@@ -197,6 +207,12 @@ export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set
             <span>Launch 'A Universe Called Us' Story Game 🌟</span>
           </button>
         </div>
+
+        {/* 3D Character Inspector */}
+        <CharacterInspectorModal
+          isOpen={isInspectorOpen}
+          onClose={() => setIsInspectorOpen(false)}
+        />
 
         {/* Save Rashi Mini-Game */}
         <SaveRashiMiniGame

@@ -2,21 +2,14 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
   Heart,
-  Sparkles,
   X,
-  RotateCcw,
-  CheckCircle2,
-  AlertTriangle,
-  Volume2,
   Flame,
-  Award,
-  Music,
-  HelpCircle,
-  ArrowRight,
   ShieldAlert
 } from 'lucide-react';
 import { sound } from '../../utils/audioEngine';
 import { KPOP_CONFIG, KpopHero } from '../../config/kpopConfig';
+import SaveRashi3DStage from '../Characters3D/SaveRashi3DStage';
+import CharacterInspectorModal from '../Characters3D/CharacterInspectorModal';
 
 interface SaveRashiMiniGameProps {
   isOpen: boolean;
@@ -42,6 +35,7 @@ export default function SaveRashiMiniGame({
   const [shiviReaction, setShiviReaction] = useState<'normal' | 'panic' | 'bonking' | 'relieved'>('panic');
   const [shiviSpeech, setShiviSpeech] = useState<string>("RASHI. YOU FORGOT TO EAT AGAIN 😭");
   const [screenShake, setScreenShake] = useState(false);
+  const [isInspectorOpen, setIsInspectorOpen] = useState(false);
 
   // Food Mini-Game State
   const [fedCount, setFedCount] = useState(0);
@@ -339,120 +333,26 @@ export default function SaveRashiMiniGame({
         </div>
 
         {/* =================================================================== */}
-        {/* CARTOON CHARACTERS ARENA */}
+        {/* ORIGINAL STYLIZED 3D CHARACTER ARENA (Subway Surfers-inspired aesthetic) */}
         {/* =================================================================== */}
-        <div className="relative py-4 px-2 flex items-center justify-around rounded-3xl bg-gradient-to-r from-purple-950/20 via-black/40 to-universe-wine/20 border border-universe-wine/40 overflow-hidden">
-          
-          {/* Shivi Dramatic Cartoon */}
-          <div className="flex flex-col items-center group">
-            {/* Shivi Speech Bubble */}
-            <div className="mb-2 max-w-[170px] sm:max-w-[210px] p-2.5 rounded-2xl bg-universe-darkBurgundy border-2 border-universe-glowingRed shadow-glow-red text-[11px] sm:text-xs font-serif italic text-white animate-bounce">
-              "{shiviSpeech}"
-            </div>
-
-            {/* Shivi Character SVG */}
-            <div className={`relative transition-transform duration-300 ${shiviReaction === 'panic' ? 'animate-wiggle' : ''}`}>
-              <svg className="w-16 h-20 sm:w-20 sm:h-24 drop-shadow-xl" viewBox="0 0 60 80" fill="none">
-                <circle cx="30" cy="18" r="9" fill="#1b0813" />
-                <circle cx="30" cy="24" r="14" fill="#ffd5cb" />
-                <circle cx="16" cy="27" r="4" stroke="#e0e7ff" strokeWidth="1.5" fill="none" />
-                <circle cx="44" cy="27" r="4" stroke="#e0e7ff" strokeWidth="1.5" fill="none" />
-                {/* Panic Eyes */}
-                {shiviReaction === 'panic' ? (
-                  <>
-                    <circle cx="24" cy="23" r="2.5" fill="#2a0d1d" />
-                    <circle cx="36" cy="23" r="2.5" fill="#2a0d1d" />
-                    <path d="M 27 30 Q 30 26 33 30" stroke="#7a1934" strokeWidth="1.5" fill="none" />
-                  </>
-                ) : (
-                  <>
-                    <path d="M 23 23 Q 26 21 28 23" stroke="#2a0d1d" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M 32 23 Q 34 21 37 23" stroke="#2a0d1d" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M 27 28 Q 30 31 33 28" stroke="#7a1934" strokeWidth="1.4" strokeLinecap="round" />
-                  </>
-                )}
-                <path d="M 16 38 C 16 35, 44 35, 44 38 L 48 68 C 48 72, 12 72, 12 68 Z" fill="#4a0f21" />
-                <rect x="22" y="68" width="5" height="10" rx="2.5" fill="#15060f" />
-                <rect x="33" y="68" width="5" height="10" rx="2.5" fill="#15060f" />
-              </svg>
-              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-universe-blush">
-                Shivi
-              </span>
-            </div>
-          </div>
-
-          {/* Harmless Pillow Bonk Action Indicator */}
-          {rashiReaction === 'bonked' && (
-            <div className="flex flex-col items-center animate-bounce z-20">
-              <span className="text-3xl">☁️</span>
-              <span className="text-xs font-mono font-bold text-universe-gold uppercase tracking-widest drop-shadow">
-                *bonk!*
-              </span>
-              <span className="text-[10px] text-universe-blush italic">"baby eat!"</span>
-            </div>
-          )}
-
-          {/* Rashi Cute Cartoon */}
-          <div className="flex flex-col items-center">
-            {/* Rashi Speech Bubble */}
-            <div className="mb-2 max-w-[150px] sm:max-w-[180px] p-2 rounded-2xl bg-black/70 border border-universe-wine/60 text-[10px] sm:text-xs font-handwritten text-universe-blush">
-              {rashiReaction === 'pout' && "i'm not hungry... later."}
-              {rashiReaction === 'eating' && "nom nom... fine ♡"}
-              {rashiReaction === 'sparkle' && "okay i feel much better!"}
-              {rashiReaction === 'bonked' && "ouchie... okay fine 😭"}
-            </div>
-
-            {/* Rashi Character SVG */}
-            <div className="relative">
-              <svg className="w-16 h-20 sm:w-20 sm:h-24 drop-shadow-xl" viewBox="0 0 60 80" fill="none">
-                <path d="M 14 18 C 14 8, 46 8, 46 18 C 48 30, 48 48, 46 56 C 44 48, 44 26, 44 24 C 44 14, 16 14, 16 24 C 16 26, 16 48, 14 56 C 12 48, 12 30, 14 18 Z" fill="#240c18" />
-                <circle cx="30" cy="24" r="13" fill="#ffdfd6" />
-                {/* Pouting or Eating face */}
-                {rashiReaction === 'pout' ? (
-                  <>
-                    <path d="M 23 22 Q 26 24 28 22" stroke="#240c18" strokeWidth="1.5" />
-                    <path d="M 32 22 Q 34 24 37 22" stroke="#240c18" strokeWidth="1.5" />
-                    <circle cx="21" cy="26" r="2.5" fill="#ff708f" opacity="0.8" />
-                    <circle cx="39" cy="26" r="2.5" fill="#ff708f" opacity="0.8" />
-                    <path d="M 28 29 Q 30 26 32 29" stroke="#7a1934" strokeWidth="1.5" />
-                  </>
-                ) : (
-                  <>
-                    <circle cx="25" cy="23" r="2" fill="#200a16" />
-                    <circle cx="35" cy="23" r="2" fill="#200a16" />
-                    <path d="M 27 28 Q 30 32 33 28" stroke="#7a1934" strokeWidth="1.4" />
-                  </>
-                )}
-                <path d="M 17 38 C 17 35, 43 35, 43 38 L 47 68 C 47 72, 13 72, 13 68 Z" fill="#4d2d47" />
-                <circle cx="30" cy="46" r="3" fill="#f2b5c4" opacity="0.5" />
-                <rect x="22" y="68" width="5" height="10" rx="2.5" fill="#15060f" />
-                <rect x="33" y="68" width="5" height="10" rx="2.5" fill="#15060f" />
-              </svg>
-
-              {/* Spinning Stars on head when bonked */}
-              {rashiReaction === 'bonked' && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-1 text-xs text-universe-gold animate-spin">
-                  <span>✦</span>
-                  <span>✨</span>
-                  <span>✦</span>
-                </div>
-              )}
-
-              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-universe-blush">
-                Rashi
-              </span>
-            </div>
-          </div>
+        <div className="relative">
+          <SaveRashi3DStage
+            step={step}
+            rashiReaction={rashiReaction}
+            shiviReaction={shiviReaction}
+            shiviSpeech={shiviSpeech}
+            onBonkTrigger={triggerBonk}
+            onOpenInspector={() => setIsInspectorOpen(true)}
+          />
 
           {/* Hidden K-Pop Poster Sticker in Background (Requirement 10) */}
           <div
             onClick={handleSecretPosterClick}
-            className="absolute top-2 right-2 p-1.5 rounded-lg bg-purple-950/60 border border-purple-500/40 cursor-pointer hover:scale-125 transition-transform"
+            className="absolute top-3 right-14 sm:right-16 p-1.5 rounded-lg bg-purple-950/80 border border-purple-500/50 cursor-pointer hover:scale-125 transition-transform z-30"
             title="A tiny glittering K-pop sticker on the wall..."
           >
             <span className="text-xs">💜✨</span>
           </div>
-
         </div>
 
         {/* =================================================================== */}
@@ -885,6 +785,12 @@ export default function SaveRashiMiniGame({
             </button>
           </div>
         )}
+
+        {/* 3D Character Inspector Modal */}
+        <CharacterInspectorModal
+          isOpen={isInspectorOpen}
+          onClose={() => setIsInspectorOpen(false)}
+        />
 
       </div>
     </div>

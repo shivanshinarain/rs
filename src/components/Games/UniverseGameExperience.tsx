@@ -190,7 +190,7 @@ export default function UniverseApp({
     const checkDate = () => {
       const today = new Date();
       const target = new Date(CONFIG.celebrationDate);
-      const isDev = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV);
+      const isDev = (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.DEV);
       if (today >= target || isDev) {
         setIsBirthdayUnlockedDate(true);
       } else {
