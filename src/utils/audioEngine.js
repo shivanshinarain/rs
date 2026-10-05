@@ -222,25 +222,86 @@ class AudioEngine {
     });
   }
 
+  // Listeners for global UI sync
+  listeners = new Set();
+
+  subscribe(listener) {
+    this.listeners.add(listener);
+    // Send immediate initial state
+    try {
+      listener(this.getPlaybackState());
+    } catch {}
+    return () => this.listeners.delete(listener);
+  }
+
+  notifyListeners() {
+    const state = this.getPlaybackState();
+    this.listeners.forEach((fn) => {
+      try {
+        fn(state);
+      } catch {}
+    });
+  }
+
+  getPlaybackState() {
+    return {
+      isPlaying: Boolean(this.isPlayingPaperRings),
+      currentTime: this.paperRingsAudio ? this.paperRingsAudio.currentTime : 0,
+      duration: this.paperRingsAudio && !isNaN(this.paperRingsAudio.duration) && this.paperRingsAudio.duration > 0 ? this.paperRingsAudio.duration : 223.4,
+      volume: this.paperRingsAudio ? this.paperRingsAudio.volume : 0.9,
+      isMuted: Boolean(this.isMuted)
+    };
+  }
+
   // Taylor Swift — Paper Rings Full Audio Track (Real MP3 + Synth fallback)
-  playPaperRingsTrack() {
-    this.init();
-    this.stopAmbientMusic();
+  getPaperRingsAudio() {
     if (!this.paperRingsAudio) {
       this.paperRingsAudio = new Audio('/assets/paper_rings.mp3');
       this.paperRingsAudio.loop = true;
-      if (this.isMuted) this.paperRingsAudio.volume = 0;
-      else this.paperRingsAudio.volume = 0.85;
+      this.paperRingsAudio.preload = 'auto';
+      this.paperRingsAudio.volume = this.isMuted ? 0 : 0.9;
+
+      this.paperRingsAudio.addEventListener('timeupdate', () => this.notifyListeners());
+      this.paperRingsAudio.addEventListener('play', () => {
+        this.isPlayingPaperRings = true;
+        this.notifyListeners();
+      });
+      this.paperRingsAudio.addEventListener('pause', () => {
+        this.isPlayingPaperRings = false;
+        this.notifyListeners();
+      });
+      this.paperRingsAudio.addEventListener('ended', () => {
+        this.isPlayingPaperRings = false;
+        this.notifyListeners();
+      });
     }
-    this.paperRingsAudio.play().catch(() => {
-      // Fallback to synthesized melody loop if browser restricts audio file autoplay
-      this.startPaperRingsSynth();
-    });
+    return this.paperRingsAudio;
+  }
+
+  playPaperRingsTrack() {
+    this.init();
+    const audio = this.getPaperRingsAudio();
+    audio.volume = this.isMuted ? 0 : 0.9;
+    
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          this.isPlayingPaperRings = true;
+          this.notifyListeners();
+        })
+        .catch(() => {
+          this.isPlayingPaperRings = true;
+          this.startPaperRingsSynth();
+          this.notifyListeners();
+        });
+    }
     this.isPlayingPaperRings = true;
+    this.notifyListeners();
   }
 
   startPaperRingsSynth() {
-    // Upbeat pop tempo (~108 BPM, 450ms per beat)
+    if (this.paperRingsInterval) return;
     const paperRingsPattern = [
       { bass: 196.00, chord: [392.00, 493.88], melody: 392.00 },
       { bass: 196.00, chord: [392.00, 493.88], melody: 440.00 },
@@ -274,6 +335,7 @@ class AudioEngine {
       clearInterval(this.paperRingsInterval);
       this.paperRingsInterval = null;
     }
+    this.notifyListeners();
   }
 
   togglePaperRingsTrack() {
@@ -286,64 +348,26 @@ class AudioEngine {
     }
   }
 
-  // Ambient Soundtrack: Ethereal lo-fi chord progressions in cyclical loops
+  seekPaperRings(seconds) {
+    if (this.paperRingsAudio) {
+      this.paperRingsAudio.currentTime = Math.max(0, Math.min(seconds, this.paperRingsAudio.duration || 223.4));
+      this.notifyListeners();
+    }
+  }
+
+  // Primary Universe Soundtrack: Taylor Swift — Paper Rings
   startAmbientMusic() {
-    this.init();
-    if (this.isPlayingAmbient) return;
-    this.isPlayingAmbient = true;
-
-    // Romantic dreamy chord progression
-    const chordProgressions = [
-      [261.63, 329.63, 392.00, 493.88], // Cmaj7
-      [220.00, 261.63, 329.63, 392.00], // Am7
-      [174.61, 220.00, 261.63, 329.63], // Fmaj7
-      [196.00, 246.94, 293.66, 392.00], // G
-    ];
-
-    let currentChordIndex = 0;
-
-    const playNextChord = () => {
-      if (!this.isPlayingAmbient) return;
-      const chord = chordProgressions[currentChordIndex];
-      chord.forEach((freq, idx) => {
-        setTimeout(() => {
-          if (this.isPlayingAmbient) {
-            this.playTone(freq, 4.0, 'sine', 0.035);
-          }
-        }, idx * 180);
-      });
-
-      // Subtle celestial melody note
-      setTimeout(() => {
-        if (this.isPlayingAmbient) {
-          const melodyNote = chord[Math.floor(Math.random() * chord.length)] * 2;
-          this.playTone(melodyNote, 2.5, 'sine', 0.025);
-        }
-      }, 1800);
-
-      currentChordIndex = (currentChordIndex + 1) % chordProgressions.length;
-    };
-
-    playNextChord();
-    this.ambientInterval = setInterval(playNextChord, 4800);
+    this.playPaperRingsTrack();
+    return true;
   }
 
   stopAmbientMusic() {
-    this.isPlayingAmbient = false;
-    if (this.ambientInterval) {
-      clearInterval(this.ambientInterval);
-      this.ambientInterval = null;
-    }
+    this.stopPaperRingsTrack();
+    return false;
   }
 
   toggleAmbientMusic() {
-    if (this.isPlayingAmbient) {
-      this.stopAmbientMusic();
-      return false;
-    } else {
-      this.startAmbientMusic();
-      return true;
-    }
+    return this.togglePaperRingsTrack();
   }
 }
 

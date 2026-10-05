@@ -79,25 +79,25 @@ export default function Navbar({
         {/* Right Navigation Controls */}
         <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           
-          {/* Audio Synthesizer Toggle */}
+          {/* Taylor Swift Paper Rings Song Toggle */}
           <button
             onClick={onToggleAudio}
-            className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full border transition-all text-xs touch-manipulation ${
+            className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full border transition-all text-xs touch-manipulation cursor-pointer ${
               isPlayingAudio
-                ? 'bg-universe-crimson/30 border-universe-glowingRed text-universe-cream shadow-glow-red'
+                ? 'bg-gradient-to-r from-universe-crimson/40 to-rose-600/30 border-universe-glowingRed text-universe-cream shadow-glow-red'
                 : 'bg-universe-darkBurgundy/50 border-universe-wine/40 text-universe-lavender hover:text-universe-blush'
             }`}
-            title="Toggle Romantic Ambient Music"
+            title="Toggle Taylor Swift — Paper Rings (Our Love Anthem)"
           >
             {isPlayingAudio ? (
               <>
                 <Volume2 className="w-3.5 h-3.5 text-universe-glowingRed animate-pulse shrink-0" />
-                <span className="hidden sm:inline font-mono text-[11px]">Music ♡</span>
+                <span className="font-mono text-[11px]">Paper Rings 🎵</span>
               </>
             ) : (
               <>
                 <VolumeX className="w-3.5 h-3.5 opacity-60 shrink-0" />
-                <span className="hidden sm:inline font-mono text-[11px]">Muted</span>
+                <span className="font-mono text-[11px]">Paper Rings ▷</span>
               </>
             )}
           </button>

@@ -6,7 +6,7 @@ import { sound } from '../utils/audioEngine';
 import { HeartDoodle, KissDoodle, CuteAnnotation } from './Doodles';
 
 export default function Chapter11_OurMusic({ onEasterEggUnlock }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(() => sound.isPlayingPaperRings);
   const [isPlayingHook, setIsPlayingHook] = useState(false);
   const [paperRingFolded, setPaperRingFolded] = useState(false);
   const canvasRef = useRef(null);
@@ -15,43 +15,29 @@ export default function Chapter11_OurMusic({ onEasterEggUnlock }) {
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(223.4);
-  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const unsub = sound.subscribe((state) => {
+      setIsPlaying(state.isPlaying);
+      setCurrentTime(state.currentTime);
+      if (state.duration) setDuration(state.duration);
+    });
+    return () => unsub();
+  }, []);
 
   const handleTogglePlay = () => {
     sound.playCassetteClick();
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      sound.stopAmbientMusic();
-      audio.play().catch(() => {
-        sound.playPaperRingsTrack();
-      });
-      setIsPlaying(true);
-      if (onEasterEggUnlock) {
-        onEasterEggUnlock('cassette-flip');
-      }
+    const playing = sound.togglePaperRingsTrack();
+    setIsPlaying(playing);
+    if (playing && onEasterEggUnlock) {
+      onEasterEggUnlock('cassette-flip');
     }
   };
 
   const handleSeek = (e) => {
     const time = parseFloat(e.target.value);
     setCurrentTime(time);
-    if (audioRef.current) {
-      audioRef.current.currentTime = time;
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime);
-      if (audioRef.current.duration) {
-        setDuration(audioRef.current.duration);
-      }
-    }
+    sound.seekPaperRings(time);
   };
 
   const formatTime = (secs) => {
@@ -272,15 +258,6 @@ export default function Chapter11_OurMusic({ onEasterEggUnlock }) {
           <p className="text-[10px] sm:text-xs text-universe-lavender/70 font-mono">
             {isPlaying ? 'Now Playing: Taylor Swift — Paper Rings (Full Track) 🎶' : 'Click to play Taylor Swift — Paper Rings'}
           </p>
-
-          {/* Hidden native audio element */}
-          <audio
-            ref={audioRef}
-            src="/assets/paper_rings.mp3"
-            onTimeUpdate={handleTimeUpdate}
-            onEnded={() => setIsPlaying(false)}
-            preload="metadata"
-          />
 
         </div>
 

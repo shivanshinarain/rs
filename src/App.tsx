@@ -30,6 +30,7 @@ import TwentyMomentsGallery from './components/TwentyMomentsGallery';
 import PermanentRedThread from './components/Effects/PermanentRedThread';
 import HeartbeatSoundManager from './components/Effects/HeartbeatSoundManager';
 import UniverseGameExperience from './components/Games/UniverseGameExperience';
+import TaylorSwiftMusicBar from './components/Audio/TaylorSwiftMusicBar';
 import { sound } from './utils/audioEngine';
 import { Sparkles, BookOpen } from 'lucide-react';
 
@@ -99,8 +100,17 @@ function MainUniverseApp() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Sync with global Taylor Swift audio engine
+  useEffect(() => {
+    const unsub = sound.subscribe((state: any) => {
+      setIsPlayingAudio(state.isPlaying);
+    });
+    return () => unsub();
+  }, []);
+
   const handleToggleAudio = () => {
-    const playing = sound.toggleAmbientMusic();
+    sound.playHeartClick();
+    const playing = sound.togglePaperRingsTrack();
     setIsPlayingAudio(playing);
   };
 
@@ -273,6 +283,11 @@ function MainUniverseApp() {
         isOpen={isUniverseGameOpen}
         onClose={() => setIsUniverseGameOpen(false)}
         isModal={true}
+      />
+
+      {/* Persistent Floating Taylor Swift Paper Rings Music Player */}
+      <TaylorSwiftMusicBar
+        onNavigateToChapter11={() => handleNavigateToChapter('chapter-11', 'WORLD_05_BIRTHDAY')}
       />
 
       {/* Toast Notification */}
