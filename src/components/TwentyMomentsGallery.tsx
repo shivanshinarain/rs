@@ -1,11 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TWENTY_MOMENTS, StoryMoment, MomentCategory } from '../data/ourStory';
-import { ChevronRight, X, Calendar } from 'lucide-react';
+import { ChevronRight, X, Calendar, Play, Pause, Music } from 'lucide-react';
 import { sound } from '../utils/audioEngine';
 
 export default function TwentyMomentsGallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [activeModalMoment, setActiveModalMoment] = useState<StoryMoment | null>(null);
+  const [playingAudioId, setPlayingAudioId] = useState<number | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handleAudioToggle = (moment: StoryMoment) => {
+    sound.playHeartClick();
+    if (!moment.audioSnippet) return;
+
+    if (playingAudioId === moment.id) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      setPlayingAudioId(null);
+      sound.resumePaperRingsTrack();
+    } else {
+      sound.pausePaperRingsTrack();
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      const audio = new Audio(moment.audioSnippet);
+      audioRef.current = audio;
+      setPlayingAudioId(moment.id);
+      audio.play().catch(() => {});
+      audio.onended = () => {
+        setPlayingAudioId(null);
+        sound.resumePaperRingsTrack();
+      };
+    }
+  };
+
+  const handleCloseModal = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    setPlayingAudioId(null);
+    setActiveModalMoment(null);
+    sound.resumePaperRingsTrack();
+  };
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
 
   const categories: (MomentCategory | 'ALL')[] = [
     'ALL',
@@ -93,6 +139,14 @@ export default function TwentyMomentsGallery() {
                     {moment.category}
                   </span>
                 </div>
+                {moment.audioSnippet && (
+                  <div className="absolute top-2 right-2">
+                    <span className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-universe-crimson/85 text-white backdrop-blur-md flex items-center gap-1 border border-universe-glowingRed/50 shadow-glow-red">
+                      <Music className="w-2.5 h-2.5" />
+                      Audio
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Title & Date */}
@@ -134,7 +188,7 @@ export default function TwentyMomentsGallery() {
             
             {/* Close Button */}
             <button
-              onClick={() => setActiveModalMoment(null)}
+              onClick={handleCloseModal}
               className="absolute top-5 right-5 p-2 rounded-full text-universe-lavender hover:text-white bg-universe-wine/30"
             >
               <X className="w-5 h-5" />
@@ -169,6 +223,43 @@ export default function TwentyMomentsGallery() {
               />
             </div>
 
+            {/* Audio Snippet if present */}
+            {activeModalMoment.audioSnippet && (
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-universe-black/70 border border-universe-wine/70 flex items-center justify-between gap-3 shadow-glow-red/20">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => handleAudioToggle(activeModalMoment)}
+                    className="w-11 h-11 rounded-full bg-gradient-to-r from-universe-crimson to-universe-glowingRed text-white flex items-center justify-center shadow-glow-red hover:scale-105 active:scale-95 transition-all shrink-0 cursor-pointer"
+                    title={playingAudioId === activeModalMoment.id ? "Pause Audio" : "Play Audio"}
+                  >
+                    {playingAudioId === activeModalMoment.id ? (
+                      <Pause className="w-5 h-5 fill-white" />
+                    ) : (
+                      <Play className="w-5 h-5 fill-white ml-0.5" />
+                    )}
+                  </button>
+                  <div>
+                    <h5 className="font-serif text-xs sm:text-sm text-universe-cream font-medium flex items-center gap-1.5">
+                      <span>{activeModalMoment.id === 10 ? 'Taylor Swift — Paper Rings 🎵' : 'Real Voice Recording 🎙️'}</span>
+                    </h5>
+                    <p className="text-[10px] font-mono text-universe-dustyPink">
+                      {playingAudioId === activeModalMoment.id ? 'Now Playing original recording...' : 'Click to listen to authentic audio note'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Animated wave bars when playing */}
+                {playingAudioId === activeModalMoment.id && (
+                  <div className="flex items-center gap-1 h-6">
+                    <span className="w-1 h-3 bg-universe-glowingRed rounded-full animate-bounce" />
+                    <span className="w-1 h-5 bg-universe-blush rounded-full animate-bounce [animation-delay:0.15s]" />
+                    <span className="w-1 h-2 bg-universe-gold rounded-full animate-bounce [animation-delay:0.3s]" />
+                    <span className="w-1 h-4 bg-universe-crimson rounded-full animate-bounce [animation-delay:0.45s]" />
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Story Details */}
             <div className="space-y-3 text-xs sm:text-sm text-universe-cream/90 font-sans leading-relaxed bg-universe-black/40 p-4 rounded-2xl border border-universe-wine/30">
               <p>{activeModalMoment.details}</p>
@@ -196,7 +287,7 @@ export default function TwentyMomentsGallery() {
 
             {/* Modal Bottom button */}
             <button
-              onClick={() => setActiveModalMoment(null)}
+              onClick={handleCloseModal}
               className="w-full py-3 rounded-full bg-universe-wine/40 hover:bg-universe-wine/60 text-universe-cream text-xs font-sans uppercase tracking-wider font-semibold border border-universe-wine transition-all"
             >
               Close Memory

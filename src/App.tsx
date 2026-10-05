@@ -24,6 +24,7 @@ import Chapter08_OpenWhen from './components/Chapter08_OpenWhen';
 import Chapter09_Birthdays from './components/Chapter09_Birthdays';
 import Chapter10_Scrapbook from './components/Chapter10_Scrapbook';
 import Chapter11_OurMusic from './components/Chapter11_OurMusic';
+import Chapter12_VoiceNote from './components/Chapter12_VoiceNote';
 import Chapter13_TheFuture from './components/Chapter13_TheFuture';
 import Chapter14_TheProposal from './components/Chapter14_TheProposal';
 import TwentyMomentsGallery from './components/TwentyMomentsGallery';
@@ -226,6 +227,7 @@ function MainUniverseApp() {
             <Chapter09_Birthdays onEasterEggUnlock={unlockEasterEgg} />
             <Chapter10_Scrapbook onEasterEggUnlock={unlockEasterEgg} />
             <Chapter11_OurMusic onEasterEggUnlock={unlockEasterEgg} />
+            <Chapter12_VoiceNote />
             <Chapter13_TheFuture />
             <Chapter14_TheProposal />
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import RoomForYou from '../World04/RoomForYou';
+import ListenToMe from '../World04/ListenToMe';
 import TheMirror from '../World04/TheMirror';
 import IfYouReallyKnowMe from '../World04/IfYouReallyKnowMe';
 import TheThingsWeLearned from '../World04/TheThingsWeLearned';
@@ -37,6 +38,9 @@ export default function World04_InnerSanctuary({ onEasterEggUnlock, onNextWorld 
 
       {/* The Room I Made For You */}
       <RoomForYou onEasterEggUnlock={onEasterEggUnlock} />
+
+      {/* Cinematic Voice Note Portal ("don't read this one... just listen") */}
+      <ListenToMe />
 
       {/* The Mirror */}
       <TheMirror />

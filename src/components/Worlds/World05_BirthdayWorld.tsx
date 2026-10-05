@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BirthdayWorld from '../World05/BirthdayWorld';
 import Chapter09_Birthdays from '../Chapter09_Birthdays';
 import Chapter11_OurMusic from '../Chapter11_OurMusic';
+import Chapter12_VoiceNote from '../Chapter12_VoiceNote';
 import Chapter13_TheFuture from '../Chapter13_TheFuture';
 import Chapter14_TheProposal from '../Chapter14_TheProposal';
 import TinyCharacters from '../Effects/TinyCharacters';
@@ -43,6 +44,9 @@ export default function World05_BirthdayWorld({ onEasterEggUnlock }: World05Prop
 
       {/* Chapter 11: Our Music (Taylor Swift: Paper Rings) — Always accessible */}
       <Chapter11_OurMusic onEasterEggUnlock={onEasterEggUnlock} />
+
+      {/* Chapter 12: Voices From Our Hearts (Authentic Voice Notes of Shivi & Rashi) */}
+      <Chapter12_VoiceNote />
 
       {/* Chapter 13: The Future (4 Doors to Our Future) */}
       <Chapter13_TheFuture />

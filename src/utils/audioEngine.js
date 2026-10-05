@@ -340,6 +340,17 @@ class AudioEngine {
     this.notifyListeners();
   }
 
+  pausePaperRingsTrack() {
+    this.wasPlayingBeforePause = Boolean(this.isPlayingPaperRings);
+    this.stopPaperRingsTrack();
+  }
+
+  resumePaperRingsTrack() {
+    if (this.wasPlayingBeforePause) {
+      this.playPaperRingsTrack();
+    }
+  }
+
   togglePaperRingsTrack() {
     if (this.isPlayingPaperRings) {
       this.stopPaperRingsTrack();
