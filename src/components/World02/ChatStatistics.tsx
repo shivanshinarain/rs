@@ -200,23 +200,6 @@ export default function ChatStatistics() {
           ))}
         </div>
 
-        {/* Honest Analysis Note */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-universe-black/80 border border-universe-wine/60 shadow-glow-wine space-y-3 relative overflow-hidden">
-          <div className="flex items-center gap-2 text-universe-gold text-xs font-mono tracking-wider uppercase">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Why Honest Analysis Matters</span>
-          </div>
-
-          <p className="font-serif italic text-xs sm:text-sm md:text-base text-universe-cream/90 leading-relaxed">
-            "Anyone can search a WhatsApp export and count raw database rows. But love isn't algorithms or numbers on a screen. We measured the 48,000+ texts where we checked in on each other, the 2,940+ times we whispered 'I love you', the sacred nicknames only we know, and the 182 times we put ego down within 10 minutes. 0 permanent breakups, and 1 permanent lifetime commitment."
-          </p>
-
-          <div className="pt-2 flex items-center justify-between border-t border-universe-wine/30 text-[11px] font-mono text-universe-lavender/70">
-            <span>Verified from 2025–2026 WhatsApp history</span>
-            <span className="text-universe-gold">0 permanent breakups • 1 lifetime promise</span>
-          </div>
-        </div>
-
         {/* Tiny Characters Poses */}
         <div className="flex justify-center pt-2">
           <TinyCharacters pose="holding-hands" caption="surviving every storm, safe in each other's heart" />

@@ -42,7 +42,7 @@ export default function World02_TheLittleUniverse({ onEasterEggUnlock, onNextWor
       <Chapter03_SpecialDate />
 
 
-      {/* Honest Chat Statistics ("Our Numbers") */}
+      {/* WhatsApp Chat Statistics ("Our Numbers") */}
       <ChatStatistics />
 
       {/* Chapter 04: Our Little Galaxy */}
