@@ -138,14 +138,33 @@ export default function Chapter08_OpenWhen() {
     const normalizedInput = userAnswer.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
     if (!normalizedInput) return;
 
-    const isMatch = activeEnvelope.acceptedAnswers.some((ans) => {
-      const normAns = ans.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-      return (
-        normAns === normalizedInput ||
-        (normalizedInput.length >= 3 && normAns.includes(normalizedInput)) ||
-        (normAns.length >= 3 && normalizedInput.includes(normAns))
-      );
-    });
+    const isMasterPassword = [
+      'shivirashi',
+      'shivi rashi',
+      'shivi',
+      'rashi',
+      'chotupenguin21',
+      'chotupenguin',
+      'chotu penguin',
+      'chotu',
+      'penguin',
+      'forever21',
+      '22112005',
+      '12112005',
+      'love',
+      'forever'
+    ].some(p => p.replace(/[^a-z0-9]/g, '') === normalizedInput);
+
+    const isMatch =
+      isMasterPassword ||
+      activeEnvelope.acceptedAnswers.some((ans) => {
+        const normAns = ans.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+        return (
+          normAns === normalizedInput ||
+          (normalizedInput.length >= 3 && normAns.includes(normalizedInput)) ||
+          (normAns.length >= 3 && normalizedInput.includes(normAns))
+        );
+      });
 
     if (isMatch) {
       sound.playMatchSound();
@@ -303,10 +322,22 @@ export default function Chapter08_OpenWhen() {
                           setUserAnswer(e.target.value);
                           setFeedback(null);
                         }}
-                        placeholder="type your answer here..."
+                        placeholder="Type riddle answer or 'shivirashi'..."
                         autoFocus
-                        className="w-full px-4 py-3 rounded-full bg-universe-black/80 border border-universe-wine/70 text-universe-cream text-xs sm:text-sm font-mono focus:outline-none focus:border-universe-gold placeholder:text-universe-lavender/40 transition-colors"
+                        className="w-full px-4 py-3 rounded-full bg-universe-black/80 border border-universe-wine/70 text-universe-cream text-xs sm:text-sm font-mono focus:outline-none focus:border-universe-gold placeholder:text-universe-lavender/40 transition-colors text-center"
                       />
+                    </div>
+
+                    {/* Hint / Peek row */}
+                    <div className="flex items-center justify-between text-[11px] text-universe-blush/80 px-2 font-mono">
+                      <span>💡 Accepts answer or 'shivirashi'</span>
+                      <button
+                        type="button"
+                        onClick={() => setUserAnswer(activeEnvelope.acceptedAnswers[0] || 'shivirashi')}
+                        className="underline hover:text-universe-gold transition-colors cursor-pointer"
+                      >
+                        Peek answer ({activeEnvelope.acceptedAnswers[0] || 'shivirashi'})
+                      </button>
                     </div>
 
                     {/* Playful Wrong Answer Feedback (No answers revealed!) */}
@@ -320,7 +351,7 @@ export default function Chapter08_OpenWhen() {
 
                     <button
                       type="submit"
-                      className="w-full py-3 rounded-full bg-gradient-to-r from-universe-crimson to-universe-glowingRed text-white text-xs font-mono uppercase tracking-widest font-bold shadow-glow-red hover:scale-102 active:scale-98 transition-all flex items-center justify-center gap-2"
+                      className="w-full py-3 rounded-full bg-gradient-to-r from-universe-crimson to-universe-glowingRed text-white text-xs font-mono uppercase tracking-widest font-bold shadow-glow-red hover:scale-102 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <KeyRound className="w-4 h-4" />
                       <span>Unlock Letter ♡</span>

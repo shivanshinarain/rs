@@ -242,7 +242,25 @@ export default function UniverseApp({
     const normAccepted = accepted.map(a => a.replace(/[^a-z0-9]/g, ''));
     const normAnswer = env.answer.toLowerCase().replace(/[^a-z0-9]/g, '');
 
+    const isMasterPassword = [
+      'shivirashi',
+      'shivi rashi',
+      'shivi',
+      'rashi',
+      'chotupenguin21',
+      'chotupenguin',
+      'chotu penguin',
+      'chotu',
+      'penguin',
+      'forever21',
+      '22112005',
+      '12112005',
+      'love',
+      'forever'
+    ].some(p => p.replace(/[^a-z0-9]/g, '') === normInput);
+
     const isMatch =
+      isMasterPassword ||
       cleanInput === env.answer.toLowerCase().trim() ||
       accepted.includes(cleanInput) ||
       normInput === normAnswer ||
@@ -714,9 +732,20 @@ export default function UniverseApp({
                       type="text"
                       value={riddleInput}
                       onChange={(e) => setRiddleInput(e.target.value)}
-                      placeholder="Type your answer here..."
-                      className="w-full bg-black/40 border border-white/15 rounded-xl py-3 px-4 text-center text-sm text-white placeholder-white/20 focus:outline-none focus:border-rose-400 transition-all"
+                      placeholder="Type riddle answer or 'shivirashi'..."
+                      className="w-full bg-black/40 border border-white/15 rounded-xl py-3 px-4 text-center text-sm text-white placeholder-white/40 focus:outline-none focus:border-rose-400 transition-all font-mono"
                     />
+                  </div>
+
+                  <div className="flex items-center justify-between text-[11px] text-rose-300/80 px-2 font-mono">
+                    <span>💡 Accepts answer or 'shivirashi'</span>
+                    <button
+                      type="button"
+                      onClick={() => setRiddleInput(activeEnv.answer)}
+                      className="underline hover:text-rose-100 transition-colors cursor-pointer"
+                    >
+                      Peek answer ({activeEnv.answer})
+                    </button>
                   </div>
 
                   {riddleError && (
@@ -727,7 +756,7 @@ export default function UniverseApp({
                     type="submit"
                     className="w-full py-3 rounded-xl bg-rose-500 text-white text-sm font-medium hover:bg-rose-600 transition-all shadow-lg shadow-rose-500/20 cursor-pointer"
                   >
-                    Unlock Envelope
+                    Unlock Envelope ♡
                   </button>
                 </form>
               ) : (
