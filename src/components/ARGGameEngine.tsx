@@ -110,7 +110,7 @@ export default function ARGGameEngine() {
 
   return (
     <section id="arg-game" className="min-h-screen py-16 sm:py-24 px-4 sm:px-6 relative z-20 flex flex-col items-center justify-center select-none">
-      
+
       {/* Floating Memory Pocket Button */}
       <div className="fixed top-20 right-4 sm:right-6 z-40">
         <button
@@ -127,7 +127,7 @@ export default function ARGGameEngine() {
       </div>
 
       <div className="max-w-2xl w-full text-center space-y-6 sm:space-y-8">
-        
+
         {/* ARG Progress Indicator & Arcade Mode Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3 rounded-2xl bg-universe-black/50 border border-universe-wine/40">
           <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
@@ -146,15 +146,14 @@ export default function ARGGameEngine() {
                     }
                   }}
                   disabled={!canAccess}
-                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full text-[10px] font-mono flex items-center justify-center transition-all ${
-                    isCurrent
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full text-[10px] font-mono flex items-center justify-center transition-all ${isCurrent
                       ? 'bg-universe-glowingRed text-white shadow-glow-red scale-110 font-bold border-2 border-white'
                       : isCompleted
-                      ? 'bg-universe-wine text-universe-blush border border-universe-glowingRed/50 hover:scale-105'
-                      : canAccess
-                      ? 'bg-universe-wine/30 text-universe-cream border border-universe-wine/60 hover:border-universe-glowingRed hover:scale-105'
-                      : 'bg-universe-black/50 text-universe-lavender/30 border border-universe-wine/20 opacity-40 cursor-not-allowed'
-                  }`}
+                        ? 'bg-universe-wine text-universe-blush border border-universe-glowingRed/50 hover:scale-105'
+                        : canAccess
+                          ? 'bg-universe-wine/30 text-universe-cream border border-universe-wine/60 hover:border-universe-glowingRed hover:scale-105'
+                          : 'bg-universe-black/50 text-universe-lavender/30 border border-universe-wine/20 opacity-40 cursor-not-allowed'
+                    }`}
                   title={`Chapter ${ch.chapterNumber}: ${ch.title}`}
                 >
                   {isCompleted ? '✓' : ch.chapterNumber}
@@ -168,11 +167,10 @@ export default function ARGGameEngine() {
               sound.playHeartClick();
               setArcadeMode(!arcadeMode);
             }}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-mono flex items-center gap-1.5 border transition-all ${
-              arcadeMode
+            className={`px-3 py-1.5 rounded-full text-[11px] font-mono flex items-center gap-1.5 border transition-all ${arcadeMode
                 ? 'bg-amber-500/20 border-universe-gold text-universe-gold shadow-glow-gold'
                 : 'bg-universe-darkBurgundy/40 border-universe-wine/50 text-universe-lavender/70 hover:text-universe-cream'
-            }`}
+              }`}
             title="Toggle Arcade Mode to freely replay any mini-game"
           >
             <Gamepad2 className="w-3.5 h-3.5" />
@@ -195,7 +193,7 @@ export default function ARGGameEngine() {
 
         {/* Main Puzzle Card */}
         <div className="relative p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#200918] via-[#12040e] to-[#070205] border-2 border-universe-wine/70 shadow-2xl space-y-6 text-left">
-          
+
           {/* Prompt */}
           <div className="space-y-2">
             <span className="text-[10px] uppercase font-mono tracking-widest text-universe-gold flex items-center gap-1.5">
@@ -235,11 +233,10 @@ export default function ARGGameEngine() {
               value={inputAnswer}
               onChange={(e) => setInputAnswer(e.target.value)}
               placeholder="Or type your decoded answer here..."
-              className={`flex-1 px-4 py-2.5 rounded-xl bg-universe-black/70 border text-xs sm:text-sm text-universe-cream font-mono focus:outline-none transition-all ${
-                inputError
+              className={`flex-1 px-4 py-2.5 rounded-xl bg-universe-black/70 border text-xs sm:text-sm text-universe-cream font-mono focus:outline-none transition-all ${inputError
                   ? 'border-red-500 ring-2 ring-red-500/50 animate-shake'
                   : 'border-universe-wine/60 focus:border-universe-glowingRed'
-              }`}
+                }`}
             />
             <button
               type="submit"

@@ -53,6 +53,7 @@ export interface PuzzleChapter {
     type: 'word' | 'date' | 'symbol' | 'secret';
     value: string;
     lore: string;
+    metaPiece?: string;
   };
 }
 
@@ -427,22 +428,23 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     id: 1,
     chapterNumber: '01',
     title: 'Where It Started',
-    subtitle: 'The Earliest Spark',
+    subtitle: 'The Earliest Spark & First Goodnight',
     loreIntro:
-      'Before the nicknames, before the 3 AM whispers, there was a single moment when our trajectories collided.',
+      'Before the 3 AM whispers, there was a single moment when our trajectories collided and the first sweet goodbye was said.',
     cluePrompt:
-      'Inspect the chronological clues of our earliest match. In what month did our universe begin?',
-    hint: 'Think back to the cold late autumn when two profiles matched right before winter.',
-    answerKey: 'NOVEMBER',
-    alternateAnswers: ['NOV', '11', 'NOVEMBER 2024', 'MONTH 11'],
-    feedbackQuote: 'you remembered. the exact month our worlds collided.',
+      'What was the sacred closing word of our earliest chat before falling asleep smiling?',
+    hint: 'A gentle whisper across the screen to wish sweet dreams: "G---N----"',
+    answerKey: 'GOODNIGHT',
+    alternateAnswers: ['GOOD NIGHT', 'NOVEMBER', 'NOV', '11', 'NOVEMBER 2024'],
+    feedbackQuote: 'you remembered. the exact word that started every midnight habit.',
     memoryReward: {
       id: 'mem-1',
       title: 'The Spark of Us',
       icon: '✨',
-      type: 'date',
-      value: 'NOVEMBER',
-      lore: 'The month the algorithm stopped being random and became destiny.'
+      type: 'word',
+      value: 'GOODNIGHT',
+      lore: 'Piece 1 of our eternal phrase: [I]',
+      metaPiece: 'I'
     }
   },
   {
@@ -451,20 +453,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'The Name You Gave Me',
     subtitle: 'The Floating Word Selector',
     loreIntro:
-      'We never used ordinary names. One special word became our sacred currency of teasing and adoration.',
+      'We never used ordinary names. One special, waddling, beloved creature became our sacred nickname.',
     cluePrompt:
-      'Select the true affectionate nickname Shivi calls Rashi when teasing her in every single voice note.',
-    hint: 'She whines "I am not chubby!" but secretly loves hearing it: "M---"',
-    answerKey: 'MOTU',
-    alternateAnswers: ['MOTA', 'MERI JAAN', 'WIFEYY'],
-    feedbackQuote: 'that one was always ours. nobody else gets to call you that.',
+      'Select the secret bird nickname that only belongs to us in our chats.',
+    hint: 'Waddles with cold feet, cute and protective: "P------"',
+    answerKey: 'PENGUIN',
+    alternateAnswers: ['CHOTU', 'MOTU', 'MERI JAAN', 'WIFEYY', 'MOTA'],
+    feedbackQuote: 'that one was always ours. my little penguin.',
     memoryReward: {
       id: 'mem-2',
-      title: 'The True Name',
-      icon: '🧸',
+      title: 'The True Nickname',
+      icon: '🐧',
       type: 'word',
-      value: 'MOTU',
-      lore: 'Four letters that hold more warmth than an entire encyclopedia.'
+      value: 'PENGUIN',
+      lore: 'Piece 2 of our eternal phrase: [ ]',
+      metaPiece: ' '
     }
   },
   {
@@ -473,20 +476,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'The Message Hunt',
     subtitle: 'The WhatsApp Archive',
     loreIntro:
-      'Check your memory or your WhatsApp archive. When Shivi proposed her terms of love, what clause did she insist on?',
+      'Check your memory or your WhatsApp archive. When distance got too heavy, what did we keep saying over and over?',
     cluePrompt:
-      'Complete Shivi\'s exact sentence: "Meko aap hamesha saath chahiye... ________ tak nhi."',
-    hint: 'Like a Bollywood film that never halts at the halfway popcorn break.',
-    answerKey: 'INTERVAL',
-    alternateAnswers: ['INTERVAL TAK NHI', 'INTERVAL TAK NAHI', 'INTERVAL TAK'],
-    feedbackQuote: 'you never forgot that promise. not just for half the show, but for the entire lifetime.',
+      'The two words sent late at night when screens were not enough: "WANNA ______"',
+    hint: 'Closing the gap in person: "W---- M---"',
+    answerKey: 'WANNA MEET',
+    alternateAnswers: ['WANNAMEET', 'MEET', 'INTERVAL', 'INTERVAL TAK NHI'],
+    feedbackQuote: 'soon, every single time. no more screens between us.',
     memoryReward: {
       id: 'mem-3',
-      title: 'The Eternal Clause',
-      icon: '🎞️',
+      title: 'The Unspoken Urge',
+      icon: '✈️',
       type: 'secret',
-      value: 'INTERVAL',
-      lore: 'A love story that rejects the concept of an intermission.'
+      value: 'WANNA MEET',
+      lore: 'Piece 3 of our eternal phrase: [C]',
+      metaPiece: 'C'
     }
   },
   {
@@ -495,20 +499,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'Time Knows Everything',
     subtitle: 'The Timestamp & Call Duration Cipher',
     loreIntro:
-      'On our longest midnight phone call, the clock ticked in secret code. Each digit mapped directly to a letter of destiny.',
+      'On our longest midnight phone call, the clock ticked in secret code. Four letters that govern everything we feel.',
     cluePrompt:
-      'Decode the timestamp cipher [6-15-18-5-22-5-18] (where 1=A, 2=B... 6=F, 15=O...). What single word does our time spell?',
-    hint: 'F - O - R - E - V - E - R',
-    answerKey: 'FOREVER',
-    alternateAnswers: ['FOR EVER', 'HAMESHA'],
-    feedbackQuote: 'every second on call was bringing us closer to forever.',
+      'Decode the timestamp cipher [12-15-22-5]. What single four-letter truth does our time spell?',
+    hint: 'L - O - V - E',
+    answerKey: 'LOVE',
+    alternateAnswers: ['FOREVER', 'HAMESHA', 'I LOVE YOU'],
+    feedbackQuote: 'every second on call was bringing us deeper into love.',
     memoryReward: {
       id: 'mem-4',
       title: 'The Endless Call',
       icon: '⏱️',
       type: 'word',
-      value: 'FOREVER',
-      lore: 'A timestamp that outlasted all ordinary clocks.'
+      value: 'LOVE',
+      lore: 'Piece 4 of our eternal phrase: [H]',
+      metaPiece: 'H'
     }
   },
   {
@@ -517,42 +522,44 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'Emoji Language',
     subtitle: 'The Secret Dialect',
     loreIntro:
-      'When words feel too small, our chats speak in a sacred emoji sequence.',
+      'When words feel too small, our chats speak in our favorite teasing pet name.',
     cluePrompt:
-      'Translate Rashi\'s iconic response to the proposal: [💍 + 🤧 + 🔒] — Is it "TEMPORARY" or "PERMANENT"?',
-    hint: '"It\'s _________ commitment frm my side 🤧"',
-    answerKey: 'PERMANENT',
-    alternateAnswers: ['PERMANENT COMMITMENT', 'PERMANENT COMMITMENT FRM MY SIDE'],
-    feedbackQuote: 'one more piece of us ♡. signed, sealed, and permanent.',
+      'The cutest diminutive nickname Shivi calls her girl: "C----"',
+    hint: 'ChotuPenguin starts with: "C----"',
+    answerKey: 'CHOTU',
+    alternateAnswers: ['PENGUIN', 'PERMANENT', 'PERMANENT COMMITMENT'],
+    feedbackQuote: 'my chotu, my favourite human in the entire universe ♡.',
     memoryReward: {
       id: 'mem-5',
-      title: 'The Permanent Seal',
-      icon: '💍',
-      type: 'symbol',
-      value: 'PERMANENT',
-      lore: 'The word that banished all uncertainty from our hearts.'
+      title: 'The Little One',
+      icon: '🧸',
+      type: 'word',
+      value: 'CHOTU',
+      lore: 'Piece 5 of our eternal phrase: [O]',
+      metaPiece: 'O'
     }
   },
   {
     id: 6,
     chapterNumber: '06',
     title: 'Listen Closely, Baby',
-    subtitle: 'Audio Waveform & Rhythm Pulse',
+    subtitle: 'Audio Waveform & The Sacred Confession',
     loreIntro:
-      'Close your eyes and listen to the pulse. In Shivi\'s voice note, what is the exact number of kisses she demands?',
+      'Close your eyes and listen to the pulse. What is the three-word confession whispered at the end of the voice note?',
     cluePrompt:
-      'Listen to Shivi\'s voice note: "Kiss toh mil sakti hai na? Bas ________, aur zyada nahi."',
-    hint: 'Count the kisses on your fingers: not one, not two, but between three and four.',
-    answerKey: '3-4',
-    alternateAnswers: ['TEEN CHAR', '3 TO 4', '3', '4', 'TEEN-CHAR', 'THREE FOUR'],
-    feedbackQuote: 'you listen to my heart even in total silence. all kisses granted!',
+      'Listen to Shivi\'s voice note: after asking for 3-4 kisses, what does she say? "I ______ ______"',
+    hint: 'Three words, eight letters: I L--- Y--',
+    answerKey: 'I LOVE YOU',
+    alternateAnswers: ['ILOVEYOU', '3-4', 'TEEN CHAR', '3', '4'],
+    feedbackQuote: 'i love you. more than every star in the sky.',
     memoryReward: {
       id: 'mem-6',
-      title: 'The Kiss Demand',
-      icon: '💋',
+      title: 'The Voice Note Confession',
+      icon: '🎙️',
       type: 'secret',
-      value: '3-4 KISSES',
-      lore: 'The exact amount of affection demanded before bedtime.'
+      value: 'I LOVE YOU',
+      lore: 'Piece 6 of our eternal phrase: [O]',
+      metaPiece: 'O'
     }
   },
   {
@@ -561,20 +568,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'The Things We Keep Saying',
     subtitle: 'Word Frequency Pattern',
     loreIntro:
-      'Among thousands of text messages, one title echoes with pure tenderness. What does Rashi call Shivi in her hospital coma letter?',
+      'Among thousands of text messages, three words echo endlessly through the hospital halls and quiet mornings.',
     cluePrompt:
-      'Find the word that begins the letter: "Heyy ________... i want you to read my message whenever you feel better."',
-    hint: 'W - I - F - E - Y - Y (with two Y\'s!)',
-    answerKey: 'WIFEYY',
-    alternateAnswers: ['WIFEY', 'WIFEYYY', 'MY WIFEYY'],
-    feedbackQuote: 'these words kept us alive through the darkest hospital halls.',
+      'What is the promise that never changed even on our hardest nights?',
+    hint: 'The three words that kept us holding on: "I L--- Y--"',
+    answerKey: 'I LOVE YOU',
+    alternateAnswers: ['ILOVEYOU', 'WIFEYY', 'WIFEY', 'MY WIFEYY'],
+    feedbackQuote: 'these three words pulled us through every storm.',
     memoryReward: {
       id: 'mem-7',
-      title: 'The Sacred Title',
+      title: 'The Sacred Vow',
       icon: '💌',
       type: 'word',
-      value: 'WIFEYY',
-      lore: 'The title that proved our future was already decided.'
+      value: 'I LOVE YOU',
+      lore: 'Piece 7 of our eternal phrase: [S]',
+      metaPiece: 'S'
     }
   },
   {
@@ -583,20 +591,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'The Red Thread',
     subtitle: 'Connecting the Nodes of Fate',
     loreIntro:
-      'An invisible glowing thread of fate connects every milestone of our story in emotional order.',
+      'An invisible glowing thread of fate connects every milestone. What two letters represent our combined existence?',
     cluePrompt:
-      'Order the four sacred milestones: [A: Tinder Match, B: Interval Proposal, C: Hospital Coma Letter, D: Paper Rings]. Enter the sequence (e.g. ABCD):',
-    hint: 'Match first, then the proposal, then surviving the hospital together, then dancing to Paper Rings.',
-    answerKey: 'ABCD',
-    alternateAnswers: ['A B C D', 'A-B-C-D', '1234'],
-    feedbackQuote: 'no matter how far apart, the thread never breaks.',
+      'Not me alone, not you alone, but: "U-"',
+    hint: 'U - S',
+    answerKey: 'US',
+    alternateAnswers: ['ABCD', 'RED THREAD', 'OUR STORY'],
+    feedbackQuote: 'no matter how far apart, the thread only ever points to US.',
     memoryReward: {
       id: 'mem-8',
-      title: 'The Unbreakable Thread',
+      title: 'The Unbreakable Bond',
       icon: '🧵',
       type: 'symbol',
-      value: 'RED THREAD',
-      lore: 'The crimson thread that wove through every tear and every laugh.'
+      value: 'US',
+      lore: 'Piece 8 of our eternal phrase: [E]',
+      metaPiece: 'E'
     }
   },
   {
@@ -605,20 +614,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'Constellation of Us',
     subtitle: 'Celestial Star Alignment',
     loreIntro:
-      'Look into the sky canvas above. The stars align to draw the initial of the girl who owns Shivi\'s heart.',
+      'Look into the sky canvas above. The stars align to draw the name of the girl who owns Shivi\'s heart.',
     cluePrompt:
-      'Which letter do our celestial stars form in the heavens?',
-    hint: 'The first letter of the most beautiful girl in the universe: R----',
-    answerKey: 'R',
-    alternateAnswers: ['RASHI', 'LETTER R', 'HEART'],
-    feedbackQuote: 'our universe was written in the stars all along.',
+      'Which name do our celestial stars form in the heavens?',
+    hint: 'Five letters, pure magic: R-A-S-H-I',
+    answerKey: 'RASHI',
+    alternateAnswers: ['R', 'LETTER R', 'HEART'],
+    feedbackQuote: 'our universe was written for Rashi all along.',
     memoryReward: {
       id: 'mem-9',
-      title: 'Constellation R',
+      title: 'Constellation Rashi',
       icon: '⭐',
       type: 'symbol',
-      value: 'CONSTELLATION R',
-      lore: 'A stellar pattern mapped to Rashi\'s smile.'
+      value: 'RASHI',
+      lore: 'Piece 9 of our eternal phrase: [ ]',
+      metaPiece: ' '
     }
   },
   {
@@ -627,20 +637,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'The Fake Path',
     subtitle: 'The Red Herring Riddle',
     loreIntro:
-      'Beware of superficial logic. A stranger might think our love is ordinary, but your heart knows the truth.',
+      'Beware of superficial logic. A stranger might think this is temporary, but the universe knows who we are.',
     cluePrompt:
-      'A false riddle asks: "Was this relationship built just for the fun of dating?" Type what Shivi truly wanted: "TEMPORARY" or "LIFETIME"?',
-    hint: 'If you choose temporary, Shivi will softly correct you. Choose what we promised.',
-    answerKey: 'LIFETIME',
-    alternateAnswers: ['LIFE', 'LIFE PARTNER', 'PERMANENT', 'ZINDAGI'],
-    feedbackQuote: 'you see right through the world to what is true. never temporary... always lifetime.',
+      'In a world of temporary things, what are we building together?',
+    hint: 'Two letters: "U-"',
+    answerKey: 'US',
+    alternateAnswers: ['LIFETIME', 'LIFE PARTNER', 'PERMANENT', 'ZINDAGI'],
+    feedbackQuote: 'never temporary... always US, for a lifetime.',
     memoryReward: {
       id: 'mem-10',
-      title: 'The True Compass',
+      title: 'The Eternal Identity',
       icon: '🧭',
       type: 'secret',
-      value: 'LIFETIME',
-      lore: 'The refusal to settle for anything less than a shared lifetime.'
+      value: 'US',
+      lore: 'Piece 10 of our eternal phrase: [Y]',
+      metaPiece: 'Y'
     }
   },
   {
@@ -649,20 +660,21 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: 'The Final Lock',
     subtitle: 'The Grand Meta-Puzzle',
     loreIntro:
-      'All ten collected keys from your Memory Pocket converge here. Combine the pieces to open the sanctuary of our future.',
+      'All ten collected keys from your Memory Pocket converge here. Enter the sacred password that unlocks the sanctuary of our future.',
     cluePrompt:
-      'Assemble the master passphrase combining our song and our ring: What kind of rings will we marry with? "PAPER ______"',
-    hint: 'Taylor Swift sings it loud and proud: "PAPER RINGS"',
-    answerKey: 'RINGS',
-    alternateAnswers: ['PAPER RINGS', 'RING', 'PAPER RING'],
-    feedbackQuote: 'THE FINAL LOCK IS BROKEN. Come here, my love... ♡',
+      'Enter the master key of our private universe (our secret password):',
+    hint: 'Nickname + Date: "ChotuPenguin2211"',
+    answerKey: 'CHOTUPENGUIN2211',
+    alternateAnswers: ['RINGS', 'PAPER RINGS', 'PAPER RINGS BY TAYLOR SWIFT'],
+    feedbackQuote: 'THE FINAL LOCK IS BROKEN. All pieces assembled: I CHOOSE YOU ♡',
     memoryReward: {
       id: 'mem-11',
-      title: 'The Key to Us',
+      title: 'The Master Vow: I CHOOSE YOU',
       icon: '👑',
       type: 'secret',
-      value: 'PAPER RINGS',
-      lore: 'The master key that unlocks the ultimate question.'
+      value: 'I CHOOSE YOU',
+      lore: 'All 11 pieces combined into our eternal promise: I CHOOSE YOU',
+      metaPiece: 'OU♡'
     }
   }
 ];

@@ -104,6 +104,21 @@ class AudioEngine {
     });
   }
 
+  playHeartbeat(intensity = 0.14) {
+    this.init();
+    if (!this.ctx || this.isMuted) return;
+    try {
+      // First thump: "Lub"
+      this.playTone(55, 0.22, 'sine', intensity);
+      // Second thump: "Dub"
+      setTimeout(() => {
+        this.playTone(72, 0.28, 'sine', intensity * 0.85);
+      }, 130);
+    } catch {
+      // Audio context might be restricted
+    }
+  }
+
   playCassetteClick() {
     this.init();
     this.playTone(180, 0.15, 'square', 0.06);
