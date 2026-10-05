@@ -25,7 +25,6 @@ export interface StoryMoment {
   excerpt: string;
   details: string;
   image: string;
-  audioSnippet?: string;
   secretKey?: string;
   unlockedItem?: {
     name: string;
@@ -64,8 +63,6 @@ export const OUR_LORE = {
       role: 'The Girl with the Hoops & Oversized Sweaters',
       avatar: '/assets/shivi_rashi_cartoon.jpg',
       nicknames: ['Shivi', 'Wifeyy', 'Bebu', 'Mota'],
-      voiceNoteSrc: '/assets/shivi_voice_note.webm',
-      voiceNoteDuration: '0:45',
       kissDemand: 'Bas 3-4 Kisses... Aur Zyada Nahi 💋'
     },
     rashi: {
@@ -73,8 +70,6 @@ export const OUR_LORE = {
       role: 'The Girl in the Cozy Lavender Hoodie',
       avatar: '/assets/shivi_rashi_cartoon_sleep_call.jpg',
       nicknames: ['Rashi', 'Motu', 'Meri Jaan', 'Ashi', 'Sleepyhead'],
-      voiceNoteSrc: '/assets/rashi_sleepy_voice_note.webm',
-      voiceNoteDuration: '1:11',
       sleepStatus: 'Currently Sleeping in Bed 😴🌙'
     }
   },
@@ -170,7 +165,6 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     excerpt: '"Kiss toh mil sakti hai na? Bas teen-char, aur zyada nahi!"',
     details: 'Shivi recording voice notes with that cute pleading tone, asking for just 3-4 kisses, and then blushing: "Nahi bataungi main jao, niklo yahan se! Love you mota!"',
     image: '/assets/shivi_rashi_cartoon.jpg',
-    audioSnippet: '/assets/shivi_voice_note.webm',
     unlockedItem: {
       name: 'Kiss Voucher',
       icon: '💋',
@@ -268,7 +262,6 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     excerpt: 'Shivi begging her to say "I love you" while Rashi drifts off into dreamland.',
     details: 'Shivi teasing: "Ashi... I love you toh bol do! Motu, tez bolo thoda!" Rashi whining sleepily: "I love you yaar... I love you, Shivi... ♡" and Shivi laughing softly in pure joy.',
     image: '/assets/shivi_rashi_cartoon_sleep_call.jpg',
-    audioSnippet: '/assets/rashi_sleepy_voice_note.webm',
     unlockedItem: {
       name: 'Sleepy Pillow',
       icon: '🌙',

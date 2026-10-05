@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Heart, Volume2, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Heart, Sparkles, CheckCircle2 } from 'lucide-react';
 import { sound } from '../../utils/audioEngine';
 
 interface HeartbeatRhythmGameProps {
@@ -10,15 +10,7 @@ interface HeartbeatRhythmGameProps {
 export default function HeartbeatRhythmGame({ onSolve }: HeartbeatRhythmGameProps) {
   const [kissCount, setKissCount] = useState(0);
   const [pulseActive, setPulseActive] = useState(false);
-  const [feedback, setFeedback] = useState<string>('Listen to Shivi & tap to deliver her 3-4 kisses!');
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-
-  const handlePlayVoice = () => {
-    sound.playHeartClick();
-    const clip = new Audio('/assets/shivi_voice_note.webm');
-    clip.play().then(() => setIsPlayingAudio(true)).catch(() => setIsPlayingAudio(true));
-    clip.onended = () => setIsPlayingAudio(false);
-  };
+  const [feedback, setFeedback] = useState<string>('Tap the pulsing heart to deliver her 3-4 kisses!');
 
   const handleTapKiss = () => {
     sound.playHeartClick();
@@ -56,18 +48,11 @@ export default function HeartbeatRhythmGame({ onSolve }: HeartbeatRhythmGameProp
     <div className="relative max-w-sm mx-auto w-full p-4 rounded-3xl bg-gradient-to-b from-[#1e0716] via-[#10030d] to-[#060105] border-2 border-universe-wine/60 shadow-2xl text-center space-y-4 select-none">
       
       {/* Header */}
-      <div className="flex items-center justify-between text-xs font-mono pb-2 border-b border-universe-wine/30">
+      <div className="flex items-center justify-center text-xs font-mono pb-2 border-b border-universe-wine/30">
         <span className="text-universe-dustyPink font-semibold flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5 text-universe-blush" />
           Heartbeat Rhythm Tap
         </span>
-        <button
-          onClick={handlePlayVoice}
-          className="text-[11px] text-universe-blush bg-universe-wine/40 px-2.5 py-1 rounded-full border border-universe-wine/60 flex items-center gap-1 hover:bg-universe-wine transition-all"
-        >
-          <Volume2 className="w-3 h-3" />
-          <span>{isPlayingAudio ? 'Playing...' : 'Hear Shivi'}</span>
-        </button>
       </div>
 
       <p className="font-handwritten text-sm sm:text-base text-universe-blush min-h-[24px]">

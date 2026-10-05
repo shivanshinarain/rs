@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { TWENTY_MOMENTS, StoryMoment, MomentCategory } from '../data/ourStory';
-import { Play, Pause, ChevronRight, X, Calendar } from 'lucide-react';
+import { ChevronRight, X, Calendar } from 'lucide-react';
 import { sound } from '../utils/audioEngine';
 
 export default function TwentyMomentsGallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [activeModalMoment, setActiveModalMoment] = useState<StoryMoment | null>(null);
-  const [playingAudioId, setPlayingAudioId] = useState<number | null>(null);
-  const [audioEl, setAudioEl] = useState<HTMLAudioElement | null>(null);
 
   const categories: (MomentCategory | 'ALL')[] = [
     'ALL',
@@ -22,27 +20,6 @@ export default function TwentyMomentsGallery() {
   const filteredMoments = selectedCategory === 'ALL'
     ? TWENTY_MOMENTS
     : TWENTY_MOMENTS.filter(m => m.category === selectedCategory);
-
-  const handleAudioToggle = (moment: StoryMoment) => {
-    if (!moment.audioSnippet) return;
-
-    if (playingAudioId === moment.id && audioEl) {
-      audioEl.pause();
-      setPlayingAudioId(null);
-    } else {
-      if (audioEl) audioEl.pause();
-      const newAudio = new Audio(moment.audioSnippet);
-      newAudio.play().then(() => {
-        setAudioEl(newAudio);
-        setPlayingAudioId(moment.id);
-      }).catch(() => {
-        setPlayingAudioId(moment.id);
-      });
-      newAudio.onended = () => {
-        setPlayingAudioId(null);
-      };
-    }
-  };
 
   const getCategoryColor = (cat: MomentCategory) => {
     switch (cat) {
@@ -116,13 +93,6 @@ export default function TwentyMomentsGallery() {
                     {moment.category}
                   </span>
                 </div>
-                {moment.audioSnippet && (
-                  <div className="absolute bottom-2 right-2">
-                    <span className="p-1.5 rounded-full bg-universe-black/70 backdrop-blur-md text-universe-blush border border-universe-wine flex items-center gap-1 text-[10px] font-mono">
-                      🎵 Voice Note
-                    </span>
-                  </div>
-                )}
               </div>
 
               {/* Title & Date */}
@@ -198,32 +168,6 @@ export default function TwentyMomentsGallery() {
                 className="w-full h-full object-cover"
               />
             </div>
-
-            {/* Audio Snippet if present */}
-            {activeModalMoment.audioSnippet && (
-              <div className="p-3.5 rounded-xl bg-universe-black/50 border border-universe-wine/60 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2.5">
-                  <button
-                    onClick={() => handleAudioToggle(activeModalMoment)}
-                    className="w-10 h-10 rounded-full bg-universe-crimson text-white flex items-center justify-center shadow-glow-red hover:scale-105 active:scale-95 transition-all"
-                  >
-                    {playingAudioId === activeModalMoment.id ? (
-                      <Pause className="w-4 h-4 fill-white" />
-                    ) : (
-                      <Play className="w-4 h-4 fill-white ml-0.5" />
-                    )}
-                  </button>
-                  <div>
-                    <h5 className="font-serif text-xs text-universe-cream">
-                      Attached Real Voice Note
-                    </h5>
-                    <p className="text-[10px] font-mono text-universe-dustyPink">
-                      Click to listen to our original audio clip
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
 
             {/* Story Details */}
             <div className="space-y-3 text-xs sm:text-sm text-universe-cream/90 font-sans leading-relaxed bg-universe-black/40 p-4 rounded-2xl border border-universe-wine/30">

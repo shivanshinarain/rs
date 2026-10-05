@@ -388,59 +388,6 @@ export const loveStoryData = {
     playerNote: "Our exclusive soundtrack: Taylor Swift's 'Paper Rings' — celebrating our permanent commitment."
   },
 
-  // Chapter 12: Voice Notes From Shivi & Rashi (REAL AUDIO RECORDINGS)
-  voiceNote: {
-    chapterNumber: "12",
-    tagline: "Voices From Our Hearts",
-    headline: "Real Words, Soft Whispers ♡",
-    subtitle: "Real audio recordings straight from our bed, midnight talks, and sleepy whispers.",
-    duration: "0:45",
-    audioSrc: "/assets/shivi_voice_note.webm",
-    transcript: "Hi Rashi... I just wanna say that I love you so much. I'm sorry jab bhi main hurt karti hoon, but just love you, motu, meri jaan! I love you so much, theek hai? Aur... ab ye dekhne ke baad, ye sunne ke baad... ek kiss de dena, kiss toh mil sakti hai na? Bas teen-char, aur zyada nahi. Aur... abhi toh bohot saari cheezein hain... bohot saari cheezein... nahi bataungi main jao, niklo yahan se! Love you, mota!",
-    nicknames: ["motu", "meri jaan", "mota", "wifeyy"],
-    kissesRequested: 4
-  },
-  voiceNotesList: [
-    {
-      id: "shivi",
-      title: "Voice Note from Shivi for Rashi",
-      tag: "Shivi's Love Letter 🎙️",
-      subtitle: "'Kiss toh mil sakti hai na? Bas teen-char...'",
-      audioSrc: "/assets/shivi_voice_note.webm",
-      duration: "0:45",
-      avatar: "/assets/shivi_rashi_cartoon.jpg",
-      transcript: "Hi Rashi... I just wanna say that I love you so much. I'm sorry jab bhi main hurt karti hoon, but just love you, motu, meri jaan! I love you so much, theek hai? Aur... ab ye dekhne ke baad, ye sunne ke baad... ek kiss de dena, kiss toh mil sakti hai na? Bas teen-char, aur zyada nahi. Aur... abhi toh bohot saari cheezein hain... bohot saari cheezein... nahi bataungi main jao, niklo yahan se! Love you, mota!",
-      actionLabel: "Give Shivi a Kiss 💋",
-      icon: "mic"
-    },
-    {
-      id: "rashi-sleepy",
-      title: "Sleepy Rashi: 'I Love You, Shivi...'",
-      tag: "She's Currently Sleeping 😴♡",
-      subtitle: "'Mujhe bohot gandi wali neend aa rahi hai...'",
-      audioSrc: "/assets/rashi_sleepy_voice_note.webm",
-      duration: "1:11",
-      avatar: "/assets/shivi_rashi_cartoon_sleep_call.jpg",
-      transcript: "Rashi: 'So sakti hoon? Mujhe bohot gandi wali neend aa rahi hai...' • Shivi: 'Ashi... I love you toh bol do! Motu... I love you bolo...' • Rashi: 'I love you yaar... I love you, Shivi... ♡' • Shivi: 'Aur pyaar se bebu... Nahi bol rahi hai ye... I love you nahi bolegi! 😂'",
-      dialogue: [
-        { speaker: "Rashi (sleepy murmur)", text: "Hmm... what?" },
-        { speaker: "Rashi", text: "So sakti hoon? Mujhe bohot gandi wali neend aa rahi hai..." },
-        { speaker: "Shivi", text: "Dheere bolo thoda... Bebu... Bebu..." },
-        { speaker: "Shivi", text: "Ashi... Ashi... 'I love you' toh bol do..." },
-        { speaker: "Shivi", text: "Ashi, 'I love you' toh bol do! Motu... I love you bolo... Tez bolo thoda..." },
-        { speaker: "Rashi (whining sleepily)", text: "I love you yaar..." },
-        { speaker: "Shivi", text: "Pyaar se bolo..." },
-        { speaker: "Rashi (soft sleepy voice)", text: "I love you, Shivi... ♡" },
-        { speaker: "Shivi", text: "Aur pyaar se, bebu..." },
-        { speaker: "Rashi", text: "I love you..." },
-        { speaker: "Shivi", text: "I love you bol do..." },
-        { speaker: "Shivi (laughing softly)", text: "Nahi bol rahi hai ye... I love you nahi bolegi! 😂" }
-      ],
-      actionLabel: "Give Sleepy Rashi a Forehead Kiss 🌙",
-      icon: "moon"
-    }
-  ],
-
   // Chapter 13: The Future (4 Essential Long Distance & Future Doors)
   futureDreams: {
     chapterNumber: "13",
