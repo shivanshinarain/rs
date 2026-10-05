@@ -213,7 +213,11 @@ function renderDiscoveryIcon(iconName: string) {
   }
 }
 
-export default function BirthdayWorld() {
+interface BirthdayWorldProps {
+  onUnlockChange?: (unlocked: boolean) => void;
+}
+
+export default function BirthdayWorld({ onUnlockChange }: BirthdayWorldProps = {}) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState<string | null>(null);
@@ -238,6 +242,7 @@ export default function BirthdayWorld() {
     // Check session unlock
     if (isBirthdaySessionUnlocked()) {
       setIsUnlocked(true);
+      onUnlockChange?.(true);
     }
 
     const checkDate = () => {
@@ -279,6 +284,7 @@ export default function BirthdayWorld() {
     if (verifyBirthdayPassword(passwordInput)) {
       sound.playMatchSound();
       setIsUnlocked(true);
+      onUnlockChange?.(true);
       setBirthdaySessionUnlocked();
       setPasswordError(null);
       confetti({

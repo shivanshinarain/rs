@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BirthdayWorld from '../World05/BirthdayWorld';
 import Chapter09_Birthdays from '../Chapter09_Birthdays';
 import Chapter11_OurMusic from '../Chapter11_OurMusic';
 import Chapter14_TheProposal from '../Chapter14_TheProposal';
 import TinyCharacters from '../Effects/TinyCharacters';
+import { isBirthdaySessionUnlocked } from '../../config/birthdayConfig';
 
 interface World05Props {
   onEasterEggUnlock?: (id: string) => void;
 }
 
 export default function World05_BirthdayWorld({ onEasterEggUnlock }: World05Props) {
+  const [isUnlocked, setIsUnlocked] = useState(() => isBirthdaySessionUnlocked());
+
   return (
     <div className="relative w-full space-y-16 sm:space-y-24">
       
@@ -30,17 +33,22 @@ export default function World05_BirthdayWorld({ onEasterEggUnlock }: World05Prop
         </div>
       </section>
 
-      {/* Birthday World: 21 Stars Countdown & 21 Little Reasons & Final Proposal Transition */}
-      <BirthdayWorld />
+      {/* Birthday World: Date-Gating Countdown ('not yet, love...'), Password Gate, and 21 Little Reasons */}
+      <BirthdayWorld onUnlockChange={setIsUnlocked} />
 
-      {/* Chapter 09: Celestial Birthdays & Constellations */}
-      <Chapter09_Birthdays onEasterEggUnlock={onEasterEggUnlock} />
+      {/* Only reveal full celebration, constellations, music, and final proposal once unlocked */}
+      {isUnlocked && (
+        <>
+          {/* Chapter 09: Celestial Birthdays & Constellations (Scorpio & Virgo) */}
+          <Chapter09_Birthdays onEasterEggUnlock={onEasterEggUnlock} />
 
-      {/* Chapter 11: Our Music (Paper Rings) */}
-      <Chapter11_OurMusic onEasterEggUnlock={onEasterEggUnlock} />
+          {/* Chapter 11: Our Music (Paper Rings) */}
+          <Chapter11_OurMusic onEasterEggUnlock={onEasterEggUnlock} />
 
-      {/* Chapter 14: The Proposal */}
-      <Chapter14_TheProposal />
+          {/* Chapter 14: The Proposal & Sacred Final Vow */}
+          <Chapter14_TheProposal />
+        </>
+      )}
 
     </div>
   );
