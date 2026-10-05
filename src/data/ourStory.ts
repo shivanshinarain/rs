@@ -25,7 +25,6 @@ export interface StoryMoment {
   excerpt: string;
   details: string;
   image: string;
-  audioSnippet?: string;
   secretKey?: string;
   unlockedItem?: {
     name: string;
