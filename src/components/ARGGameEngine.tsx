@@ -24,7 +24,8 @@ import {
   Heart,
   HelpCircle,
   KeyRound,
-  Gamepad2
+  Gamepad2,
+  Sparkles
 } from 'lucide-react';
 
 export default function ARGGameEngine() {
@@ -176,6 +177,61 @@ export default function ARGGameEngine() {
             <Gamepad2 className="w-3.5 h-3.5" />
             <span>{arcadeMode ? '🎮 Arcade: All 11 Games Open' : 'Arcade Mode'}</span>
           </button>
+        </div>
+
+        {/* Section 15: Secret Meta-Message Fragment Ribbon */}
+        <div className="p-3.5 rounded-2xl bg-universe-black/60 border border-universe-wine/50 shadow-sm space-y-2">
+          <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-universe-dustyPink">
+            <span className="flex items-center gap-1.5">
+              <Sparkles className="w-3 h-3 text-universe-gold" />
+              <span>Hidden Meta-Message ({Math.min(11, activeChapterIndex)}/11 Fragments)</span>
+            </span>
+            <span className="text-universe-gold/80 italic font-serif lowercase">
+              "each chapter secretly leaves behind a piece..."
+            </span>
+          </div>
+
+          {/* Letter Slots */}
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+            {[
+              { ch: 0, char: 'I' },
+              { ch: 1, char: ' ' },
+              { ch: 2, char: 'C' },
+              { ch: 3, char: 'H' },
+              { ch: 4, char: 'O' },
+              { ch: 5, char: 'O' },
+              { ch: 6, char: 'S' },
+              { ch: 7, char: 'E' },
+              { ch: 8, char: ' ' },
+              { ch: 9, char: 'Y' },
+              { ch: 10, char: 'O' },
+              { ch: 10, char: 'U' }
+            ].map((slot, i) => {
+              const isRevealed = slot.ch < activeChapterIndex;
+              const isSpace = slot.char === ' ';
+
+              if (isSpace) {
+                return (
+                  <div key={i} className="w-3 sm:w-4 flex items-center justify-center text-universe-crimson text-xs">
+                    {isRevealed ? '♡' : '•'}
+                  </div>
+                );
+              }
+
+              return (
+                <div
+                  key={i}
+                  className={`w-6 h-7 sm:w-8 sm:h-9 rounded-lg font-mono font-bold text-xs sm:text-sm flex items-center justify-center transition-all duration-500 ${
+                    isRevealed
+                      ? 'bg-universe-wine/50 border border-universe-gold text-universe-gold shadow-glow-gold scale-105'
+                      : 'bg-universe-black/80 border border-universe-wine/30 text-universe-lavender/30'
+                  }`}
+                >
+                  {isRevealed ? slot.char : '✦'}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Chapter Header */}

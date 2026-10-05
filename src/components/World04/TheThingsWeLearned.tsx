@@ -91,14 +91,31 @@ export default function TheThingsWeLearned() {
 
         </div>
 
-        {/* Concluding Vow */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-universe-darkBurgundy/40 via-universe-wine/30 to-universe-darkBurgundy/40 border border-universe-wine/60 space-y-2">
-          <p className="font-serif italic text-base sm:text-xl text-universe-cream">
-            "i don't want us to become perfect."
+        {/* The Exact Maturing Truth - Verbatim Core */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-universe-black/85 border border-universe-wine/80 shadow-glow-wine text-left space-y-6 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-universe-crimson/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="flex items-center gap-2 text-universe-gold text-xs font-mono tracking-widest uppercase">
+            <Heart className="w-3.5 h-3.5 fill-universe-crimson text-universe-crimson" />
+            <span>After everything, still us</span>
+          </div>
+
+          <p className="font-serif text-sm sm:text-base md:text-lg text-universe-cream/95 leading-relaxed italic">
+            “we’ve said ‘i love you’ almost three thousand times, called each other more times than we could probably ever count, fought, overthought, got angry, got hurt, said things we didn’t mean, and somehow found our way back to each other again and again. there were moments when ‘breakup’ became a word we were both too familiar with, moments where one of us was scared the other would leave, and moments where everything felt harder than it was supposed to.
           </p>
-          <p className="font-serif italic text-base sm:text-xl text-universe-gold font-semibold">
-            "i want us to become better."
+
+          <p className="font-serif text-sm sm:text-base md:text-lg text-universe-cream/95 leading-relaxed italic">
+            but look at us now. after all those fights, all those almost-endings, all those ‘don’t leave me’s and ‘i don’t wanna lose you’s, we’re still here. still choosing each other. still learning each other. still trying to love each other in the ways that actually matter.
           </p>
+
+          <p className="font-serif text-sm sm:text-base md:text-lg text-universe-cream/95 leading-relaxed italic">
+            and maybe that’s what makes this ours — not that we never hurt each other, but that we’re learning not to. we’re learning what makes each other smile, what makes each other feel safe, what to stop doing, what to start doing, and how to love without becoming the reason the other person hurts.
+          </p>
+
+          <div className="pt-2 border-t border-universe-wine/40">
+            <p className="font-serif italic text-base sm:text-xl text-universe-gold font-medium">
+              after everything, i don’t want a perfect us. i just want this us — the one that keeps growing, keeps learning, and keeps choosing each other.”
+            </p>
+          </div>
         </div>
 
       </div>

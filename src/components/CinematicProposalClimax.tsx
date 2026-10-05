@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Heart, Sparkles, CheckCircle, Send } from 'lucide-react';
 import { sound } from '../utils/audioEngine';
+import TinyCharacters from './Effects/TinyCharacters';
 
 interface CinematicProposalClimaxProps {
   isOpen: boolean;
@@ -16,14 +17,16 @@ export default function CinematicProposalClimax({ isOpen, onClose }: CinematicPr
   const [foldedRing, setFoldedRing] = useState(false);
 
   const dialogueLines = [
-    { speaker: "Shivi", text: "Rashi... my love, my motu..." },
-    { speaker: "Shivi", text: "Do you remember what I told you?" },
-    { speaker: "Shivi", text: "\"I want u in my life... Not as a friend but as a gf, as a life partner...\"" },
-    { speaker: "Shivi", text: "\"And meko aap hamesha saath chahiye... interval tak nhi.\"" },
-    { speaker: "Shivi", text: "\"I genuinely like you. I genuinely love you with all my soul.\"" },
-    { speaker: "Rashi", text: "\"Okay... then yess i'll be with u. Not temporary, it's permanent commitment frm my side 🤧\"" },
-    { speaker: "Shivi", text: "Through the hospital nights, through the 3 AM whispers, through every fight and every laugh..." },
-    { speaker: "Shivi", text: "You are my home. And I would marry you with paper rings." }
+    { speaker: "Shivi", text: "you followed every little clue…" },
+    { speaker: "Shivi", text: "you found every little piece…" },
+    { speaker: "Shivi", text: "and somehow every road led back to you." },
+    { speaker: "Shivi", text: "RASHI", isName: true },
+    { speaker: "Shivi", text: "if i could go back to the beginning… i'd still find you." },
+    { speaker: "Shivi", text: "if i could choose one person again… i'd still choose you." },
+    { speaker: "Shivi", text: "again." },
+    { speaker: "Shivi", text: "and again." },
+    { speaker: "Shivi", text: "and again." },
+    { speaker: "Shivi", text: "WILL YOU LET ME KEEP CHOOSING YOU?", isHeading: true }
   ];
 
   // Sequence progression
@@ -35,7 +38,7 @@ export default function CinematicProposalClimax({ isOpen, onClose }: CinematicPr
     // Darken phase
     const timer1 = setTimeout(() => {
       setPhase('dialogue');
-    }, 2500);
+    }, 2200);
 
     return () => clearTimeout(timer1);
   }, [isOpen]);
@@ -44,15 +47,17 @@ export default function CinematicProposalClimax({ isOpen, onClose }: CinematicPr
     if (phase !== 'dialogue') return;
 
     if (dialogueIndex < dialogueLines.length - 1) {
+      const isShort = dialogueLines[dialogueIndex].text.length < 15;
+      const delay = isShort ? 1800 : 3000;
       const timer = setTimeout(() => {
         setDialogueIndex((prev) => prev + 1);
         sound.playHeartClick();
-      }, 3200);
+      }, delay);
       return () => clearTimeout(timer);
     } else {
       const timer = setTimeout(() => {
         setPhase('button');
-      }, 2500);
+      }, 2800);
       return () => clearTimeout(timer);
     }
   }, [phase, dialogueIndex, dialogueLines.length]);
@@ -140,13 +145,23 @@ export default function CinematicProposalClimax({ isOpen, onClose }: CinematicPr
 
           {/* Dialogue Lines Appearing Poetically */}
           {phase === 'dialogue' && (
-            <div className="min-h-[140px] flex flex-col items-center justify-center space-y-3">
+            <div className="min-h-[160px] flex flex-col items-center justify-center space-y-4">
               <span className="text-[10px] uppercase font-mono tracking-[0.3em] text-universe-dustyPink">
                 {dialogueLines[dialogueIndex].speaker} Whispers:
               </span>
-              <p className="font-serif italic text-xl sm:text-3xl text-universe-cream leading-relaxed transition-all duration-700 animate-fadeIn">
-                {dialogueLines[dialogueIndex].text}
-              </p>
+              {dialogueLines[dialogueIndex].isName ? (
+                <div className="font-serif text-5xl sm:text-7xl font-bold tracking-widest text-universe-gold drop-shadow-[0_0_40px_rgba(255,209,102,0.9)] animate-scaleUp">
+                  {dialogueLines[dialogueIndex].text}
+                </div>
+              ) : dialogueLines[dialogueIndex].isHeading ? (
+                <h3 className="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-tight drop-shadow-[0_0_30px_rgba(255,40,94,0.9)] animate-fadeIn">
+                  {dialogueLines[dialogueIndex].text}
+                </h3>
+              ) : (
+                <p className="font-serif italic text-xl sm:text-3xl text-universe-cream leading-relaxed transition-all duration-700 animate-fadeIn">
+                  "{dialogueLines[dialogueIndex].text}"
+                </p>
+              )}
             </div>
           )}
 
@@ -164,15 +179,15 @@ export default function CinematicProposalClimax({ isOpen, onClose }: CinematicPr
           {/* PHASE 3: The Glowing "Come here, my love ♡" Button */}
           {phase === 'button' && (
             <div className="space-y-6 animate-scaleUp">
-              <div className="space-y-2">
-                <span className="text-xs uppercase tracking-[0.25em] font-mono text-universe-dustyPink">
+              <div className="space-y-3">
+                <span className="text-xs uppercase tracking-[0.25em] font-mono text-universe-gold">
                   The Final Question
                 </span>
-                <h2 className="font-serif text-3xl sm:text-5xl text-universe-cream">
-                  A Lifetime with Paper Rings ♡
+                <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-universe-cream font-bold leading-tight drop-shadow-[0_0_30px_rgba(255,40,94,0.8)]">
+                  WILL YOU LET ME KEEP CHOOSING YOU?
                 </h2>
-                <p className="font-serif italic text-sm sm:text-base text-universe-blush">
-                  "Interval tak nahi... Poori zindagi tak."
+                <p className="font-serif italic text-base sm:text-xl text-universe-blush">
+                  "again. and again. and again."
                 </p>
               </div>
 
@@ -182,7 +197,7 @@ export default function CinematicProposalClimax({ isOpen, onClose }: CinematicPr
               >
                 <span className="absolute -inset-1 rounded-full bg-universe-glowingRed/50 blur-lg group-hover:opacity-100 transition duration-300 opacity-70 animate-pulse" />
                 <span className="relative flex items-center gap-3">
-                  <span>Come here, my love ♡</span>
+                  <span>come here, my love ♡</span>
                   <Sparkles className="w-5 h-5 text-universe-gold animate-bounce" />
                 </span>
               </button>
@@ -207,6 +222,10 @@ export default function CinematicProposalClimax({ isOpen, onClose }: CinematicPr
             <p className="font-serif italic text-sm sm:text-lg text-universe-blush max-w-xl mx-auto">
               "I like shiny things, but I'd marry you with paper rings! Darling, you're the one I want!"
             </p>
+
+            <div className="pt-2">
+              <TinyCharacters pose="holding-hands" caption="forever choosing each other, under our paper rings" />
+            </div>
           </div>
 
           {/* Hero Cartoon Showcase */}

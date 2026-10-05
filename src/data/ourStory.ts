@@ -427,13 +427,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 1,
     chapterNumber: '01',
-    title: 'Where It Started',
-    subtitle: 'The Earliest Spark & First Goodnight',
+    title: '♡ where it started',
+    subtitle: 'The Earliest Spark',
     loreIntro:
       'Before the 3 AM whispers, there was a single moment when our trajectories collided and the first sweet goodbye was said.',
     cluePrompt:
       'What was the sacred closing word of our earliest chat before falling asleep smiling?',
-    hint: 'A gentle whisper across the screen to wish sweet dreams: "G---N----"',
+    hint: 'think about when we were still strangers. A gentle whisper to wish sweet dreams: "G---N----"',
     answerKey: 'GOODNIGHT',
     alternateAnswers: ['GOOD NIGHT', 'NOVEMBER', 'NOV', '11', 'NOVEMBER 2024'],
     feedbackQuote: 'you remembered. the exact word that started every midnight habit.',
@@ -450,13 +450,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 2,
     chapterNumber: '02',
-    title: 'The Name You Gave Me',
-    subtitle: 'The Floating Word Selector',
+    title: '♡ the name you gave me',
+    subtitle: 'The Sacred Nickname',
     loreIntro:
       'We never used ordinary names. One special, waddling, beloved creature became our sacred nickname.',
     cluePrompt:
       'Select the secret bird nickname that only belongs to us in our chats.',
-    hint: 'Waddles with cold feet, cute and protective: "P------"',
+    hint: 'remember what you called me. Waddles with cold feet, cute and protective: "P------"',
     answerKey: 'PENGUIN',
     alternateAnswers: ['CHOTU', 'MOTU', 'MERI JAAN', 'WIFEYY', 'MOTA'],
     feedbackQuote: 'that one was always ours. my little penguin.',
@@ -473,19 +473,19 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 3,
     chapterNumber: '03',
-    title: 'The Message Hunt',
-    subtitle: 'The WhatsApp Archive',
+    title: '♡ remember this?',
+    subtitle: 'The Studio Text',
     loreIntro:
-      'Check your memory or your WhatsApp archive. When distance got too heavy, what did we keep saying over and over?',
+      'Check your memory or your WhatsApp archive. When distance felt unbearable, what message did you send while waiting near Gomti nagar?',
     cluePrompt:
-      'The two words sent late at night when screens were not enough: "WANNA ______"',
-    hint: 'Closing the gap in person: "W---- M---"',
+      'Complete your exact message: "I\'m near Gomti nagar studio p aai hu ________ ?"',
+    hint: 'you\'ve seen this before, love. Two words: "W---- M---"',
     answerKey: 'WANNA MEET',
     alternateAnswers: ['WANNAMEET', 'MEET', 'INTERVAL', 'INTERVAL TAK NHI'],
     feedbackQuote: 'soon, every single time. no more screens between us.',
     memoryReward: {
       id: 'mem-3',
-      title: 'The Unspoken Urge',
+      title: 'The Studio Memory',
       icon: '✈️',
       type: 'secret',
       value: 'WANNA MEET',
@@ -496,13 +496,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 4,
     chapterNumber: '04',
-    title: 'Time Knows Everything',
-    subtitle: 'The Timestamp & Call Duration Cipher',
+    title: '♡ somewhere between the words',
+    subtitle: 'The Timestamp Cipher',
     loreIntro:
       'On our longest midnight phone call, the clock ticked in secret code. Four letters that govern everything we feel.',
     cluePrompt:
       'Decode the timestamp cipher [12-15-22-5]. What single four-letter truth does our time spell?',
-    hint: 'L - O - V - E',
+    hint: 'look at the time, not the words. 12=L, 15=O, 22=V, 5=E.',
     answerKey: 'LOVE',
     alternateAnswers: ['FOREVER', 'HAMESHA', 'I LOVE YOU'],
     feedbackQuote: 'every second on call was bringing us deeper into love.',
@@ -519,13 +519,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 5,
     chapterNumber: '05',
-    title: 'Emoji Language',
-    subtitle: 'The Secret Dialect',
+    title: '♡ listen closely, baby',
+    subtitle: 'The Pet Name Secret',
     loreIntro:
       'When words feel too small, our chats speak in our favorite teasing pet name.',
     cluePrompt:
       'The cutest diminutive nickname Shivi calls her girl: "C----"',
-    hint: 'ChotuPenguin starts with: "C----"',
+    hint: 'don\'t overthink it, penguin. It pairs with Penguin: "C----"',
     answerKey: 'CHOTU',
     alternateAnswers: ['PENGUIN', 'PERMANENT', 'PERMANENT COMMITMENT'],
     feedbackQuote: 'my chotu, my favourite human in the entire universe ♡.',
@@ -542,13 +542,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 6,
     chapterNumber: '06',
-    title: 'Listen Closely, Baby',
+    title: '♡ the little things',
     subtitle: 'Audio Waveform & The Sacred Confession',
     loreIntro:
       'Close your eyes and listen to the pulse. What is the three-word confession whispered at the end of the voice note?',
     cluePrompt:
       'Listen to Shivi\'s voice note: after asking for 3-4 kisses, what does she say? "I ______ ______"',
-    hint: 'Three words, eight letters: I L--- Y--',
+    hint: 'you already know this one. Three words, eight letters: I L--- Y--',
     answerKey: 'I LOVE YOU',
     alternateAnswers: ['ILOVEYOU', '3-4', 'TEEN CHAR', '3', '4'],
     feedbackQuote: 'i love you. more than every star in the sky.',
@@ -565,8 +565,8 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 7,
     chapterNumber: '07',
-    title: 'The Things We Keep Saying',
-    subtitle: 'Word Frequency Pattern',
+    title: '♡ follow the thread',
+    subtitle: 'Recurring Whispers',
     loreIntro:
       'Among thousands of text messages, three words echo endlessly through the hospital halls and quiet mornings.',
     cluePrompt:
@@ -588,13 +588,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 8,
     chapterNumber: '08',
-    title: 'The Red Thread',
+    title: '♡ one more secret',
     subtitle: 'Connecting the Nodes of Fate',
     loreIntro:
       'An invisible glowing thread of fate connects every milestone. What two letters represent our combined existence?',
     cluePrompt:
       'Not me alone, not you alone, but: "U-"',
-    hint: 'U - S',
+    hint: 'you were never following the thread... you were U-S.',
     answerKey: 'US',
     alternateAnswers: ['ABCD', 'RED THREAD', 'OUR STORY'],
     feedbackQuote: 'no matter how far apart, the thread only ever points to US.',
@@ -611,13 +611,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 9,
     chapterNumber: '09',
-    title: 'Constellation of Us',
+    title: '♡ almost there, baby',
     subtitle: 'Celestial Star Alignment',
     loreIntro:
       'Look into the sky canvas above. The stars align to draw the name of the girl who owns Shivi\'s heart.',
     cluePrompt:
       'Which name do our celestial stars form in the heavens?',
-    hint: 'Five letters, pure magic: R-A-S-H-I',
+    hint: 'The letter R reveals the most beautiful name: R-A-S-H-I',
     answerKey: 'RASHI',
     alternateAnswers: ['R', 'LETTER R', 'HEART'],
     feedbackQuote: 'our universe was written for Rashi all along.',
@@ -634,13 +634,13 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 10,
     chapterNumber: '10',
-    title: 'The Fake Path',
+    title: '♡ something i never told you',
     subtitle: 'The Red Herring Riddle',
     loreIntro:
       'Beware of superficial logic. A stranger might think this is temporary, but the universe knows who we are.',
     cluePrompt:
       'In a world of temporary things, what are we building together?',
-    hint: 'Two letters: "U-"',
+    hint: 'No matter which path you explore, it always leads back to: "U-"',
     answerKey: 'US',
     alternateAnswers: ['LIFETIME', 'LIFE PARTNER', 'PERMANENT', 'ZINDAGI'],
     feedbackQuote: 'never temporary... always US, for a lifetime.',
@@ -657,7 +657,7 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
   {
     id: 11,
     chapterNumber: '11',
-    title: 'The Final Lock',
+    title: '♡ for you, my love',
     subtitle: 'The Grand Meta-Puzzle',
     loreIntro:
       'All ten collected keys from your Memory Pocket converge here. Enter the sacred password that unlocks the sanctuary of our future.',

@@ -1,6 +1,7 @@
 import React from 'react';
 import RashiEffectCanvas from '../Effects/RashiEffectCanvas';
 import TheCallLog from '../World02/TheCallLog';
+import ChatStatistics from '../World02/ChatStatistics';
 import OurSkyConstellation from '../World02/OurSkyConstellation';
 import TwentyMomentsGallery from '../TwentyMomentsGallery';
 import Chapter03_SpecialDate from '../Chapter03_SpecialDate';
@@ -43,6 +44,9 @@ export default function World02_TheLittleUniverse({ onEasterEggUnlock, onNextWor
 
       {/* The Call Log Visual Story */}
       <TheCallLog />
+
+      {/* Honest Chat Statistics ("Our Numbers") */}
+      <ChatStatistics />
 
       {/* Chapter 04: Our Little Galaxy */}
       <Chapter04_OurUniverse onEasterEggUnlock={onEasterEggUnlock} />

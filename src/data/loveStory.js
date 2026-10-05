@@ -284,55 +284,49 @@ export const loveStoryData = {
     senderName: "Your Shivi ♡"
   },
 
-  // Chapter 08: Open When... Envelopes
+  // Chapter 08: Open When... Envelopes (Section 23)
   openWhenEnvelopes: [
     {
       id: "miss-me",
-      title: "OPEN WHEN YOU MISS ME",
-      preview: "When the long distance feels a little too heavy...",
-      message: "Close your eyes and put your right hand on your chest. Feel that rhythm? That's me carrying you with every heartbeat. No matter the miles, you are never alone. Call me, text me, or just whisper my name — I am always thinking of you, motu."
+      title: "open when you miss me",
+      preview: "When the distance feels a little too heavy and Lucknow feels too far...",
+      message: "Close your eyes and put your right hand on your chest. Feel that rhythm? That's me carrying you with every heartbeat. No matter the miles, you are never alone. Call me, text me, or just whisper my name — I am always thinking of you, penguin. 800 miles is just a number on a map; my heart is right next to yours."
     },
     {
-      id: "fight",
-      title: "OPEN AFTER WE FIGHT",
-      preview: "When we have one of our silly arguments...",
-      message: "Hey motu... pause. Unclench your jaw. Remember: we fight every other day, and then we love like nothing happened. Nothing and nobody can come in between us. Pagal kar degi ye ladki? Haan, ho jao na mere pyaar mein pagal! Come here and give me my kisses. I love you."
+      id: "angry-with-me",
+      title: "open when you're angry with me",
+      preview: "When I did something clumsy, said the wrong thing, or made you sulk...",
+      message: "Hey baby... pause. Unclench your jaw. Take a slow, deep breath. I know I mess up, I know I can be stupid, but my intentions are never to hurt you. Remember our 10-minute rule: we can fight, but we don't go to bed angry. 'Pagal kar degi ye ladki' — 'haan, ho jao na mere pyaar mein pagal'. Come here, motu. Let me apologize properly, hold you, and give you those teen-char kisses you pretend not to want. I'm sorry, and I love you."
     },
     {
-      id: "sad",
-      title: "OPEN WHEN YOU'RE SAD",
-      preview: "When the world feels grey and cold...",
-      message: "You don't have to carry heavy feelings by yourself, my love. It's okay to cry, it's okay to not be strong today. Wrap yourself in our softest blanket, breathe, and let your wifey hold space for you. This storm will pass, and I am right here."
+      id: "cant-sleep",
+      title: "open when you can't sleep",
+      preview: "When 3 AM overthinking keeps your eyes open in the quiet dark...",
+      message: "Look out at the night sky or the quiet ceiling. I am awake under the very same stars, thinking about your breathing. Remember our 6-hour sleep calls? How we keep our phones on our pillows and wake up to each other's voices? Close your eyes, picture my arm pulling you close under our blanket, and let go of the noise. I've got you. Sleep softly, my angel."
     },
     {
-      id: "sleep",
-      title: "OPEN WHEN YOU CAN'T SLEEP",
-      preview: "When 2 AM thoughts won't let you rest...",
-      message: "Look up at the ceiling or the moon outside. I'm awake under the same sky thinking about how lucky I am. Imagine my arm draped around you, pulling you in close under our cream fleece blanket. Goodnight, my angel."
+      id: "need-reassurance",
+      title: "open when you need reassurance",
+      preview: "When old fears whisper that things might fall apart...",
+      message: "Listen to me clearly, Rashi: I am not going anywhere. We didn't fight through the scary hospital night, survive the 3 AM almost-endings, and exchange thousands of 'I love you's just to let go. You are my priority. You are my safe place. You don't have to be perfect to be loved by me. You just have to be you."
     },
     {
-      id: "coma-reminder",
-      title: "OPEN WHEN YOU NEED TO REMEMBER OUR STRENGTH",
-      preview: "When you need a reminder of what we survived...",
-      message: "When I was in the hospital, your words and your love pulled me back from the dark. 'Heyy wifeyy... we promised to stay together for life and we will.' If we could survive that, no distance, no argument, and no storm in this world can ever break us."
+      id: "need-to-smile",
+      title: "open when you need to smile",
+      preview: "When the day was draining and your face forgot to light up...",
+      message: "Think of me trying to explain something serious while you look at me and smirk. Think of how you negotiate 'bas teen-char kisses!' as if kisses are rationed. Think of the silly doodles, the hospital coma text where you wrote 'permanent commitment frm my side 🤧', and how we laugh at ourselves 5 minutes after sulking. You have the prettiest laugh in the world, baby. Smile for your Shivi."
     },
     {
-      id: "hug",
-      title: "OPEN WHEN YOU NEED A HUG",
-      preview: "A digital embrace wrapped in velvet warmth...",
-      message: "Close your eyes and imagine: my arms locking around your waist, pulling you completely into my chest under our fleece blanket, resting my chin on your head. Squeezing you tight until you can finally exhale. Consider this an unlimited voucher for warm hugs."
+      id: "why-i-stayed",
+      title: "open when you want to know why i stayed",
+      preview: "Through every fight, misunderstanding, and storm...",
+      message: "I didn't stay because it was easy. I stayed because you are worth every difficult conversation, every tear, and every compromise. I stayed because when everything in the world feels chaotic, you are the only one who feels like home. I stayed because loving you isn't a temporary mood — it's a decision I make with my whole soul every morning."
     },
     {
-      id: "love",
-      title: "OPEN WHEN YOU NEED TO KNOW HOW MUCH I LOVE YOU",
-      preview: "If you ever wonder the depth of my heart...",
-      message: "Count the stars in the night sky, add all the miles between us, and multiply by every second since 22 November 2025. That is still just a fraction. Not temporary — it's a permanent commitment, meri jaan."
-    },
-    {
-      id: "paper-rings",
-      title: "OPEN WHEN YOU WANT TO MARRY ME",
-      preview: "Taylor Swift playing in the background...",
-      message: "I like shiny things, but I'd marry you with paper rings! You are the only person I want in this life and every other one. Interval tak nahi, poori zindagi tak."
+      id: "choose-you-again",
+      title: "open when you wonder if i'd choose you again",
+      preview: "If the universe reset and gave me eight billion other choices...",
+      message: "If I had to go back to 22 November 2025... If I had to relive every single argument, every hospital scare, every late-night panic... I would still choose you. Again. And again. And again. There has never been anyone else, and there will never be anyone else. You are my one person."
     }
   ],
 
