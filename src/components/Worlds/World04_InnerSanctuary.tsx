@@ -1,7 +1,6 @@
 import React from 'react';
 import RoomForYou from '../World04/RoomForYou';
 import TheMirror from '../World04/TheMirror';
-import ListenToMe from '../World04/ListenToMe';
 import IfYouReallyKnowMe from '../World04/IfYouReallyKnowMe';
 import TheThingsWeLearned from '../World04/TheThingsWeLearned';
 import Chapter08_OpenWhen from '../Chapter08_OpenWhen';
@@ -32,7 +31,7 @@ export default function World04_InnerSanctuary({ onEasterEggUnlock, onNextWorld 
         </p>
 
         <div className="pt-2">
-          <TinyCharacters pose="sleeping-call" caption="safe in each other's quiet thoughts" />
+          <TinyCharacters pose="holding-hands" caption="safe in each other's quiet thoughts" />
         </div>
       </section>
 
@@ -42,8 +41,6 @@ export default function World04_InnerSanctuary({ onEasterEggUnlock, onNextWorld 
       {/* The Mirror */}
       <TheMirror />
 
-      {/* Listen To Me (Minimal Voice Note Trigger) */}
-      <ListenToMe audioSrc="/assets/shivi_voice_note.webm" />
 
       {/* If You Really Know Me... (Personal Trivia Quiz) */}
       <IfYouReallyKnowMe />

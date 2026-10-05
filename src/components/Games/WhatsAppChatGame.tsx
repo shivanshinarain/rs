@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Search, Phone, Video, Send, CheckCheck, Sparkles, MessageSquare } from 'lucide-react';
+import { Search, Send, CheckCheck, Sparkles, MessageSquare, Heart } from 'lucide-react';
 import { sound } from '../../utils/audioEngine';
 
 interface WhatsAppChatGameProps {
@@ -86,8 +86,7 @@ export default function WhatsAppChatGame({ onSolve }: WhatsAppChatGameProps) {
         </div>
         <div className="flex items-center gap-3 text-emerald-400/80">
           <Search className="w-4 h-4" />
-          <Phone className="w-4 h-4" />
-          <Video className="w-4 h-4" />
+          <Heart className="w-4 h-4 fill-emerald-500/20 text-emerald-400" />
         </div>
       </div>
 

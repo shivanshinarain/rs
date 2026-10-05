@@ -1,6 +1,5 @@
 import React from 'react';
 import RashiEffectCanvas from '../Effects/RashiEffectCanvas';
-import TheCallLog from '../World02/TheCallLog';
 import ChatStatistics from '../World02/ChatStatistics';
 import OurSkyConstellation from '../World02/OurSkyConstellation';
 import TwentyMomentsGallery from '../TwentyMomentsGallery';
@@ -28,11 +27,11 @@ export default function World02_TheLittleUniverse({ onEasterEggUnlock, onNextWor
           Our Shared Reality
         </h1>
         <p className="font-serif italic text-sm sm:text-base text-universe-blush max-w-lg mx-auto">
-          "The dates, the midnight calls, the secret nicknames, and every single milestone that turned distance into forever."
+          "The dates, the midnight talks, the secret nicknames, and every single milestone that turned distance into forever."
         </p>
 
         <div className="pt-4">
-          <TinyCharacters pose="on-phone" caption="connected by voices when the miles were too far" />
+          <TinyCharacters pose="holding-hands" caption="two souls weaving miles into forever" />
         </div>
       </section>
 
@@ -42,8 +41,6 @@ export default function World02_TheLittleUniverse({ onEasterEggUnlock, onNextWor
       {/* Chapter 03: 22 November 2025 */}
       <Chapter03_SpecialDate />
 
-      {/* The Call Log Visual Story */}
-      <TheCallLog />
 
       {/* Honest Chat Statistics ("Our Numbers") */}
       <ChatStatistics />

@@ -31,10 +31,10 @@ const SKY_STARS: SkyStar[] = [
   },
   {
     id: 2,
-    label: 'First 3 AM Call',
+    label: 'First 3 AM Talk',
     date: 'Month 1',
     memory: 'Midnight Whispers',
-    message: 'Neither of us wanted to hang up. We stayed up until the birds started chirping.',
+    message: 'Neither of us wanted to say goodnight. We stayed up until the birds started chirping.',
     image: '/assets/shivi_rashi_cartoon_sleep_call.jpg',
     scatter: { x: 35, y: 65 },
     formationR: { x: 25, y: 45 },

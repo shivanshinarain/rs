@@ -143,7 +143,7 @@ export default function CryptexGame({ onSolve }: CryptexGameProps) {
       {/* Unlocked Message */}
       {isUnlocked ? (
         <div className="p-3 rounded-xl bg-amber-950/50 border border-universe-gold/60 text-xs font-serif text-universe-gold animate-fadeIn">
-          ✨ The cylinder clicks open! The scroll reads: "Every second on call was bringing us closer to forever."
+          ✨ The cylinder clicks open! The scroll reads: "Every second with you was bringing us closer to forever."
         </div>
       ) : (
         <div className="pt-1">

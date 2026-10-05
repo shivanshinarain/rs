@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
   Moon,
-  Phone,
-  Headphones,
   Lamp,
   Heart,
   Sparkles,
@@ -32,7 +30,7 @@ const ROOM_OBJECTS: RoomObject[] = [
     icon: '🪟',
     x: 18,
     y: 22,
-    revealText: "this is where i'd put all the nights we stayed on call.",
+    revealText: "this is where i'd put all the nights we talked until sunrise.",
     whisper: "looking out at the rain or moon, knowing you're looking at the same sky."
   },
   {
@@ -72,22 +70,22 @@ const ROOM_OBJECTS: RoomObject[] = [
     whisper: "a gentle golden glow that stays on until your breathing softens into sleep."
   },
   {
-    id: 'phone',
-    name: 'The Late-Night Phone',
-    icon: '📱',
+    id: 'hoodie',
+    name: 'The Lavender Hoodie',
+    icon: '🧥',
     x: 52,
     y: 62,
-    revealText: "for every time distance wasn't enough.",
-    whisper: "warm from 6-hour calls, sleeping with it plugged in next to the pillow."
+    revealText: "the oversized hoodie you stole and made completely yours.",
+    whisper: "drowning in the soft sleeves, smelling like home and quiet mornings."
   },
   {
-    id: 'headphones',
-    name: 'Cozy Headphones',
-    icon: '🎧',
+    id: 'ring-box',
+    name: 'The Paper Ring Box',
+    icon: '💍',
     x: 42,
     y: 58,
-    revealText: "for whispering 3-4 kisses before falling asleep.",
-    whisper: "listening to your voice notes when the whole world is silent."
+    revealText: "for promising forever without needing shiny diamonds.",
+    whisper: "folded with pure love: 'I would marry you with paper rings!'"
   },
   {
     id: 'letters',
@@ -155,7 +153,7 @@ export default function RoomForYou() {
             The Room I Made For You
           </h2>
           <p className="font-serif italic text-xs sm:text-sm text-universe-blush max-w-lg mx-auto">
-            "Every object in this little bedroom holds a memory, a late-night call, or a piece of my heart. Tap around to explore."
+            "Every object in this little bedroom holds a memory, a quiet truth, or a piece of my heart. Tap around to explore."
           </p>
         </div>
 

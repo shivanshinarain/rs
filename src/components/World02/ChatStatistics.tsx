@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import {
   Heart,
-  PhoneCall,
-  Clock,
   MessageCircle,
-  ShieldAlert,
   Sparkles,
   Calendar,
-  Volume2,
   CheckCircle2,
   Flame,
-  HelpCircle
+  Bookmark
 } from 'lucide-react';
 import { sound } from '../../utils/audioEngine';
 import TinyCharacters from '../Effects/TinyCharacters';
 
+export type StatCategory = 'messages' | 'dates' | 'nicknames' | 'moments';
+
 interface StatItem {
   id: string;
-  category: 'love' | 'calls' | 'honest' | 'words';
+  category: StatCategory;
   value: string;
   label: string;
   subtext: string;
@@ -27,85 +25,86 @@ interface StatItem {
 
 const STATS_DATA: StatItem[] = [
   {
+    id: 'messages-count',
+    category: 'messages',
+    value: '48,200+',
+    label: 'WhatsApp Messages Exchanged',
+    subtext: 'thousands of texts, memes, late-night confessions, and quiet check-ins that turned miles into nothing',
+    icon: <MessageCircle className="w-5 h-5 text-emerald-400" />,
+    highlight: true
+  },
+  {
     id: 'ily',
-    category: 'love',
+    category: 'messages',
     value: '2,940+',
     label: '"I Love You" Sent',
-    subtext: 'whispered across sleepy mornings, midday breaks, and 3 AM reassurance calls',
+    subtext: 'whispered across sleepy mornings, midday breaks, and quiet moments of reassurance',
     icon: <Heart className="w-5 h-5 text-universe-crimson fill-universe-crimson" />,
     highlight: true
   },
   {
-    id: 'calls-total',
-    category: 'calls',
-    value: '418+ hrs',
-    label: 'Total Voice & Video Calls',
-    subtext: 'keeping the line open while studying, driving, eating, or just breathing together',
-    icon: <PhoneCall className="w-5 h-5 text-universe-gold" />
+    id: 'miss-you',
+    category: 'messages',
+    value: '860+',
+    label: '"Miss You" Reminders',
+    subtext: 'every single time Lucknow and our homes felt a little too far apart',
+    icon: <Sparkles className="w-5 h-5 text-universe-blush" />
   },
   {
-    id: 'longest-call',
-    category: 'calls',
-    value: '6h 48m',
-    label: 'Longest Single Call',
-    subtext: '23 Nov 2025 • fell asleep with phones on pillows and woke up together',
-    icon: <Clock className="w-5 h-5 text-universe-blush" />,
+    id: 'date-proposal',
+    category: 'dates',
+    value: '22 Nov 2025',
+    label: 'The Day We Became Us',
+    subtext: 'the night Shivi asked "interval tak nhi" and Rashi answered "permanent commitment frm my side 🤧"',
+    icon: <Calendar className="w-5 h-5 text-universe-gold" />,
     highlight: true
   },
   {
-    id: 'voice-notes',
-    category: 'calls',
-    value: '380+',
-    label: 'Voice Notes Saved',
-    subtext: 'from "teen-char kisses" to sleepy morning groans and sweet little laughs',
-    icon: <Volume2 className="w-5 h-5 text-universe-lavender" />
+    id: 'date-birthdays',
+    category: 'dates',
+    value: '12 Nov & 8 Sep',
+    label: 'Our Celestial Birthdays',
+    subtext: 'Rashi turns 21 (12 Nov 2005) & Shivi turns 23 (8 Sep 2003) — Scorpio water meets Virgo earth',
+    icon: <Calendar className="w-5 h-5 text-universe-lavender" />
   },
   {
-    id: 'fight-episodes',
-    category: 'honest',
-    value: '14 Episodes',
-    label: 'Clustered Tough Talks',
-    subtext: 'not 4,000 raw keyword matches — real, distinct arguments we sat through and resolved',
+    id: 'nicknames-count',
+    category: 'nicknames',
+    value: '1,420+',
+    label: 'Sacred Pet Names Used',
+    subtext: '"Motu", "Penguin", "Chotu", "Wifeyy", "Bebu", "Meri Jaan" — our private dialect of love',
+    icon: <Sparkles className="w-5 h-5 text-universe-gold" />,
+    highlight: true
+  },
+  {
+    id: 'banter-count',
+    category: 'nicknames',
+    value: '340+',
+    label: '"Pagal Kar Degi" Banter',
+    subtext: 'every time you said "pagal kar degi ye ladki 😭" and I answered "ho jao na mere pyaar mein pagal ♡"',
     icon: <Flame className="w-5 h-5 text-universe-dustyPink" />
   },
   {
-    id: 'breakup-scares',
-    category: 'honest',
-    value: '3 Nights',
-    label: 'Almost-Endings Survived',
-    subtext: 'the terrifying nights when fear almost won, but we chose to fight for each other instead',
-    icon: <ShieldAlert className="w-5 h-5 text-universe-crimson" />,
+    id: 'moments-count',
+    category: 'moments',
+    value: '20 Moments',
+    label: 'Curated Story Milestones',
+    subtext: 'from the Tinder right swipe to the hospital miracle, cozy blanket days, and paper rings',
+    icon: <Bookmark className="w-5 h-5 text-universe-gold" />,
     highlight: true
   },
   {
-    id: 'apologies',
-    category: 'honest',
+    id: 'reconciliations',
+    category: 'moments',
     value: '182 Times',
-    label: 'Tender Apologies',
-    subtext: '"meri galti thi baby", "i\'m sorry motu" — putting ego down within 10 minutes',
+    label: 'Tender Apologies & Safe Space',
+    subtext: '"meri galti thi baby", "i\'m sorry motu" — putting ego down within 10 minutes, 0 breakups, 1 lifetime promise',
     icon: <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-  },
-  {
-    id: 'miss-you',
-    category: 'words',
-    value: '860+',
-    label: '"Miss You" Reminders',
-    subtext: 'every time Lucknow and our homes felt too far apart',
-    icon: <MessageCircle className="w-5 h-5 text-universe-blush" />
-  },
-  {
-    id: 'dates',
-    category: 'love',
-    value: '22 Nov 2025',
-    label: 'The Day We Became Us',
-    subtext: 'the night we crossed from "maybe" to an unbreakable lifelong promise',
-    icon: <Calendar className="w-5 h-5 text-universe-gold" />,
-    highlight: true
   }
 ];
 
 export default function ChatStatistics() {
-  const [activeTab, setActiveTab] = useState<'all' | 'love' | 'calls' | 'honest'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | StatCategory>('all');
   const [selectedStat, setSelectedStat] = useState<StatItem | null>(null);
 
   const filteredStats = activeTab === 'all'
@@ -128,7 +127,7 @@ export default function ChatStatistics() {
           </h2>
 
           <p className="font-serif italic text-sm sm:text-base text-universe-blush max-w-lg mx-auto">
-            "Not just raw keyword counts on a screen, but the true honest measures of our journey together."
+            "Not just raw database rows, but the authentic relationship milestones supported by our WhatsApp journey."
           </p>
         </div>
 
@@ -136,9 +135,10 @@ export default function ChatStatistics() {
         <div className="flex flex-wrap items-center justify-center gap-2">
           {[
             { id: 'all', label: 'All Numbers' },
-            { id: 'love', label: 'Devotion & Dates' },
-            { id: 'calls', label: 'Calls & Midnight' },
-            { id: 'honest', label: 'The Honest Truth' }
+            { id: 'messages', label: 'Messages & Words' },
+            { id: 'dates', label: 'Meaningful Dates' },
+            { id: 'nicknames', label: 'Nicknames & Banter' },
+            { id: 'moments', label: 'Moments Chosen' }
           ].map((tab) => (
             <button
               key={tab.id}
@@ -208,18 +208,18 @@ export default function ChatStatistics() {
           </div>
 
           <p className="font-serif italic text-xs sm:text-sm md:text-base text-universe-cream/90 leading-relaxed">
-            "Anyone can search a WhatsApp export and count four thousand matching angry words. But love isn't raw database rows. We grouped those heated moments into the 14 actual conversation episodes where we sat down, listened to each other crying or sulking, and refused to go to sleep angry. We counted the 3 nights where fear whispered that we couldn't make it — and how every single time, we chose each other again."
+            "Anyone can search a WhatsApp export and count raw database rows. But love isn't algorithms or numbers on a screen. We measured the 48,000+ texts where we checked in on each other, the 2,940+ times we whispered 'I love you', the sacred nicknames only we know, and the 182 times we put ego down within 10 minutes. 0 permanent breakups, and 1 permanent lifetime commitment."
           </p>
 
           <div className="pt-2 flex items-center justify-between border-t border-universe-wine/30 text-[11px] font-mono text-universe-lavender/70">
-            <span>Verified from 2025–2026 chat history</span>
+            <span>Verified from 2025–2026 WhatsApp history</span>
             <span className="text-universe-gold">0 permanent breakups • 1 lifetime promise</span>
           </div>
         </div>
 
         {/* Tiny Characters Poses */}
         <div className="flex justify-center pt-2">
-          <TinyCharacters pose="sleeping-call" caption="surviving every storm, falling asleep safe together" />
+          <TinyCharacters pose="holding-hands" caption="surviving every storm, safe in each other's heart" />
         </div>
 
       </div>

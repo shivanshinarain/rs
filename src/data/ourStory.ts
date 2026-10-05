@@ -115,15 +115,15 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
   {
     id: 2,
     category: 'ROMANTIC',
-    title: 'The First 3 AM Call That Never Ended',
+    title: 'The First 3 AM Talk That Never Ended',
     date: 'Week 1',
-    tagline: 'When sleep became a second priority to your voice',
+    tagline: 'When sleep became a second priority to your words',
     excerpt: '"Just 10 minutes" turned into sunrise peeking through the curtains.',
-    details: 'Neither of us wanted to say bye first. Whispering in blankets while the rest of the world was asleep, finding home in a phone call.',
+    details: 'Neither of us wanted to say bye first. Whispering in blankets while the rest of the world was asleep, finding home in each other.',
     image: '/assets/shivi_rashi_cartoon_sleep_call.jpg',
     unlockedItem: {
       name: 'Midnight Dial',
-      icon: '📞',
+      icon: '🌙',
       description: 'The secret frequency where hours feel like seconds.',
       keyPiece: '03:42'
     }
@@ -327,17 +327,17 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
   {
     id: 15,
     category: 'PUZZLE-WORTHY',
-    title: 'The Call Duration Riddle',
-    date: 'Record Night',
-    tagline: 'Numbers that hide a secret love message',
-    excerpt: 'Hundreds of hours logged on voice calls, each digit encoding a promise.',
-    details: 'When you take our longest call duration and translate the frequency into words, only one truth emerges: FOREVER.',
-    image: '/assets/shivi_rashi_cartoon_sleep_call.jpg',
+    title: 'The Gomti Nagar Studio Memory',
+    date: 'Reunion Day',
+    tagline: '"I\'m near Gomti nagar studio p aai hu wanna meet?"',
+    excerpt: 'The spontaneous message that made the heart skip a beat.',
+    details: 'Looking at the screen and realizing that 800 miles were suddenly down to zero. The fastest sprint to meet the girl with the lavender hoodie.',
+    image: '/assets/shivi_rashi_cartoon_airport_hug.jpg',
     unlockedItem: {
-      name: 'Stopwatch of Eternity',
-      icon: '⏱️',
-      description: 'Time stopped keeping track because love outgrew clocks.',
-      keyPiece: 'TIME'
+      name: 'Studio Key',
+      icon: '✨',
+      description: 'Proof that distance melts the moment we are near.',
+      keyPiece: 'MEET'
     }
   },
   {
@@ -499,16 +499,16 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     title: '♡ somewhere between the words',
     subtitle: 'The Timestamp Cipher',
     loreIntro:
-      'On our longest midnight phone call, the clock ticked in secret code. Four letters that govern everything we feel.',
+      'In our quiet midnight talks across the miles, the clock ticked in secret code. Four letters that govern everything we feel.',
     cluePrompt:
       'Decode the timestamp cipher [12-15-22-5]. What single four-letter truth does our time spell?',
     hint: 'look at the time, not the words. 12=L, 15=O, 22=V, 5=E.',
     answerKey: 'LOVE',
     alternateAnswers: ['FOREVER', 'HAMESHA', 'I LOVE YOU'],
-    feedbackQuote: 'every second on call was bringing us deeper into love.',
+    feedbackQuote: 'every second together was bringing us deeper into love.',
     memoryReward: {
       id: 'mem-4',
-      title: 'The Endless Call',
+      title: 'The Endless Midnight',
       icon: '⏱️',
       type: 'word',
       value: 'LOVE',
@@ -543,19 +543,19 @@ export const ARG_PUZZLE_CHAPTERS: PuzzleChapter[] = [
     id: 6,
     chapterNumber: '06',
     title: '♡ the little things',
-    subtitle: 'Audio Waveform & The Sacred Confession',
+    subtitle: 'Waveform & The Sacred Confession',
     loreIntro:
-      'Close your eyes and listen to the pulse. What is the three-word confession whispered at the end of the voice note?',
+      'Close your eyes and listen to the pulse of our story. What is the three-word confession whispered at the end of our late-night talks?',
     cluePrompt:
-      'Listen to Shivi\'s voice note: after asking for 3-4 kisses, what does she say? "I ______ ______"',
+      'After asking for 3-4 kisses, what three sacred words echo through the quiet? "I ______ ______"',
     hint: 'you already know this one. Three words, eight letters: I L--- Y--',
     answerKey: 'I LOVE YOU',
     alternateAnswers: ['ILOVEYOU', '3-4', 'TEEN CHAR', '3', '4'],
     feedbackQuote: 'i love you. more than every star in the sky.',
     memoryReward: {
       id: 'mem-6',
-      title: 'The Voice Note Confession',
-      icon: '🎙️',
+      title: 'The Sacred Confession',
+      icon: '💌',
       type: 'secret',
       value: 'I LOVE YOU',
       lore: 'Piece 6 of our eternal phrase: [O]',

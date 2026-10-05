@@ -68,7 +68,7 @@ export default function TwentyMomentsGallery() {
           20 Curated Moments of Shivi & Rashi ♡
         </h2>
         <p className="font-sans text-xs sm:text-sm text-universe-lavender/80 max-w-2xl mx-auto">
-          Every inside joke, hospital tears, 3 AM phone whispers, kiss demands, and permanent commitments that built our universe.
+          Every inside joke, hospital tears, 3 AM whispers, kiss demands, and permanent commitments that built our universe.
         </p>
       </div>
 

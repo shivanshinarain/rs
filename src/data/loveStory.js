@@ -25,15 +25,15 @@ export const loveStoryData = {
   ldrStory: {
     headline: "Miles Apart, Hearts Intertwined",
     quote: "We fight every other day, and then we love like nothing ever happened.",
-    description: "Distance can test patience, screen time, and phone batteries — but it can never shake what we have. Across every mile and late-night call, nothing in this universe can ever come in between us."
+    description: "Distance can test patience, miles, and time zones — but it can never shake what we have. Across every mile and late-night conversation, nothing in this universe can ever come in between us."
   },
 
   // Key Dates
   dates: {
     relationshipStart: "22 November 2025",
     anniversaryFormatted: "November 22, 2025",
-    rashiBirthday: "12 November",
-    shiviBirthday: "8 September",
+    rashiBirthday: "12 November 2005",
+    shiviBirthday: "8 September 2003",
     startDateObj: "2025-11-22T00:00:00",
   },
 
@@ -79,7 +79,7 @@ export const loveStoryData = {
     headline: "Two souls in an endless sky",
     shiviDescription: "Wandering through 8 billion souls, searching for a heart with the same quiet depth, cozy warmth, and gentle eyes.",
     rashiDescription: "Carrying a universe of laughter, kindness, soft lavender hoodies, and dreams waiting for her wifey.",
-    narrative: "Before we ever knew each other's names, before our late-night calls or the miles between us... the universe was already plotting our collision. In a world of chaos, fate was weaving an unbreakable red thread.",
+    narrative: "Before we ever knew each other's names, before our late-night talks or the miles between us... the universe was already plotting our collision. In a world of chaos, fate was weaving an unbreakable red thread.",
   },
 
   // Chapter 02: Tinder Match
@@ -101,7 +101,7 @@ export const loveStoryData = {
     },
     rashi: {
       name: "Rashi",
-      age: 23,
+      age: 21,
       verified: true,
       distance: "Always in Shivi's heart",
       bio: "Probably thinking about good food, soft blankets, deep talks, and my wifey Shivi who says 'ho jao na mere pyaar mein pagal'.",
@@ -178,7 +178,7 @@ export const loveStoryData = {
       id: 4,
       date: "Late November",
       title: "The Long Distance Reality",
-      subtitle: "Screen glows & 3 AM calls",
+      subtitle: "Screen glows & 3 AM talks",
       description: "Miles between us, fighting every other day over silly things, and then loving each other like nothing ever happened.",
       tag: "LDR Bond",
       image: "/assets/shivi_rashi_cartoon_sleep_call.jpg"
@@ -215,7 +215,7 @@ export const loveStoryData = {
       date: "Through The Storms",
       title: "Learning & Healing",
       subtitle: "Choosing each other daily",
-      description: "Not every day was smooth. We fight, we overthink, we call back 10 minutes later crying and laughing because we can't spend a single minute apart.",
+      description: "Not every day was smooth. We fight, we overthink, we come back 10 minutes later crying and laughing because we can't spend a single minute apart.",
       tag: "Growth",
       image: "/assets/shivi_rashi_stickers.jpg"
     },
@@ -224,7 +224,7 @@ export const loveStoryData = {
       date: "Every Single Day",
       title: "The Silent Language",
       subtitle: "Our own private world",
-      description: "The glances across video calls, the shared memes, the way you know what I'm thinking before I speak.",
+      description: "The glances across screens, the shared memes, the way you know what I'm thinking before I speak.",
       tag: "Bond",
       image: "/assets/shivi_rashi_cartoon_sleep_call.jpg"
     },
@@ -239,7 +239,7 @@ export const loveStoryData = {
     }
   ],
 
-  // Chapter 06: Things I Love About You (22 Reasons)
+    // Chapter 06: Things I Love About You (21 Reasons for 21 Years)
   reasonsILoveYou: [
     { id: 1, type: "heart", title: "Cuddling Under The Blanket", text: "Because resting my head on your shoulder under our cozy fleece blanket is the purest peace in the entire world." },
     { id: 2, type: "star", title: "Your Pure Laugh", text: "Because your unrestrained giggle is hands down the sweetest sound this universe ever created." },
@@ -260,9 +260,8 @@ export const loveStoryData = {
     { id: 17, type: "heart", title: "Teasing & Roasting Me", text: "Because life without you teasing me, roasting me, and laughing with me would feel completely empty." },
     { id: 18, type: "flower", title: "Love Songs Make Sense", text: "Because every Taylor Swift song and acoustic melody finally found its meaning in you." },
     { id: 19, type: "polaroid", title: "Healing After Storms", text: "Because after every argument or misunderstanding, love, apologies, and empathy always win." },
-    { id: 20, type: "star", title: "Interval Tak Nahi", text: "Because I don't want you for an interval, or a season — I want you for the entire movie of my life." },
-    { id: 21, type: "heart", title: "Your Warm Smell", text: "Because burying my face in your neck is my instant remedy for any hard day." },
-    { id: 22, type: "flower", title: "The Future With You", text: "Because thinking about tomorrow is no longer scary — it's the thing I look forward to most, wifeyy." }
+    { id: 20, type: "heart", title: "Your Warm Smell", text: "Because burying my face in your neck is my instant remedy for any hard day." },
+    { id: 21, type: "star", title: "Choosing You Forever", text: "Because I don't want you for an interval or a season — I want you for all my tomorrows, poori zindagi tak. Always choosing you." }
   ],
 
   // Chapter 07: The Apology Letter
@@ -290,7 +289,7 @@ export const loveStoryData = {
       id: "miss-me",
       title: "open when you miss me",
       preview: "When the distance feels a little too heavy and Lucknow feels too far...",
-      message: "Close your eyes and put your right hand on your chest. Feel that rhythm? That's me carrying you with every heartbeat. No matter the miles, you are never alone. Call me, text me, or just whisper my name — I am always thinking of you, penguin. 800 miles is just a number on a map; my heart is right next to yours."
+      message: "Close your eyes and put your right hand on your chest. Feel that rhythm? That's me carrying you with every heartbeat. No matter the miles, you are never alone. Whisper my name, text me, or gaze at our stars — I am always thinking of you, penguin. 800 miles is just a number on a map; my heart is right next to yours."
     },
     {
       id: "angry-with-me",
@@ -302,7 +301,7 @@ export const loveStoryData = {
       id: "cant-sleep",
       title: "open when you can't sleep",
       preview: "When 3 AM overthinking keeps your eyes open in the quiet dark...",
-      message: "Look out at the night sky or the quiet ceiling. I am awake under the very same stars, thinking about your breathing. Remember our 6-hour sleep calls? How we keep our phones on our pillows and wake up to each other's voices? Close your eyes, picture my arm pulling you close under our blanket, and let go of the noise. I've got you. Sleep softly, my angel."
+      message: "Look out at the night sky or the quiet ceiling. I am awake under the very same stars, thinking about your breathing. Remember our quiet 3 AM talks? Close your eyes, picture my arm pulling you close under our blanket, and let go of the noise. I've got you. Sleep softly, my angel."
     },
     {
       id: "need-reassurance",
@@ -337,7 +336,7 @@ export const loveStoryData = {
     headline: "Two Constellations, One Sky",
     rashi: {
       name: "Rashi",
-      date: "12 November",
+      date: "12 November 2005",
       sign: "Scorpio ♏︎",
       element: "Water",
       constellation: "The Scorpius Constellation",
@@ -346,7 +345,7 @@ export const loveStoryData = {
     },
     shivi: {
       name: "Shivi",
-      date: "8 September",
+      date: "8 September 2003",
       sign: "Virgo ♍︎",
       element: "Earth",
       constellation: "The Virgo Constellation",
@@ -367,7 +366,7 @@ export const loveStoryData = {
     memories: [
       { id: 1, image: "/assets/shivi_rashi_cartoon.jpg", caption: "Cozy Blanket Sanctuary — Snuggled on the couch under our fleece blanket ♡", rotation: -2, tape: "#f5b8c6" },
       { id: 2, image: "/assets/shivi_rashi_cartoon_proposal.jpg", caption: "The Balcony Proposal — Offering you my heart with a paper ring ♡", rotation: 2, tape: "#d48398" },
-      { id: 3, image: "/assets/shivi_rashi_cartoon_sleep_call.jpg", caption: "3 AM Sleep Calls — Talking until we fall asleep across the miles ♡", rotation: -3, tape: "#ff285e" },
+      { id: 3, image: "/assets/shivi_rashi_cartoon_sleep_call.jpg", caption: "3 AM Late Night Talks — Whispering until we fall asleep across the miles ♡", rotation: -3, tape: "#ff285e" },
       { id: 4, image: "/assets/shivi_rashi_cartoon_airport_hug.jpg", caption: "Airport Arrivals Reunion — Dropping the bags for the warmest spinning hug ♡", rotation: 3, tape: "#d8cbe4" },
       { id: 5, image: "/assets/shivi_rashi_cartoon_stargazing.jpg", caption: "Hilltop Stargazing — Warm thermos of tea under the same constellations ♡", rotation: -2, tape: "#f5b8c6" },
       { id: 6, image: "/assets/shivi_rashi_stickers.jpg", caption: "Kiss? Mwah~ (Bas 3-4 kisses, aur zyada nahi!) 💋", rotation: 2, tape: "#d48398" },
@@ -454,7 +453,7 @@ export const loveStoryData = {
         title: "Closing The Long Distance Gap",
         symbol: "✈️",
         teaser: "No more countdowns or goodbyes at airport gates.",
-        story: "The day we unpack our bags in one shared home. No more pixelated video calls, no more crying at boarding gates — just waking up and seeing your face on the pillow beside me every single morning."
+        story: "The day we unpack our bags in one shared home. No more pixelated screens, no more crying at boarding gates — just waking up and seeing your face on the pillow beside me every single morning."
       },
       {
         id: 2,

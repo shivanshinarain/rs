@@ -3,8 +3,8 @@ import { Heart } from 'lucide-react';
 
 export type CharacterPose =
   | 'stargazing'
-  | 'on-phone'
-  | 'sleeping-call'
+  | 'whispering'
+  | 'sleeping-peacefully'
   | 'fight'
   | 'apology'
   | 'holding-hands'
@@ -61,10 +61,10 @@ export default function TinyCharacters({
           </div>
         )}
 
-        {pose === 'on-phone' && (
+        {pose === 'whispering' && (
           <div className="flex flex-col items-center gap-0.5">
-            <span className="text-[10px] animate-bounce">📱</span>
-            <span className="text-[8px] font-mono text-universe-gold">3 AM</span>
+            <span className="text-[10px] animate-pulse">💬</span>
+            <span className="text-[8px] font-mono text-universe-gold">chotu</span>
           </div>
         )}
 
@@ -89,7 +89,7 @@ export default function TinyCharacters({
           </div>
         )}
 
-        {pose === 'sleeping-call' && (
+        {pose === 'sleeping-peacefully' && (
           <div className="flex flex-col items-center">
             <span className="text-[9px] font-mono text-universe-lavender animate-pulse">z z Z</span>
             <span className="text-[10px]">🌙</span>

@@ -26,11 +26,11 @@ export default function World05_BirthdayWorld({ onEasterEggUnlock }: World05Prop
         </p>
 
         <div className="pt-2">
-          <TinyCharacters pose="holding-hands" caption="happy 23rd birthday my wifeyy ♡" />
+          <TinyCharacters pose="holding-hands" caption="happy 21st birthday my wifeyy ♡" />
         </div>
       </section>
 
-      {/* Birthday World: 23 Stars Countdown & 23 Little Reasons & Final Proposal Transition */}
+      {/* Birthday World: 21 Stars Countdown & 21 Little Reasons & Final Proposal Transition */}
       <BirthdayWorld />
 
       {/* Chapter 09: Celestial Birthdays & Constellations */}

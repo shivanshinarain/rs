@@ -51,7 +51,7 @@ export default function Chapter06_ReasonsILoveYou() {
         {/* Header */}
         <div className="space-y-2 sm:space-y-3">
           <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-universe-dustyPink font-medium px-3.5 py-1.5 rounded-full border border-universe-wine/40 bg-universe-darkBurgundy/40 inline-block">
-            Chapter 06 — 22 Reasons Why
+            Chapter 06 — 21 Reasons Why
           </span>
           <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl text-universe-cream">
             Things I Love About You
@@ -87,7 +87,7 @@ export default function Chapter06_ReasonsILoveYou() {
                   : 'bg-universe-darkBurgundy/60 border border-universe-wine/40 text-universe-lavender hover:text-universe-blush'
               }`}
             >
-              {f === 'all' ? 'All (22)' : `${f}s`}
+              {f === 'all' ? `All (${reasons.length})` : `${f}s`}
             </button>
           ))}
         </div>
@@ -148,7 +148,7 @@ export default function Chapter06_ReasonsILoveYou() {
 
               <div className="space-y-1">
                 <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-universe-dustyPink font-mono">
-                  Reason #{activeReason.id} of 22
+                  Reason #{activeReason.id} of {reasons.length}
                 </span>
                 <h3 className="font-serif text-xl sm:text-2xl text-universe-cream">
                   {activeReason.title}

@@ -5,7 +5,6 @@ import {
   Gamepad2,
   Home,
   Gift,
-  Phone,
   Volume2,
   VolumeX,
   Lock
@@ -22,7 +21,6 @@ export type WorldId =
 interface WorldNavigationDockProps {
   currentWorld: WorldId;
   onSelectWorld: (world: WorldId) => void;
-  onOpenPhone: () => void;
   onLockUniverse: () => void;
   isPlayingAudio: boolean;
   onToggleAudio: () => void;
@@ -39,7 +37,6 @@ const WORLDS = [
 export default function WorldNavigationDock({
   currentWorld,
   onSelectWorld,
-  onOpenPhone,
   onLockUniverse,
   isPlayingAudio,
   onToggleAudio
@@ -73,20 +70,7 @@ export default function WorldNavigationDock({
           );
         })}
 
-        <div className="w-[1px] h-5 bg-universe-wine/40 mx-1 hidden sm:block" />
 
-        {/* Quick Phone Launcher */}
-        <button
-          onClick={() => {
-            sound.playHeartClick();
-            onOpenPhone();
-          }}
-          className="p-1.5 sm:px-3 sm:py-1.5 rounded-full bg-universe-wine/40 border border-universe-wine/60 text-universe-gold hover:text-white hover:border-universe-gold text-xs font-mono flex items-center gap-1 shadow-sm transition-all whitespace-nowrap"
-          title="Open Our Little Phone"
-        >
-          <Phone className="w-3.5 h-3.5" />
-          <span className="hidden md:inline">Our Phone</span>
-        </button>
 
       </div>
     </div>

@@ -13,11 +13,10 @@ import World02_TheLittleUniverse from './components/Worlds/World02_TheLittleUniv
 import World03_ARGLoveGame from './components/Worlds/World03_ARGLoveGame';
 import World04_InnerSanctuary from './components/Worlds/World04_InnerSanctuary';
 import World05_BirthdayWorld from './components/Worlds/World05_BirthdayWorld';
-import OurLittlePhoneModal from './components/Phone/OurLittlePhoneModal';
 import PermanentRedThread from './components/Effects/PermanentRedThread';
 import HeartbeatSoundManager from './components/Effects/HeartbeatSoundManager';
 import { sound } from './utils/audioEngine';
-import { Sparkles, Phone } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function App() {
   return (
@@ -29,7 +28,6 @@ export default function App() {
 
 function MainUniverseApp() {
   const [currentWorld, setCurrentWorld] = useState<WorldId>('WORLD_01_BEFORE_US');
-  const [isPhoneOpen, setIsPhoneOpen] = useState<boolean>(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [vaultOpen, setVaultOpen] = useState<boolean>(false);
@@ -124,7 +122,6 @@ function MainUniverseApp() {
       <WorldNavigationDock
         currentWorld={currentWorld}
         onSelectWorld={handleSwitchWorld}
-        onOpenPhone={() => setIsPhoneOpen(true)}
         onLockUniverse={handleLockUniverse}
         isPlayingAudio={isPlayingAudio}
         onToggleAudio={handleToggleAudio}
@@ -136,20 +133,6 @@ function MainUniverseApp() {
       {/* Global Subtle Heartbeat Pulse System */}
       <HeartbeatSoundManager currentWorld={currentWorld} />
 
-      {/* Floating Quick Phone Button (Bottom Center/Right) */}
-      <div className="fixed bottom-6 left-20 z-30">
-        <button
-          onClick={() => {
-            sound.playHeartClick();
-            setIsPhoneOpen(true);
-          }}
-          className="group relative flex items-center gap-2 px-3.5 py-2 rounded-full bg-universe-darkBurgundy/90 border border-universe-wine/80 shadow-glow-wine text-universe-gold hover:text-white hover:border-universe-gold text-xs font-mono tracking-wider hover:scale-105 active:scale-95 transition-all touch-manipulation"
-          title="Open Our Little Phone"
-        >
-          <Phone className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Our Phone</span>
-        </button>
-      </div>
 
       {/* Main Experience Worlds */}
       <main className="relative z-10 pb-16">
@@ -187,11 +170,6 @@ function MainUniverseApp() {
         )}
       </main>
 
-      {/* Interactive Phone Modal ("Our Little Phone") */}
-      <OurLittlePhoneModal
-        isOpen={isPhoneOpen}
-        onClose={() => setIsPhoneOpen(false)}
-      />
 
       {/* Footer */}
       <Footer

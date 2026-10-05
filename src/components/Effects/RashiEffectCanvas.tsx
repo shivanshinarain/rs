@@ -32,7 +32,7 @@ const MEMORY_WORDS = [
   '3-4 kisses',
   '22 november 2025',
   'paper rings',
-  'our 3 AM calls',
+  'our 3 AM talks',
   'my favourite human',
   'never temporary',
   'ho jao na mere pyaar mein pagal',
