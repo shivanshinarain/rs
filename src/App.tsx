@@ -15,6 +15,7 @@ import World04_InnerSanctuary from './components/Worlds/World04_InnerSanctuary';
 import World05_BirthdayWorld from './components/Worlds/World05_BirthdayWorld';
 import PermanentRedThread from './components/Effects/PermanentRedThread';
 import HeartbeatSoundManager from './components/Effects/HeartbeatSoundManager';
+import UniverseGameExperience from './components/Games/UniverseGameExperience';
 import { sound } from './utils/audioEngine';
 import { Sparkles } from 'lucide-react';
 
@@ -34,6 +35,7 @@ function MainUniverseApp() {
   const [unlockedEggs, setUnlockedEggs] = useState<Set<string>>(new Set());
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [shootingStarTrigger, setShootingStarTrigger] = useState<number>(0);
+  const [isUniverseGameOpen, setIsUniverseGameOpen] = useState<boolean>(false);
 
   // Detect mobile
   useEffect(() => {
@@ -125,6 +127,7 @@ function MainUniverseApp() {
         onLockUniverse={handleLockUniverse}
         isPlayingAudio={isPlayingAudio}
         onToggleAudio={handleToggleAudio}
+        onOpenUniverseGame={() => setIsUniverseGameOpen(true)}
       />
 
       {/* Global Permanent Red Thread of Fate */}
@@ -183,6 +186,13 @@ function MainUniverseApp() {
         onClose={() => setVaultOpen(false)}
         unlockedSet={unlockedEggs}
         onUnlockEgg={unlockEasterEgg}
+      />
+
+      {/* Universe Game Experience Modal */}
+      <UniverseGameExperience
+        isOpen={isUniverseGameOpen}
+        onClose={() => setIsUniverseGameOpen(false)}
+        isModal={true}
       />
 
       {/* Toast Notification */}

@@ -4,12 +4,14 @@ import { Lock, Unlock, Sparkles, X, Heart, KeyRound, Check } from 'lucide-react'
 import { loveStoryData } from '../data/loveStory';
 import { sound } from '../utils/audioEngine';
 import SaveRashiMiniGame from './Games/SaveRashiMiniGame';
+import UniverseGameExperience from './Games/UniverseGameExperience';
 
 export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set(), onUnlockEgg }) {
   const [passcode, setPasscode] = useState('');
   const [passcodeError, setPasscodeError] = useState(false);
   const [vaultUnlocked, setVaultUnlocked] = useState(false);
   const [isSaveRashiOpen, setIsSaveRashiOpen] = useState(false);
+  const [isUniverseGameOpen, setIsUniverseGameOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -185,11 +187,29 @@ export default function EasterEggsModal({ isOpen, onClose, unlockedSet = new Set
           </div>
         </div>
 
+        {/* Secret Games Quick Launcher */}
+        <div className="pt-2 border-t border-universe-wine/30">
+          <button
+            onClick={() => setIsUniverseGameOpen(true)}
+            className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-950/60 via-universe-wine/40 to-pink-950/60 hover:from-rose-900/80 hover:to-pink-900/80 border border-rose-500/40 text-xs font-mono text-rose-200 flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
+          >
+            <Sparkles className="w-4 h-4 text-universe-gold animate-spin" style={{ animationDuration: '8s' }} />
+            <span>Launch 'A Universe Called Us' Story Game 🌟</span>
+          </button>
+        </div>
+
         {/* Save Rashi Mini-Game */}
         <SaveRashiMiniGame
           isOpen={isSaveRashiOpen}
           onClose={() => setIsSaveRashiOpen(false)}
           onEasterEggUnlock={onUnlockEgg}
+        />
+
+        {/* Universe Game Experience */}
+        <UniverseGameExperience
+          isOpen={isUniverseGameOpen}
+          onClose={() => setIsUniverseGameOpen(false)}
+          isModal={true}
         />
 
       </div>

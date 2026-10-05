@@ -32,6 +32,7 @@ export const BIRTHDAY_CONFIG = {
   // Central configurable password to unlock the 21st Birthday section on 12 November
   password: 'chotupenguin21',
   alternatePasswords: [
+    'shivirashi',
     'chotu21',
     'rashi21',
     'penguin21',

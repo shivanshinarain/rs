@@ -17,54 +17,54 @@ const LESSONS: LessonCard[] = [
   {
     id: 1,
     pillarNumber: '01',
-    theme: 'The 10-Minute Reset',
+    theme: "Space Isn't Distance — It's Breathing Room",
     learnedThat:
-      "loving each other doesn't mean never fighting; it means refusing to let an argument become bigger than our love.",
+      "somewhere along the way, we learned that space isn't distance—it's just breathing room.",
     howWeLearnedIt:
-      "In the beginning, silly misunderstandings made us fear that everything was fragile. But after dozens of heated moments, we realized our reflex wasn't to walk away — it was to pull each other back within 10 minutes and laugh at how silly we were being.",
+      "We used to panic when one of us went quiet during stressful days. Over time, we learned to trust each other's silence instead of fearing it.",
     chatProof:
-      'We fight every other day, and then we love like nothing ever happened.',
+      'Trusting each other even in quiet hours across 800 miles.',
     chatQuoteSnippet:
-      'Rashi: "pagal kar degi ye ladki 😭" • Shivi: "ho jao na mere pyaar mein pagal ♡"'
+      '“take your time, i\'ll be right here when you\'re back ♡”'
   },
   {
     id: 2,
     pillarNumber: '02',
-    theme: 'Reassurance is Oxygen',
+    theme: 'Coming Back Without Keeping Score',
     learnedThat:
-      "asking for reassurance isn't weakness; it is the oxygen that keeps long distance alive.",
+      "we learned how to come back after an argument without keeping score.",
     howWeLearnedIt:
-      "When miles create silence and overthinking starts whispering doubts, waiting for the other person to read our mind only builds walls. We learned to put pride down, say 'meri jaan, I am right here', and ask for the comfort we need without hesitation or fear.",
+      "Early on, arguments felt like a competition to see who was hurt more. We realized winning an argument against each other means we both lose.",
     chatProof:
-      'Rashi: "I miss you so much... no one understands me the way you do, only my shivi truly understands me."',
+      'We fight every other day, and then we love like nothing ever happened.',
     chatQuoteSnippet:
-      'Shivi: "Kiss toh mil sakti hai na? Bas teen-char, aur zyada nahi..."'
+      '“let\'s not go to sleep angry ok?”'
   },
   {
     id: 3,
     pillarNumber: '03',
-    theme: 'Devotion in the Darkest Storm',
+    theme: 'Daily Check-ins Over Grand Gestures',
     learnedThat:
-      "a crisis doesn't break real love — it reveals who will stay when the whole world goes dark.",
+      "we learned that tiny daily check-ins matter infinitely more than grand gestures.",
     howWeLearnedIt:
-      "When Shivi was in the hospital, petty complaints and past disagreements evaporated instantly. Rashi stayed awake praying and writing through tears, proving that real commitment isn't spoken in easy sunshine, but in hospital corridors.",
+      "It wasn't about expensive gifts or massive declarations; it was sharing silly random photos of our day and telling each other 'eat your food properly'.",
     chatProof:
-      'Rashi: "Heyy wifeyy... from now on no more fights or arguments... we promised to stay together for life and we will, just get well soon... Please don\'t leave your rashi alone like this."',
+      'The quiet, continuous presence that builds a lifetime.',
     chatQuoteSnippet:
-      '"When you recover all I want is a sweet little text from my wifey... ♡"'
+      '“did you eat? tell me honestly.”'
   },
   {
     id: 4,
     pillarNumber: '04',
-    theme: 'Daily Choice Over Passing Moods',
+    theme: 'Gentleness Heals Overthinking',
     learnedThat:
-      "saying 'yes' is not a one-time question; it is an active decision made every single morning.",
+      "we learned how fear and overthinking can twist innocent words, and how gentleness heals it.",
     howWeLearnedIt:
-      "We survived the 3 AM almost-endings, the fear of losing each other, and the terrifying weight of long distance by renewing our promise again and again. Not for an interval, but for the entire movie of our lives.",
+      "Misunderstandings over text used to spiral. We learned to pause, ask 'did you mean it that way?', and default to giving each other the benefit of the doubt.",
     chatProof:
-      'Shivi: "Meko aap hamesha saath chahiye... interval tak nhi." • Rashi: "Okay... then yess i\'ll be with u not temporary, it\'s permanent commitment frm my side 🤧"',
+      'Choosing soft understanding instead of defensive pride.',
     chatQuoteSnippet:
-      '"Interval tak nhi — poori zindagi tak."'
+      '“talk to me, what\'s going on in that cute head?”'
   }
 ];
 

@@ -24,6 +24,7 @@ interface WorldNavigationDockProps {
   onLockUniverse: () => void;
   isPlayingAudio: boolean;
   onToggleAudio: () => void;
+  onOpenUniverseGame?: () => void;
 }
 
 const WORLDS = [
@@ -39,7 +40,8 @@ export default function WorldNavigationDock({
   onSelectWorld,
   onLockUniverse,
   isPlayingAudio,
-  onToggleAudio
+  onToggleAudio,
+  onOpenUniverseGame
 }: WorldNavigationDockProps) {
   return (
     <div className="sticky top-16 z-30 flex justify-center py-2 px-3 sm:px-4 bg-universe-black/75 backdrop-blur-md border-b border-universe-wine/30 select-none">
@@ -57,7 +59,7 @@ export default function WorldNavigationDock({
                 sound.playHeartClick();
                 onSelectWorld(w.id as WorldId);
               }}
-              className={`flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs font-mono transition-all whitespace-nowrap touch-manipulation ${
+              className={`flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs font-mono transition-all whitespace-nowrap touch-manipulation cursor-pointer ${
                 isActive
                   ? 'bg-gradient-to-r from-universe-crimson to-universe-glowingRed text-white shadow-glow-red font-semibold scale-102'
                   : 'text-universe-lavender/70 hover:text-universe-cream hover:bg-universe-wine/20'
@@ -70,7 +72,21 @@ export default function WorldNavigationDock({
           );
         })}
 
-
+        {/* Universe Game Launcher */}
+        {onOpenUniverseGame && (
+          <button
+            onClick={() => {
+              sound.playHeartClick();
+              onOpenUniverseGame();
+            }}
+            className="flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-mono transition-all whitespace-nowrap bg-rose-950/40 hover:bg-rose-900/60 border border-rose-500/40 text-rose-200 hover:text-white hover:scale-105 cursor-pointer touch-manipulation"
+            title="Play 'A Universe Called Us' Story Game"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
+            <span className="hidden sm:inline">Story Game ♡</span>
+            <span className="inline sm:hidden">Game ♡</span>
+          </button>
+        )}
 
       </div>
     </div>

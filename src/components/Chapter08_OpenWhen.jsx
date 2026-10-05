@@ -10,7 +10,7 @@ const ENVELOPES = [
     preview: 'When the distance feels a little too heavy and Lucknow feels too far...',
     riddle:
       'I waddle on cold feet across the snow,\nThe sacred creature you named me long ago.\nWhen miles between us start to blur and bend,\nWhat little bird whispers love that will not end?',
-    acceptedAnswers: ['penguin', 'penguins', 'my penguin', 'chotu penguin'],
+    acceptedAnswers: ['penguin', 'penguins', 'my penguin', 'chotu penguin', 'bacha', 'baccha', 'bachha'],
     message:
       "Close your eyes and put your right hand on your chest. Feel that rhythm? That's me carrying you with every heartbeat. No matter the miles, you are never alone. Whisper my name, text me, or gaze at our stars — I am always thinking of you, penguin. 800 miles is just a number on a map; my heart is right next to yours."
   },
@@ -19,8 +19,8 @@ const ENVELOPES = [
     title: "open when you're angry with me",
     preview: 'When I did something clumsy, said the wrong thing, or made you sulk...',
     riddle:
-      "You pout your lips and tell me I am bad,\n'Pagal kar degi' when you are hurt or sad.\nBefore our ten-minute timer starts to expire,\nHow many kisses did your Shivi always desire?",
-    acceptedAnswers: ['3-4', '3', '4', 'teen char', 'teen-char', '3-4 kisses', 'teen char kisses', 'three or four', 'teenchar'],
+      "You pout your lips and tell me I am bad,\n'Pagal kar degi' when you are hurt or sad.\nBefore our ten-minute timer starts to expire,\nWhat three words do I always text you first when we have a silly argument to make you smile?",
+    acceptedAnswers: ['i am sorry', 'im sorry', "i'm sorry", 'sorry', '3-4', '3', '4', 'teen char', 'teen-char', '3-4 kisses', 'teen char kisses', 'three or four', 'teenchar'],
     message:
       "Hey baby... pause. Unclench your jaw. Take a slow, deep breath. I know I mess up, I know I can be stupid, but my intentions are never to hurt you. Remember our 10-minute rule: we can fight, but we don't go to bed angry. 'Pagal kar degi ye ladki' — 'haan, ho jao na mere pyaar mein pagal'. Come here, motu. Let me apologize properly, hold you, and give you those teen-char kisses you pretend not to want. I'm sorry, and I love you."
   },
@@ -29,8 +29,11 @@ const ENVELOPES = [
     title: "open when you can't sleep",
     preview: 'When 3 AM overthinking keeps your eyes open in the quiet dark...',
     riddle:
-      'Not just a temporary spark in the dark,\nNot an intermission pausing our arc.\nWhat two words sealed the promise we made,\nTo ensure our lifetime love would never fade?',
+      'Which late-night snack or drink did we always argue about ordering at 2 AM?\nOr what two words sealed the promise we made,\nTo ensure our lifetime love would never fade?',
     acceptedAnswers: [
+      'maggi',
+      'maggie',
+      '2 am maggi',
       'permanent commitment',
       'permanent',
       'permanent commitment frm my side',
@@ -45,8 +48,8 @@ const ENVELOPES = [
     title: 'open when you need reassurance',
     preview: 'When old fears whisper that things might fall apart...',
     riddle:
-      'Through the hospital night and the quiet hall,\nWhen fear was casting shadows against the wall.\nWhat sweet title did you write through your tears,\nThat brought me back to smile away your fears?',
-    acceptedAnswers: ['wifeyy', 'wifey', 'heyy wifeyy', 'heyy wifey', 'my wifeyy'],
+      'What is the name of the constellation we promised to look at together under the same moon?\nOr what sweet title did you write through your tears,\nThat brought me back to smile away your fears?',
+    acceptedAnswers: ['orion', 'orion constellation', 'wifeyy', 'wifey', 'heyy wifeyy', 'heyy wifey', 'my wifeyy'],
     message:
       "Listen to me clearly, Rashi: I am not going anywhere. We didn't fight through the scary hospital night, survive the 3 AM almost-endings, and exchange thousands of 'I love you's just to let go. You are my priority. You are my safe place. You don't have to be perfect to be loved by me. You just have to be you."
   },
@@ -55,8 +58,8 @@ const ENVELOPES = [
     title: 'open when you need to smile',
     preview: 'When the day was draining and your face forgot to light up...',
     riddle:
-      'A teasing roast that turned to pure delight,\nThe softest nickname whispered every night.\nNot a giant in size, but holding all my heart,\nWhat four-letter endearment sets us apart?',
-    acceptedAnswers: ['motu', 'mota'],
+      'Remember that goofy voice note I sent you after dropping my phone? What sound effect did I try to mimic?\nOr what four-letter endearment sets us apart?',
+    acceptedAnswers: ['boing', 'boingg', 'boinggg', 'motu', 'mota'],
     message:
       "Think of me trying to explain something serious while you look at me and smirk. Think of how you negotiate 'bas teen-char kisses!' as if kisses are rationed. Think of the silly doodles, the hospital coma text where you wrote 'permanent commitment frm my side 🤧', and how we laugh at ourselves 5 minutes after sulking. You have the prettiest laugh in the world, baby. Smile for your Shivi."
   },
@@ -75,8 +78,8 @@ const ENVELOPES = [
     title: 'open when you wonder if i\'d choose you again',
     preview: 'If the universe reset and gave me eight billion other choices...',
     riddle:
-      'When you ask if I\'ll stay when shadows fall,\nWhether in Gomti Nagar or no miles at all.\nOut of eight billion souls beneath the blue,\nWhat two sacred words will I always whisper back to you?',
-    acceptedAnswers: ['choose you', 'i choose you', 'i choose you ♡', 'choosing you', 'keep choosing you'],
+      'If I had to travel through a thousand lifetimes to find you all over again, what word would I shout out first?\nWhat two sacred words will I always whisper back to you?',
+    acceptedAnswers: ['rashi', 'choose you', 'i choose you', 'i choose you ♡', 'choosing you', 'keep choosing you'],
     message:
       "If I had to go back to 22 November 2025... If I had to relive every single argument, every hospital scare, every late-night panic... I would still choose you. Again. And again. And again. There has never been anyone else, and there will never be anyone else. You are my one person."
   }
