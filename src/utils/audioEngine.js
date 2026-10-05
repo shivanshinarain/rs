@@ -231,7 +231,9 @@ class AudioEngine {
     try {
       listener(this.getPlaybackState());
     } catch {}
-    return () => this.listeners.delete(listener);
+    return () => {
+      this.listeners.delete(listener);
+    };
   }
 
   notifyListeners() {

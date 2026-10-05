@@ -105,7 +105,9 @@ function MainUniverseApp() {
     const unsub = sound.subscribe((state: any) => {
       setIsPlayingAudio(state.isPlaying);
     });
-    return () => unsub();
+    return () => {
+      unsub();
+    };
   }, []);
 
   const handleToggleAudio = () => {

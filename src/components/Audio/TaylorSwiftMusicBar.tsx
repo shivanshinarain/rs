@@ -15,7 +15,9 @@ export default function TaylorSwiftMusicBar({ onNavigateToChapter11 }: TaylorSwi
     const unsubscribe = sound.subscribe((state: any) => {
       setPlaybackState(state);
     });
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const formatTime = (secs: number) => {

@@ -46,7 +46,8 @@ export default function WorldNavigationDock({
   onLockUniverse,
   isPlayingAudio,
   onToggleAudio,
-  onOpenUniverseGame
+  onOpenUniverseGame,
+  onOpenTaylorSwift
 }: WorldNavigationDockProps) {
   return (
     <div className="sticky top-16 z-30 flex justify-center py-2 px-3 sm:px-4 bg-universe-black/75 backdrop-blur-md border-b border-universe-wine/30 select-none">

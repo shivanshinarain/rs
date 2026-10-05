@@ -5,7 +5,7 @@ import React from 'react';
  * Supports standard, reaching, walking, and hugging states.
  */
 
-export function ShiviAvatar({ state = 'idle', className = '', onClick, showLabel = true }) {
+export function ShiviAvatar({ state = 'idle', className = '', onClick = undefined, showLabel = true }) {
   const isPanic = state === 'panic';
   const isHappy = state === 'happy' || state === 'sparkle';
 
@@ -173,7 +173,7 @@ export function ShiviAvatar({ state = 'idle', className = '', onClick, showLabel
   );
 }
 
-export function RashiAvatar({ state = 'idle', className = '', onClick, showLabel = true }) {
+export function RashiAvatar({ state = 'idle', className = '', onClick = undefined, showLabel = true }) {
   const isPout = state === 'pout';
   const isEating = state === 'eating';
   const isBonked = state === 'bonked';
