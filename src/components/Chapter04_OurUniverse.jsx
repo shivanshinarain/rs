@@ -167,8 +167,8 @@ export default function Chapter04_OurUniverse({ onEasterEggUnlock }) {
               className="p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-universe-darkBurgundy/90 border border-universe-wine/60 backdrop-blur-md max-w-[210px] sm:max-w-xs shadow-xl flex items-center gap-2 sm:gap-3 cursor-pointer hover:border-universe-blush transition-colors"
             >
               <img
-                src="/assets/shivi_rashi_doodle_couch.jpg"
-                alt="Cozy Doodle"
+                src="/assets/moment_16_decades_after_fights.jpg"
+                alt="Cozy Moments"
                 className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover shrink-0 border border-universe-blush/40"
               />
               <div className="truncate">
@@ -227,12 +227,12 @@ export default function Chapter04_OurUniverse({ onEasterEggUnlock }) {
                 <div className="grid grid-cols-2 gap-2 pb-1">
                   <div className="rounded-xl overflow-hidden border border-universe-wine/60 shadow">
                     <img
-                      src="/assets/shivi_rashi_doodle_couch.jpg"
-                      alt="Couch Doodle"
+                      src="/assets/moment_16_decades_after_fights.jpg"
+                      alt="Couch Moment"
                       className="w-full h-32 object-cover"
                     />
                     <div className="p-1 text-center bg-universe-black/60 text-[9px] font-handwritten text-universe-blush">
-                      cozy couch cuddles doodle ♡
+                      cozy cuddles & promises ♡
                     </div>
                   </div>
                   <div className="rounded-xl overflow-hidden border border-universe-wine/60 shadow">

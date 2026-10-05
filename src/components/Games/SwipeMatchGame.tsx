@@ -42,7 +42,7 @@ const CARDS: ProfileCard[] = [
     age: "Forever Yours",
     tagline: "The girl with silver hoops & oversized sweaters",
     bio: "\"I want u in my life, not as a friend but as a life partner... interval tak nhi, poori zindagi tak.\" Looking for her Motu ♡",
-    image: "/assets/shivi_rashi_cartoon.jpg",
+    image: "/assets/moment_01_tinder_match.jpg",
     isMatch: true
   }
 ];
@@ -164,7 +164,7 @@ export default function SwipeMatchGame({ onSolve }: SwipeMatchGameProps) {
           <div className="text-4xl animate-bounce">✨ IT'S A MATCH! ✨</div>
           <div className="flex items-center justify-center gap-3 py-2">
             <img
-              src="/assets/shivi_rashi_cartoon.jpg"
+              src="/assets/moment_01_tinder_match.jpg"
               alt="Shivi"
               className="w-16 h-16 rounded-full object-cover border-2 border-universe-blush shadow-glow-blush"
             />

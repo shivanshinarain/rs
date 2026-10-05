@@ -206,8 +206,8 @@ export default function Chapter02_TinderMatch() {
               {/* Avatar circle connection with doodle & cartoon */}
               <div className="flex items-center justify-center -space-x-3 py-1">
                 <img
-                  src="/assets/shivi_rashi_doodle_couch.jpg"
-                  alt="Shivi Doodle"
+                  src="/assets/moment_01_tinder_match.jpg"
+                  alt="Shivi"
                   className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-universe-glowingRed shadow-glow-red"
                 />
                 <img

@@ -97,7 +97,7 @@ export const loveStoryData = {
       promptQuestion: "A secret talent of mine...",
       promptAnswer: "Finding you in any crowded room, every single time. ♡",
       tags: ["Deep Conversations", "Movie Nights", "Cuddle Enthusiast", "Overthinker", "Soft Heart"],
-      image: "/assets/shivi_rashi_doodle_couch.jpg"
+      image: "/assets/moment_01_tinder_match.jpg"
     },
     rashi: {
       name: "Rashi",
@@ -134,7 +134,7 @@ export const loveStoryData = {
     tagline: "Our Little Galaxy",
     headline: "The Sanctuary We Built Together",
     description: "Move your cursor or touch to explore our little world. Click the celestial objects to unlock our shared memories.",
-    realImage: "/assets/shivi_rashi_doodle_couch.jpg",
+    realImage: "/assets/moment_16_decades_after_fights.jpg",
     cartoonImage: "/assets/shivi_rashi_cartoon.jpg",
     hotspots: [
       { id: "moon", name: "The Crescent Moon", icon: "moon", x: 78, y: 22, message: "Under this exact same moon, separated by miles, we talk until 4 AM. Same sky, same stars, same love." },
@@ -163,7 +163,7 @@ export const loveStoryData = {
       subtitle: "A digital spark",
       description: "One simple right swipe on Tinder that changed the entire trajectory of both our lives forever.",
       tag: "Beginning",
-      image: "/assets/shivi_rashi_cartoon.jpg"
+      image: "/assets/moment_01_tinder_match.jpg"
     },
     {
       id: 3,
@@ -190,7 +190,7 @@ export const loveStoryData = {
       subtitle: "Holding on through the prayers",
       description: "When Shivi was in the hospital, Rashi wrote: 'Heyy wifeyy... come back soon, talk to me, tease me, roast me... we promised to stay together for life and we will.' And love won.",
       tag: "Miracle",
-      image: "/assets/shivi_rashi_cartoon.jpg"
+      image: "/assets/moment_08_coma_letter.jpg"
     },
     {
       id: 6,
@@ -208,7 +208,7 @@ export const loveStoryData = {
       subtitle: "Walking in sync",
       description: "I like shiny things, but I'd marry you with paper rings! Realizing that no material thing compares to having you beside me.",
       tag: "Romance",
-      image: "/assets/shivi_rashi_cartoon_proposal.jpg"
+      image: "/assets/moment_10_paper_rings_dance.jpg"
     },
     {
       id: 8,
@@ -217,7 +217,7 @@ export const loveStoryData = {
       subtitle: "Choosing each other daily",
       description: "Not every day was smooth. We fight, we overthink, we come back 10 minutes later crying and laughing because we can't spend a single minute apart.",
       tag: "Growth",
-      image: "/assets/shivi_rashi_stickers.jpg"
+      image: "/assets/moment_16_decades_after_fights.jpg"
     },
     {
       id: 9,
@@ -226,7 +226,7 @@ export const loveStoryData = {
       subtitle: "Our own private world",
       description: "The glances across screens, the shared memes, the way you know what I'm thinking before I speak.",
       tag: "Bond",
-      image: "/assets/shivi_rashi_cartoon_sleep_call.jpg"
+      image: "/assets/moment_04_whatsapp_cipher.jpg"
     },
     {
       id: 10,
@@ -369,9 +369,9 @@ export const loveStoryData = {
       { id: 3, image: "/assets/shivi_rashi_cartoon_sleep_call.jpg", caption: "3 AM Late Night Talks — Whispering until we fall asleep across the miles ♡", rotation: -3, tape: "#ff285e" },
       { id: 4, image: "/assets/shivi_rashi_cartoon_airport_hug.jpg", caption: "Airport Arrivals Reunion — Dropping the bags for the warmest spinning hug ♡", rotation: 3, tape: "#d8cbe4" },
       { id: 5, image: "/assets/shivi_rashi_cartoon_stargazing.jpg", caption: "Hilltop Stargazing — Warm thermos of tea under the same constellations ♡", rotation: -2, tape: "#f5b8c6" },
-      { id: 6, image: "/assets/shivi_rashi_stickers.jpg", caption: "Kiss? Mwah~ (Bas 3-4 kisses, aur zyada nahi!) 💋", rotation: 2, tape: "#d48398" },
-      { id: 7, image: "/assets/shivi_rashi_cartoon_sleep_call.jpg", caption: "Pagal kar degi ye ladki 😭 — Ho jao na mere pyaar mein pagal ♡", rotation: -1, tape: "#d8cbe4" },
-      { id: 8, image: "/assets/shivi_rashi_cartoon_proposal.jpg", caption: "Permanent Commitment — Not temporary, interval tak nahi poori zindagi tak 💍", rotation: 3, tape: "#ff285e" }
+      { id: 6, image: "/assets/moment_05_kiss_demands.jpg", caption: "Kiss? Mwah~ (Bas 3-4 kisses, aur zyada nahi!) 💋", rotation: 2, tape: "#d48398" },
+      { id: 7, image: "/assets/moment_14_hoodie_theft.jpg", caption: "The Lavender Hoodie Theft — Pagal kar degi ye ladki 😭 ♡", rotation: -1, tape: "#d8cbe4" },
+      { id: 8, image: "/assets/moment_07_permanent_commitment.jpg", caption: "Permanent Commitment — Not temporary, interval tak nahi poori zindagi tak 💍", rotation: 3, tape: "#ff285e" }
     ]
   },
 

@@ -265,11 +265,10 @@ export default function SaveRashiMiniGame({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-universe-black/95 backdrop-blur-xl animate-fadeIn select-none overflow-y-auto">
       <div
-        className={`max-w-2xl w-full rounded-3xl bg-gradient-to-b from-[#240a1b] via-[#140410] to-[#070106] border-2 border-universe-wine/80 shadow-[0_0_60px_rgba(255,40,94,0.3)] p-5 sm:p-8 relative text-center space-y-6 my-auto max-h-[92vh] overflow-y-auto transition-transform ${
-          screenShake ? 'animate-wiggle' : ''
-        }`}
+        className={`max-w-2xl w-full rounded-3xl bg-gradient-to-b from-[#240a1b] via-[#140410] to-[#070106] border-2 border-universe-wine/80 shadow-[0_0_60px_rgba(255,40,94,0.3)] p-5 sm:p-8 relative text-center space-y-6 my-auto max-h-[92vh] overflow-y-auto transition-transform ${screenShake ? 'animate-wiggle' : ''
+          }`}
       >
-        
+
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -342,7 +341,7 @@ export default function SaveRashiMiniGame({
         {/* CARTOON CHARACTERS ARENA */}
         {/* =================================================================== */}
         <div className="relative py-4 px-2 flex items-center justify-around rounded-3xl bg-gradient-to-r from-purple-950/20 via-black/40 to-universe-wine/20 border border-universe-wine/40 overflow-hidden">
-          
+
           {/* Shivi Dramatic Cartoon */}
           <div className="flex flex-col items-center group">
             {/* Shivi Speech Bubble */}
@@ -521,11 +520,10 @@ export default function SaveRashiMiniGame({
             <div className="grid grid-cols-3 gap-3 pt-2">
               <button
                 onClick={() => handleSearchItem('hoodie')}
-                className={`p-4 rounded-2xl border transition-all text-center space-y-2 touch-manipulation ${
-                  drawerStates.hoodie
+                className={`p-4 rounded-2xl border transition-all text-center space-y-2 touch-manipulation ${drawerStates.hoodie
                     ? 'bg-cyan-950/50 border-cyan-400 text-cyan-200'
                     : 'bg-universe-darkBurgundy/40 border-universe-wine/50 hover:border-universe-blush'
-                }`}
+                  }`}
               >
                 <span className="text-3xl block">🧥</span>
                 <span className="text-xs font-serif block">Lavender Hoodie</span>
@@ -536,11 +534,10 @@ export default function SaveRashiMiniGame({
 
               <button
                 onClick={() => handleSearchItem('bear')}
-                className={`p-4 rounded-2xl border transition-all text-center space-y-2 touch-manipulation ${
-                  drawerStates.bear
+                className={`p-4 rounded-2xl border transition-all text-center space-y-2 touch-manipulation ${drawerStates.bear
                     ? 'bg-purple-950/50 border-purple-400 text-purple-200'
                     : 'bg-universe-darkBurgundy/40 border-universe-wine/50 hover:border-universe-blush'
-                }`}
+                  }`}
               >
                 <span className="text-3xl block">🧸</span>
                 <span className="text-xs font-serif block">Motu Teddy</span>
@@ -551,11 +548,10 @@ export default function SaveRashiMiniGame({
 
               <button
                 onClick={() => handleSearchItem('box')}
-                className={`p-4 rounded-2xl border transition-all text-center space-y-2 touch-manipulation ${
-                  drawerStates.box
+                className={`p-4 rounded-2xl border transition-all text-center space-y-2 touch-manipulation ${drawerStates.box
                     ? 'bg-rose-950/50 border-rose-400 text-rose-200'
                     : 'bg-universe-darkBurgundy/40 border-universe-wine/50 hover:border-universe-blush'
-                }`}
+                  }`}
               >
                 <span className="text-3xl block">💍</span>
                 <span className="text-xs font-serif block">Paper Ring Box</span>
@@ -633,11 +629,10 @@ export default function SaveRashiMiniGame({
                     setSelectedHero(hero);
                     setKpopChoiceOutcome(null);
                   }}
-                  className={`p-3.5 rounded-2xl border transition-all text-center space-y-1.5 touch-manipulation ${
-                    selectedHero?.id === hero.id
+                  className={`p-3.5 rounded-2xl border transition-all text-center space-y-1.5 touch-manipulation ${selectedHero?.id === hero.id
                       ? 'bg-purple-900/60 border-purple-400 shadow-glow-wine scale-105'
                       : 'bg-universe-darkBurgundy/40 border-universe-wine/40 hover:border-purple-400'
-                  }`}
+                    }`}
                 >
                   <span className="text-2xl block">{hero.emoji}</span>
                   <span className="text-xs font-serif font-bold text-white block">
@@ -735,11 +730,10 @@ export default function SaveRashiMiniGame({
                         <button
                           key={idx}
                           onClick={() => handleRevealLetter(idx)}
-                          className={`w-7 h-8 rounded-lg font-mono text-xs font-bold transition-all ${
-                            revealedLetters.includes(idx)
+                          className={`w-7 h-8 rounded-lg font-mono text-xs font-bold transition-all ${revealedLetters.includes(idx)
                               ? 'bg-purple-600 text-white'
                               : 'bg-black/60 text-purple-400/40 border border-purple-800'
-                          }`}
+                            }`}
                         >
                           {revealedLetters.includes(idx) ? char : '?'}
                         </button>
@@ -794,7 +788,7 @@ export default function SaveRashiMiniGame({
         {/* =================================================================== */}
         {step === 'saved' && (
           <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#280c20] via-[#160412] to-[#080108] border-2 border-universe-glowingRed shadow-glow-wine space-y-5 animate-scaleUp">
-            
+
             <div className="w-16 h-16 mx-auto rounded-full bg-universe-glowingRed/20 border-2 border-universe-glowingRed flex items-center justify-center text-universe-glowingRed animate-bounce">
               <Heart className="w-8 h-8 fill-universe-glowingRed text-universe-glowingRed" />
             </div>

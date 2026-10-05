@@ -5,7 +5,10 @@ import React from 'react';
  * Supports standard, reaching, walking, and hugging states.
  */
 
-export function ShiviAvatar({ state = 'idle', className = '', onClick }) {
+export function ShiviAvatar({ state = 'idle', className = '', onClick, showLabel = true }) {
+  const isPanic = state === 'panic';
+  const isHappy = state === 'happy' || state === 'sparkle';
+
   return (
     <div
       onClick={onClick}
@@ -95,25 +98,45 @@ export function ShiviAvatar({ state = 'idle', className = '', onClick }) {
         <circle cx="58" cy="94" r="8" fill="url(#shiviBlush)" />
         <circle cx="102" cy="94" r="8" fill="url(#shiviBlush)" />
 
-        {/* Eyes (Cute expressive manga style) */}
-        <g className="animate-pulse-slow">
-          <ellipse cx="64" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
-          <circle cx="62.5" cy="82" r="2" fill="#ffffff" />
-          <circle cx="65.5" cy="86.5" r="1" fill="#ffffff" />
+        {/* Eyes (Manga style, with Panic / Happy expressions) */}
+        {isPanic ? (
+          <g>
+            <circle cx="64" cy="84" r="5" fill="#2d1520" />
+            <circle cx="62" cy="82" r="1.5" fill="#ffffff" />
+            <circle cx="96" cy="84" r="5" fill="#2d1520" />
+            <circle cx="94" cy="82" r="1.5" fill="#ffffff" />
+            {/* Sweatdrop */}
+            <path d="M 106 72 C 106 67 112 65 112 70 C 112 74 106 75 106 72 Z" fill="#60a5fa" />
+          </g>
+        ) : isHappy ? (
+          <g>
+            <path d="M 59 85 Q 65 79 71 85" stroke="#2d1520" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+            <path d="M 91 85 Q 97 79 103 85" stroke="#2d1520" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          </g>
+        ) : (
+          <g className="animate-pulse-slow">
+            <ellipse cx="64" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
+            <circle cx="62.5" cy="82" r="2" fill="#ffffff" />
+            <circle cx="65.5" cy="86.5" r="1" fill="#ffffff" />
 
-          <ellipse cx="96" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
-          <circle cx="94.5" cy="82" r="2" fill="#ffffff" />
-          <circle cx="97.5" cy="86.5" r="1" fill="#ffffff" />
-        </g>
+            <ellipse cx="96" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
+            <circle cx="94.5" cy="82" r="2" fill="#ffffff" />
+            <circle cx="97.5" cy="86.5" r="1" fill="#ffffff" />
+          </g>
+        )}
 
-        {/* Soft Smile */}
-        <path
-          d="M 75 97 Q 80 102 85 97"
-          stroke="#993d56"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          fill="none"
-        />
+        {/* Mouth (Soft Smile or Shocked/Panic) */}
+        {isPanic ? (
+          <ellipse cx="80" cy="98" rx="4" ry="5.5" fill="#7a1934" />
+        ) : (
+          <path
+            d="M 75 97 Q 80 102 85 97"
+            stroke="#993d56"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            fill="none"
+          />
+        )}
 
         {/* Hair Bangs & Front */}
         <path
@@ -129,22 +152,33 @@ export function ShiviAvatar({ state = 'idle', className = '', onClick }) {
           fill="url(#shiviHair)"
         />
 
+        {/* Silver Hoop Earrings */}
+        <circle cx="45" cy="88" r="4.5" stroke="#e0e7ff" strokeWidth="1.8" fill="none" />
+        <circle cx="115" cy="88" r="4.5" stroke="#e0e7ff" strokeWidth="1.8" fill="none" />
+
         {/* Star Hairpin for Shivi */}
         <polygon
           points="56,58 58,62 62,63 59,66 60,70 56,68 52,70 53,66 50,63 54,62"
           fill="#f5cb68"
         />
       </svg>
-      <div className="text-center mt-1.5 sm:mt-2">
-        <span className="font-serif text-[10px] sm:text-xs md:text-sm tracking-widest text-universe-blush uppercase bg-universe-darkBurgundy/80 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-universe-wine/50">
-          Shivi
-        </span>
-      </div>
+      {showLabel && (
+        <div className="text-center mt-1.5 sm:mt-2">
+          <span className="font-serif text-[10px] sm:text-xs md:text-sm tracking-widest text-universe-blush uppercase bg-universe-darkBurgundy/80 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-universe-wine/50">
+            Shivi
+          </span>
+        </div>
+      )}
     </div>
   );
 }
 
-export function RashiAvatar({ state = 'idle', className = '', onClick }) {
+export function RashiAvatar({ state = 'idle', className = '', onClick, showLabel = true }) {
+  const isPout = state === 'pout';
+  const isEating = state === 'eating';
+  const isBonked = state === 'bonked';
+  const isSparkle = state === 'sparkle' || state === 'happy';
+
   return (
     <div
       onClick={onClick}
@@ -233,29 +267,76 @@ export function RashiAvatar({ state = 'idle', className = '', onClick }) {
         {/* Head */}
         <ellipse cx="80" cy="85" rx="34" ry="36" fill="#ffe5dc" />
 
-        {/* Cheeks Blush */}
-        <circle cx="58" cy="94" r="9" fill="url(#rashiBlush)" />
-        <circle cx="102" cy="94" r="9" fill="url(#rashiBlush)" />
+        {/* Cheeks Blush (Rosier when pouting / eating) */}
+        <circle cx="58" cy="94" r={isPout || isEating ? 11 : 9} fill="url(#rashiBlush)" />
+        <circle cx="102" cy="94" r={isPout || isEating ? 11 : 9} fill="url(#rashiBlush)" />
 
-        {/* Eyes (Warm, sparkling eyes) */}
-        <g className="animate-pulse-slow">
-          <ellipse cx="64" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
-          <circle cx="62" cy="81.5" r="2.2" fill="#ffffff" />
-          <circle cx="65.5" cy="86.5" r="1.2" fill="#ffffff" />
+        {/* Puffed Hamster Cheeks for Eating */}
+        {isEating && (
+          <>
+            <circle cx="50" cy="95" r="7" fill="#ffe5dc" />
+            <circle cx="110" cy="95" r="7" fill="#ffe5dc" />
+          </>
+        )}
 
-          <ellipse cx="96" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
-          <circle cx="94" cy="81.5" r="2.2" fill="#ffffff" />
-          <circle cx="97.5" cy="86.5" r="1.2" fill="#ffffff" />
-        </g>
+        {/* Eyes (Warm, sparkling eyes or dizzy/bonked or pout) */}
+        {isBonked ? (
+          <g>
+            <path d="M 60 81 L 68 87 M 68 81 L 60 87" stroke="#2d1520" strokeWidth="2.4" strokeLinecap="round" />
+            <path d="M 92 81 L 100 87 M 100 81 L 92 87" stroke="#2d1520" strokeWidth="2.4" strokeLinecap="round" />
+          </g>
+        ) : isSparkle ? (
+          <g>
+            <path d="M 59 85 Q 65 79 71 85" stroke="#2d1520" strokeWidth="2.6" strokeLinecap="round" fill="none" />
+            <path d="M 91 85 Q 97 79 103 85" stroke="#2d1520" strokeWidth="2.6" strokeLinecap="round" fill="none" />
+          </g>
+        ) : isPout ? (
+          <g>
+            <ellipse cx="64" cy="84" rx="4" ry="5.5" fill="#2d1520" />
+            <circle cx="63" cy="82" r="1.5" fill="#ffffff" />
+            <ellipse cx="96" cy="84" rx="4" ry="5.5" fill="#2d1520" />
+            <circle cx="95" cy="82" r="1.5" fill="#ffffff" />
+          </g>
+        ) : (
+          <g className="animate-pulse-slow">
+            <ellipse cx="64" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
+            <circle cx="62" cy="81.5" r="2.2" fill="#ffffff" />
+            <circle cx="65.5" cy="86.5" r="1.2" fill="#ffffff" />
 
-        {/* Radiant Happy Smile */}
-        <path
-          d="M 73 96 Q 80 104 87 96"
-          stroke="#b82a4d"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          fill="none"
-        />
+            <ellipse cx="96" cy="84" rx="4.5" ry="6.5" fill="#2d1520" />
+            <circle cx="94" cy="81.5" r="2.2" fill="#ffffff" />
+            <circle cx="97.5" cy="86.5" r="1.2" fill="#ffffff" />
+          </g>
+        )}
+
+        {/* Mouth (Smile, Pout, Eating, Bonked) */}
+        {isPout ? (
+          <path
+            d="M 74 100 Q 80 94 86 100"
+            stroke="#b82a4d"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            fill="none"
+          />
+        ) : isEating ? (
+          <ellipse cx="80" cy="98" rx="4" ry="3" fill="#b82a4d" />
+        ) : isBonked ? (
+          <path
+            d="M 74 101 Q 80 96 86 101"
+            stroke="#b82a4d"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            fill="none"
+          />
+        ) : (
+          <path
+            d="M 73 96 Q 80 104 87 96"
+            stroke="#b82a4d"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            fill="none"
+          />
+        )}
 
         {/* Beautiful Hair Bangs for Rashi */}
         <path
@@ -279,12 +360,26 @@ export function RashiAvatar({ state = 'idle', className = '', onClick }) {
           <circle cx="0" cy="3" r="3.5" fill="#ff668a" />
           <circle cx="0" cy="0" r="2" fill="#ffe066" />
         </g>
+
+        {/* Bonked Spinning Stars on top of head */}
+        {isBonked && (
+          <g>
+            <text x="68" y="38" fontSize="16" fill="#f5cb68" className="animate-spin" style={{ transformOrigin: '80px 38px' }}>
+              ✦
+            </text>
+            <text x="86" y="38" fontSize="16" fill="#ff7a9e">
+              ✨
+            </text>
+          </g>
+        )}
       </svg>
-      <div className="text-center mt-1.5 sm:mt-2">
-        <span className="font-serif text-[10px] sm:text-xs md:text-sm tracking-widest text-universe-blush uppercase bg-universe-darkBurgundy/80 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-universe-wine/50">
-          Rashi
-        </span>
-      </div>
+      {showLabel && (
+        <div className="text-center mt-1.5 sm:mt-2">
+          <span className="font-serif text-[10px] sm:text-xs md:text-sm tracking-widest text-universe-blush uppercase bg-universe-darkBurgundy/80 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-universe-wine/50">
+            Rashi
+          </span>
+        </div>
+      )}
     </div>
   );
 }

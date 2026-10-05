@@ -99,7 +99,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'When the algorithm got something completely right',
     excerpt: 'One casual swipe across screens that bridged two galaxies together.',
     details: 'Out of millions of strangers scrolling in the dark, two souls crossed paths. Little did we know this one right swipe would redefine our whole lifetime.',
-    image: '/assets/shivi_rashi_cartoon.jpg',
+    image: '/assets/moment_01_tinder_match.jpg',
     unlockedItem: {
       name: 'Algorithm of Destiny',
       icon: '✨',
@@ -131,7 +131,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'Born from teasing, sealed into eternal love',
     excerpt: 'Started as a light roast, ended as the sweetest endearment.',
     details: 'You pouted and pretended to be mad, but your smile gave you away. From that day on, "Motu" belonged to nobody else in the universe.',
-    image: '/assets/shivi_rashi_stickers.jpg',
+    image: '/assets/moment_03_motu_nickname.jpg',
     unlockedItem: {
       name: 'Motu Badge',
       icon: '🧸',
@@ -147,7 +147,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'A dialect composed of half-words and custom stickers',
     excerpt: 'Inside jokes that would look like alien hieroglyphics to anyone else.',
     details: 'Our chats became a constellation of custom stickers, memes, and unspoken codes where one punctuation mark explains everything.',
-    image: '/assets/shivi_rashi_doodle_couch.jpg',
+    image: '/assets/moment_04_whatsapp_cipher.jpg',
     secretKey: 'CIPHER',
     unlockedItem: {
       name: 'Decoder Ring',
@@ -164,7 +164,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'The strict negotiation of hugs and kisses',
     excerpt: '"Kiss toh mil sakti hai na? Bas teen-char, aur zyada nahi!"',
     details: 'Shivi recording voice notes with that cute pleading tone, asking for just 3-4 kisses, and then blushing: "Nahi bataungi main jao, niklo yahan se! Love you mota!"',
-    image: '/assets/shivi_rashi_cartoon.jpg',
+    image: '/assets/moment_05_kiss_demands.jpg',
     unlockedItem: {
       name: 'Kiss Voucher',
       icon: '💋',
@@ -196,7 +196,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'Rashi seals the promise forever',
     excerpt: '"Okay... then yess i\'ll be with u not temporary, it\'s permanent commitment frm my side."',
     details: 'With sniffling emojis and an overflowing heart, Rashi accepted Shivi\'s proposal, transforming a long-distance connection into an unbreakable bond.',
-    image: '/assets/shivi_rashi_doodle_proposal.jpg',
+    image: '/assets/moment_07_permanent_commitment.jpg',
     unlockedItem: {
       name: 'Permanent Seal',
       icon: '💍',
@@ -212,7 +212,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'The prayer sent across the silence when Shivi was in hospital',
     excerpt: '"Please don\'t leave your rashi alone like this... talk to me, tease me, roast me."',
     details: 'When Shivi lay unconscious in hospital, Rashi wrote the most heartbreaking and devoted message. Pledging no more fights, pleading for Shivi to wake up so she could receive a sweet text from her wifey.',
-    image: '/assets/shivi_rashi_cartoon_stargazing.jpg',
+    image: '/assets/moment_08_coma_letter.jpg',
     unlockedItem: {
       name: 'Unshakable Faith',
       icon: '🕯️',
@@ -228,7 +228,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'The sweet little text that broke the silence',
     excerpt: 'Waking up to read the words of the girl who prayed every second.',
     details: 'The monitor beeped, the eyes fluttered open, and the first thought in Shivi\'s mind was Rashi. The promise was kept: we survived the storm together.',
-    image: '/assets/shivi_rashi_cartoon.jpg',
+    image: '/assets/moment_09_awakening_text.jpg',
     unlockedItem: {
       name: 'Morning Light',
       icon: '🌅',
@@ -244,7 +244,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'I would marry you with paper rings',
     excerpt: '"I like shiny things, but I\'d marry you with paper rings! You\'re the one I want!"',
     details: 'Taylor Swift playing on loop while we dance across video calls. We don\'t need diamonds or grandeur; folded notebook paper wrapped around your finger means everything.',
-    image: '/assets/shivi_rashi_cartoon_proposal.jpg',
+    image: '/assets/moment_10_paper_rings_dance.jpg',
     audioSnippet: '/assets/paper_rings.mp3',
     unlockedItem: {
       name: 'Origami Paper Ring',
@@ -261,7 +261,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: '"Mujhe bohot gandi wali neend aa rahi hai..."',
     excerpt: 'Shivi begging her to say "I love you" while Rashi drifts off into dreamland.',
     details: 'Shivi teasing: "Ashi... I love you toh bol do! Motu, tez bolo thoda!" Rashi whining sleepily: "I love you yaar... I love you, Shivi... ♡" and Shivi laughing softly in pure joy.',
-    image: '/assets/shivi_rashi_cartoon_sleep_call.jpg',
+    image: '/assets/moment_11_sleepy_mumbles.jpg',
     unlockedItem: {
       name: 'Sleepy Pillow',
       icon: '🌙',
@@ -309,7 +309,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'What is yours is mine, especially the warm clothes',
     excerpt: '"I am not giving this hoodie back, it smells like you."',
     details: 'Rashi claiming Shivi\'s hoodie (or Shivi claiming Rashi\'s lavender hoodie) and wearing it like royal armor for weeks. A souvenir of love.',
-    image: '/assets/shivi_rashi_stickers.jpg',
+    image: '/assets/moment_14_hoodie_theft.jpg',
     unlockedItem: {
       name: 'Oversized Hoodie',
       icon: '🧥',
@@ -325,7 +325,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: '"I\'m near Gomti nagar studio p aai hu wanna meet?"',
     excerpt: 'The spontaneous message that made the heart skip a beat.',
     details: 'Looking at the screen and realizing that 800 miles were suddenly down to zero. The fastest sprint to meet the girl with the lavender hoodie.',
-    image: '/assets/shivi_rashi_cartoon_airport_hug.jpg',
+    image: '/assets/moment_15_gomti_nagar_studio.jpg',
     unlockedItem: {
       name: 'Studio Key',
       icon: '✨',
@@ -341,7 +341,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: '"No more fights... we promised to stay together for life"',
     excerpt: 'Arguments burn away in 10 minutes because losing you is unthinkable.',
     details: 'Even when we sulk or complain, Shivi comes with: "Pagal kar degi ye ladki 😭" and Rashi giggles: "Ho jao na mere pyaar mein pagal ♡".',
-    image: '/assets/shivi_rashi_doodle_couch.jpg',
+    image: '/assets/moment_16_decades_after_fights.jpg',
     unlockedItem: {
       name: 'Olive Branch',
       icon: '🕊️',
@@ -357,7 +357,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: '"You pick" ... "No, you pick"',
     excerpt: '30 minutes spent deciding what to eat, ending up sharing one plate.',
     details: 'Fighting over the last bite of pizza or French fries, only to push it onto the other\'s plate with a grin.',
-    image: '/assets/shivi_rashi_stickers.jpg',
+    image: '/assets/moment_17_great_food_debate.jpg',
     unlockedItem: {
       name: 'Last Slice of Pizza',
       icon: '🍕',
@@ -389,7 +389,7 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
     tagline: 'The house we are building together brick by brick',
     excerpt: 'Closing the gap, cozy blanket days, paper ring wedding, growing old together.',
     details: 'Every door leads to the same destination: waking up beside you, making coffee together, and holding hands at 80 years old.',
-    image: '/assets/shivi_rashi_cartoon_proposal.jpg',
+    image: '/assets/shivi_rashi_cartoon.jpg',
     unlockedItem: {
       name: 'Golden Key of Future',
       icon: '🗝️',
