@@ -51,11 +51,24 @@ export default function ARGGameEngine() {
 
   // Validation function
   const handleSolve = (userAnswer: string) => {
+    if (!userAnswer) return;
     const cleanAnswer = userAnswer.trim().toUpperCase();
+    const normUser = cleanAnswer.replace(/[^A-Z0-9]/g, '');
     const primaryKey = currentChapter.answerKey.toUpperCase();
+    const normPrimary = primaryKey.replace(/[^A-Z0-9]/g, '');
     const alternates = (currentChapter.alternateAnswers || []).map(a => a.toUpperCase());
 
-    const isMatch = cleanAnswer === primaryKey || alternates.includes(cleanAnswer);
+    const isMatch =
+      cleanAnswer === primaryKey ||
+      alternates.includes(cleanAnswer) ||
+      (normUser.length > 0 && normUser === normPrimary) ||
+      alternates.some(a => a.replace(/[^A-Z0-9]/g, '') === normUser) ||
+      (normUser.length >= 3 && normPrimary.includes(normUser)) ||
+      (normPrimary.length >= 3 && normUser.includes(normPrimary)) ||
+      alternates.some(a => {
+        const normA = a.replace(/[^A-Z0-9]/g, '');
+        return normA.length >= 3 && (normUser.includes(normA) || normA.includes(normUser));
+      });
 
     if (isMatch) {
       sound.playMatchSound();

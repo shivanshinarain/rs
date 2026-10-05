@@ -34,7 +34,7 @@ export const INITIAL_ENVELOPES = [
     title: "OPEN WHEN YOU MISS ME",
     riddle: "What was the exact cute nickname we used constantly during our late-night study chats?",
     answer: "bacha",
-    acceptedAnswers: ["bacha", "baccha", "bachha"],
+    acceptedAnswers: ["bacha", "baccha", "bachha", "bcha", "baby", "chotu", "penguin", "chotu penguin"],
     unlocked: false,
     letter: "Whenever distance tries to creep in, just close your eyes and remember—no matter how many miles are between us, my heart is right beside yours. You're never alone, my love."
   },
@@ -43,7 +43,7 @@ export const INITIAL_ENVELOPES = [
     title: "OPEN WHEN YOU CAN'T SLEEP",
     riddle: "Which late-night snack or drink did we always argue about ordering at 2 AM?",
     answer: "maggi",
-    acceptedAnswers: ["maggi", "maggie", "2 am maggi"],
+    acceptedAnswers: ["maggi", "maggie", "maggy", "2 am maggi", "2am maggi", "midnight maggi", "noodles", "maggi noodles"],
     unlocked: false,
     letter: "Staring at the ceiling again? Take a deep, slow breath. Think of all our quietest moments together. I am wrapping my arms around you across the miles. Sleep well, my peace."
   },
@@ -52,7 +52,7 @@ export const INITIAL_ENVELOPES = [
     title: "OPEN WHEN YOU'RE ANGRY WITH ME",
     riddle: "What three words do I always text you first when we have a silly argument to make you smile?",
     answer: "i am sorry",
-    acceptedAnswers: ["i am sorry", "im sorry", "i'm sorry", "sorry"],
+    acceptedAnswers: ["i am sorry", "im sorry", "i'm sorry", "sorry", "i am so sorry", "sorry baby", "sorry love", "maaf kardo", "i love you"],
     unlocked: false,
     letter: "I hate it when we're upset with each other. No matter what happens or how stubborn we get, my priority will always be us. Let's fix it together, always."
   },
@@ -61,7 +61,7 @@ export const INITIAL_ENVELOPES = [
     title: "OPEN WHEN YOU NEED TO SMILE",
     riddle: "Remember that goofy voice note I sent you after dropping my phone? What sound effect did I try to mimic?",
     answer: "boing",
-    acceptedAnswers: ["boing", "boingg", "boinggg"],
+    acceptedAnswers: ["boing", "boingg", "boinggg", "boingggg", "booing", "boing sound", "motu"],
     unlocked: false,
     letter: "Your smile is literally my favorite view in the entire universe. Consider this your daily reminder that you are deeply adored and entirely sunshine."
   },
@@ -70,7 +70,7 @@ export const INITIAL_ENVELOPES = [
     title: "OPEN WHEN YOU NEED REASSURANCE",
     riddle: "What is the name of the constellation we promised to look at together under the same moon?",
     answer: "orion",
-    acceptedAnswers: ["orion", "orion constellation"],
+    acceptedAnswers: ["orion", "orion constellation", "the orion", "orion's belt", "orions belt", "constellation", "wifeyy", "wifey"],
     unlocked: false,
     letter: "Overthinking acting up again? Listen to me: You are my absolute safe place. Nothing in this world could ever change how deeply and fiercely I choose you."
   },
@@ -79,7 +79,7 @@ export const INITIAL_ENVELOPES = [
     title: "OPEN WHEN YOU WONDER IF I'D CHOOSE YOU AGAIN",
     riddle: "If I had to travel through a thousand lifetimes to find you all over again, what word would I shout out first?",
     answer: "rashi",
-    acceptedAnswers: ["rashi", "rashi ♡"],
+    acceptedAnswers: ["rashi", "rashi narain", "rashii", "my rashi", "rashi ♡", "ashi", "choose you", "i choose you"],
     unlocked: false,
     letter: "In every single universe, in every single timeline, out of everyone who ever existed... I would find you, walk up to you, and choose you without a single second of hesitation."
   }
@@ -204,13 +204,21 @@ export default function UniverseApp({
   const handleMainPasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const clean = mainPassword.toLowerCase().trim();
-    if (
-      clean === 'rashi' ||
-      clean === 'shivirashi' ||
-      clean === 'chotu penguin' ||
-      clean === 'chotupenguin21' ||
-      clean === 'chotu'
-    ) {
+    const norm = clean.replace(/[^a-z0-9]/g, '');
+    const valid = [
+      'rashi',
+      'shivirashi',
+      'shivi rashi',
+      'shivi',
+      'chotu penguin',
+      'chotupenguin',
+      'chotupenguin21',
+      'chotu',
+      'penguin',
+      'love',
+      'baby'
+    ];
+    if (valid.includes(clean) || valid.some(v => v.replace(/[^a-z0-9]/g, '') === norm)) {
       sound.playMatchSound();
       setMainUnlocked(true);
       setCurrentSection('hub');
@@ -227,19 +235,31 @@ export default function UniverseApp({
     if (!env) return;
 
     const cleanInput = riddleInput.toLowerCase().trim();
-    const accepted = env.acceptedAnswers
-      ? env.acceptedAnswers.map(a => a.toLowerCase().trim())
-      : [env.answer.toLowerCase().trim()];
+    const normInput = cleanInput.replace(/[^a-z0-9]/g, '');
+    if (!normInput) return;
 
-    if (accepted.includes(cleanInput) || cleanInput === env.answer.toLowerCase().trim()) {
+    const accepted = (env.acceptedAnswers || [env.answer]).map(a => a.toLowerCase().trim());
+    const normAccepted = accepted.map(a => a.replace(/[^a-z0-9]/g, ''));
+    const normAnswer = env.answer.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    const isMatch =
+      cleanInput === env.answer.toLowerCase().trim() ||
+      accepted.includes(cleanInput) ||
+      normInput === normAnswer ||
+      normAccepted.includes(normInput) ||
+      (normInput.length >= 3 && normAccepted.some(a => normInput.includes(a) || a.includes(normInput))) ||
+      (normInput.length >= 3 && (normInput.includes(normAnswer) || normAnswer.includes(normInput)));
+
+    if (isMatch) {
       sound.playMatchSound();
       confetti({
-        particleCount: 50,
-        spread: 60,
+        particleCount: 60,
+        spread: 70,
         origin: { y: 0.6 },
         colors: ['#f43f5e', '#ec4899', '#ffd166', '#ffffff']
       });
-      setEnvelopes(envelopes.map(item => item.id === envId ? { ...item, unlocked: true } : item));
+      setEnvelopes(prev => prev.map(item => item.id === envId ? { ...item, unlocked: true } : item));
+      setActiveEnvelope(prev => (prev && prev.id === envId ? { ...prev, unlocked: true } : prev));
       setRiddleError('');
       setRiddleInput('');
     } else {
@@ -252,12 +272,22 @@ export default function UniverseApp({
   const handleBirthdayPasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const clean = birthdayPasswordInput.toLowerCase().trim();
-    if (
-      clean === CONFIG.birthdayPassword.toLowerCase() ||
-      clean === 'chotupenguin21' ||
-      clean === 'shivirashi' ||
-      clean === 'penguin'
-    ) {
+    const norm = clean.replace(/[^a-z0-9]/g, '');
+    const valid = [
+      CONFIG.birthdayPassword.toLowerCase(),
+      'shivirashi',
+      'shivi rashi',
+      'chotupenguin21',
+      'chotu21',
+      'rashi',
+      'rashi21',
+      'chotu',
+      'penguin',
+      'forever21',
+      '22112005',
+      '12112005'
+    ];
+    if (valid.includes(clean) || valid.some(v => v.replace(/[^a-z0-9]/g, '') === norm)) {
       sound.playChime();
       confetti({
         particleCount: 70,
@@ -649,77 +679,81 @@ export default function UniverseApp({
       )}
 
       {/* ================= MODAL: OPEN WHEN ENVELOPE ================= */}
-      {activeEnvelope && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="bg-[#101426] border border-white/15 rounded-3xl max-w-lg w-full p-6 md:p-8 relative shadow-2xl space-y-6">
-            <button
-              onClick={() => {
-                sound.playHeartClick();
-                setActiveEnvelope(null);
-                setRiddleError('');
-                setRiddleInput('');
-              }}
-              className="absolute top-5 right-5 text-white/40 hover:text-white transition-colors cursor-pointer"
-            >
-              ✕
-            </button>
+      {(() => {
+        if (!activeEnvelope) return null;
+        const activeEnv = envelopes.find(item => item.id === activeEnvelope.id) || activeEnvelope;
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+            <div className="bg-[#101426] border border-white/15 rounded-3xl max-w-lg w-full p-6 md:p-8 relative shadow-2xl space-y-6">
+              <button
+                onClick={() => {
+                  sound.playHeartClick();
+                  setActiveEnvelope(null);
+                  setRiddleError('');
+                  setRiddleInput('');
+                }}
+                className="absolute top-5 right-5 text-white/40 hover:text-white transition-colors cursor-pointer"
+              >
+                ✕
+              </button>
 
-            <div className="text-center space-y-2">
-              <span className="text-[10px] uppercase tracking-widest text-rose-300">Private Envelope</span>
-              <h3 className="text-xl md:text-2xl font-serif text-white">{activeEnvelope.title}</h3>
-            </div>
-
-            {!activeEnvelope.unlocked ? (
-              <form onSubmit={(e) => handleRiddleSubmit(e, activeEnvelope.id)} className="space-y-4 py-4">
-                <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 text-center space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-white/40">Poetic Riddle (Only Rashi knows)</p>
-                  <p className="text-rose-200 font-serif italic text-base">"{activeEnvelope.riddle}"</p>
-                </div>
-
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={riddleInput}
-                    onChange={(e) => setRiddleInput(e.target.value)}
-                    placeholder="Type your answer here..."
-                    className="w-full bg-black/40 border border-white/15 rounded-xl py-3 px-4 text-center text-sm text-white placeholder-white/20 focus:outline-none focus:border-rose-400 transition-all"
-                  />
-                </div>
-
-                {riddleError && (
-                  <p className="text-rose-400 text-xs text-center">{riddleError}</p>
-                )}
-
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl bg-rose-500 text-white text-sm font-medium hover:bg-rose-600 transition-all shadow-lg shadow-rose-500/20 cursor-pointer"
-                >
-                  Unlock Envelope
-                </button>
-              </form>
-            ) : (
-              <div className="space-y-6 py-4 animate-fade-in">
-                <div className="bg-[#181d35] border border-rose-500/20 rounded-2xl p-6 text-center space-y-4 shadow-inner">
-                  <Heart className="w-8 h-8 text-rose-400 fill-rose-400 mx-auto animate-bounce" />
-                  <p className="font-serif italic text-white/90 text-sm md:text-base leading-relaxed">
-                    "{activeEnvelope.letter}"
-                  </p>
-                </div>
-                <button
-                  onClick={() => {
-                    sound.playHeartClick();
-                    setActiveEnvelope(null);
-                    setRiddleInput('');
-                  }}
-                  className="w-full py-3 rounded-xl bg-white/10 text-white text-sm hover:bg-white/15 transition-all cursor-pointer"
-                >
-                  Close Letter ♡
-                </button>
+              <div className="text-center space-y-2">
+                <span className="text-[10px] uppercase tracking-widest text-rose-300">Private Envelope</span>
+                <h3 className="text-xl md:text-2xl font-serif text-white">{activeEnv.title}</h3>
               </div>
-            )}
+
+              {!activeEnv.unlocked ? (
+                <form onSubmit={(e) => handleRiddleSubmit(e, activeEnv.id)} className="space-y-4 py-4">
+                  <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 text-center space-y-2">
+                    <p className="text-xs uppercase tracking-widest text-white/40">Poetic Riddle (Only Rashi knows)</p>
+                    <p className="text-rose-200 font-serif italic text-base">"{activeEnv.riddle}"</p>
+                  </div>
+
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={riddleInput}
+                      onChange={(e) => setRiddleInput(e.target.value)}
+                      placeholder="Type your answer here..."
+                      className="w-full bg-black/40 border border-white/15 rounded-xl py-3 px-4 text-center text-sm text-white placeholder-white/20 focus:outline-none focus:border-rose-400 transition-all"
+                    />
+                  </div>
+
+                  {riddleError && (
+                    <p className="text-rose-400 text-xs text-center">{riddleError}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 rounded-xl bg-rose-500 text-white text-sm font-medium hover:bg-rose-600 transition-all shadow-lg shadow-rose-500/20 cursor-pointer"
+                  >
+                    Unlock Envelope
+                  </button>
+                </form>
+              ) : (
+                <div className="space-y-6 py-4 animate-fade-in">
+                  <div className="bg-[#181d35] border border-rose-500/20 rounded-2xl p-6 text-center space-y-4 shadow-inner">
+                    <Heart className="w-8 h-8 text-rose-400 fill-rose-400 mx-auto animate-bounce" />
+                    <p className="font-serif italic text-white/90 text-sm md:text-base leading-relaxed">
+                      "{activeEnv.letter}"
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      sound.playHeartClick();
+                      setActiveEnvelope(null);
+                      setRiddleInput('');
+                    }}
+                    className="w-full py-3 rounded-xl bg-white/10 text-white text-sm hover:bg-white/15 transition-all cursor-pointer"
+                  >
+                    Close Letter ♡
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* ================= MODAL: 21 REASONS DISCOVERY ================= */}
       {activeReasonModal !== null && (

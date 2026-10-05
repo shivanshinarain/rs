@@ -140,7 +140,11 @@ export default function Chapter08_OpenWhen() {
 
     const isMatch = activeEnvelope.acceptedAnswers.some((ans) => {
       const normAns = ans.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-      return normAns === normalizedInput;
+      return (
+        normAns === normalizedInput ||
+        (normalizedInput.length >= 3 && normAns.includes(normalizedInput)) ||
+        (normAns.length >= 3 && normalizedInput.includes(normAns))
+      );
     });
 
     if (isMatch) {

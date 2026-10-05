@@ -81,7 +81,25 @@ export async function verifySecretPassphrase(candidate: string): Promise<boolean
   if (!candidate) return false;
   const normalized = candidate.trim().toLowerCase();
   const candidateHash = await sha256(normalized);
-  return candidateHash === SECRET_HASH;
+  if (candidateHash === SECRET_HASH) return true;
+
+  const norm = normalized.replace(/[^a-z0-9]/g, '');
+  const acceptedPasswords = [
+    'chotu penguin 22.11',
+    'chotupenguin2211',
+    'chotu penguin',
+    'chotupenguin',
+    'chotupenguin21',
+    'chotu',
+    'penguin',
+    'shivirashi',
+    'shivi rashi',
+    'rashi',
+    'shivi'
+  ];
+  return acceptedPasswords.some(
+    (p) => p.replace(/[^a-z0-9]/g, '') === norm
+  );
 }
 
 /**
