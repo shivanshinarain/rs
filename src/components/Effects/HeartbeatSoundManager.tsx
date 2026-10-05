@@ -8,31 +8,28 @@ interface HeartbeatManagerProps {
 }
 
 export default function HeartbeatSoundManager({ currentWorld }: HeartbeatManagerProps) {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
   const [isPulsing, setIsPulsing] = useState(false);
 
   useEffect(() => {
     if (!isEnabled) return;
 
-    // Modulate heartbeat BPM and intensity by world
-    let bpm = 60;
-    let intensity = 0.08;
+    // Modulate heartbeat BPM by world at 100% full volume (intensity = 1.0)
+    let bpm = 68;
+    const intensity = 1.0; // 100% Maximum Volume
 
     if (currentWorld === 'WORLD_01_BEFORE_US') {
-      bpm = 56;
-      intensity = 0.06; // soft
+      bpm = 60;
     } else if (currentWorld === 'WORLD_02_LITTLE_UNIVERSE') {
-      bpm = 68;
-      intensity = 0.09; // slightly stronger
+      bpm = 70;
     } else if (currentWorld === 'WORLD_03_ARG_GAME') {
-      bpm = 74;
-      intensity = 0.11; // puzzle excitement
+      bpm = 76;
     } else if (currentWorld === 'WORLD_04_SANCTUARY') {
-      bpm = 62;
-      intensity = 0.08; // calming
+      bpm = 64;
     } else if (currentWorld === 'WORLD_05_BIRTHDAY') {
-      bpm = 82;
-      intensity = 0.14; // fastest for proposal
+      bpm = 84;
+    } else if (currentWorld === 'ALL_CHAPTERS') {
+      bpm = 68;
     }
 
     const intervalMs = (60 / bpm) * 1000;
@@ -53,15 +50,15 @@ export default function HeartbeatSoundManager({ currentWorld }: HeartbeatManager
           sound.playHeartClick();
           setIsEnabled(!isEnabled);
         }}
-        className={`px-3 py-1.5 rounded-full text-[10px] font-mono flex items-center gap-1.5 border transition-all ${
+        className={`px-3 py-1.5 rounded-full text-[10px] font-mono flex items-center gap-1.5 border transition-all cursor-pointer shadow-lg ${
           isEnabled
-            ? 'bg-universe-darkBurgundy/90 border-universe-crimson text-universe-blush shadow-glow-red'
-            : 'bg-universe-black/60 border-universe-wine/40 text-universe-lavender/50 hover:text-universe-cream'
+            ? 'bg-gradient-to-r from-rose-950 to-universe-darkBurgundy border-universe-crimson text-universe-blush shadow-glow-red'
+            : 'bg-universe-black/80 border-universe-wine/40 text-universe-lavender/50 hover:text-universe-cream'
         }`}
-        title="Toggle Ambient Heartbeat Pulse"
+        title="Toggle Ambient Heartbeat Pulse (100% Volume)"
       >
-        <Activity className={`w-3 h-3 text-universe-glowingRed ${isPulsing ? 'scale-130' : 'scale-100'} transition-transform`} />
-        <span>{isEnabled ? 'Heartbeat: On' : 'Heartbeat'}</span>
+        <Activity className={`w-3.5 h-3.5 text-universe-glowingRed ${isPulsing ? 'scale-140' : 'scale-100'} transition-transform`} />
+        <span>{isEnabled ? 'Heartbeat: 100% ♡' : 'Heartbeat: Off'}</span>
       </button>
     </div>
   );

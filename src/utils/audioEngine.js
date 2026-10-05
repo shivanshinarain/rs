@@ -20,7 +20,7 @@ class AudioEngine {
       if (AudioCtx) {
         this.ctx = new AudioCtx();
         this.masterGain = this.ctx.createGain();
-        this.masterGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+        this.masterGain.gain.setValueAtTime(1.0, this.ctx.currentTime);
         this.masterGain.connect(this.ctx.destination);
       }
     }
@@ -32,7 +32,7 @@ class AudioEngine {
   toggleMute() {
     this.isMuted = !this.isMuted;
     if (this.masterGain && this.ctx) {
-      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 0.7, this.ctx.currentTime);
+      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 1.0, this.ctx.currentTime);
     }
     return this.isMuted;
   }
@@ -104,16 +104,62 @@ class AudioEngine {
     });
   }
 
-  playHeartbeat(intensity = 0.14) {
+  playHeartbeat(intensity = 1.0) {
     this.init();
     if (!this.ctx || this.isMuted) return;
     try {
-      // First thump: "Lub"
-      this.playTone(55, 0.22, 'sine', intensity);
-      // Second thump: "Dub"
+      const vol = Math.min(1.0, Math.max(0.1, intensity));
+      const now = this.ctx.currentTime;
+
+      // 1. "LUB" (First thump: deep resonant bass punch)
+      const osc1 = this.ctx.createOscillator();
+      const gain1 = this.ctx.createGain();
+      const filter1 = this.ctx.createBiquadFilter();
+
+      filter1.type = 'lowpass';
+      filter1.frequency.setValueAtTime(220, now);
+
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(78, now);
+      osc1.frequency.exponentialRampToValueAtTime(40, now + 0.22);
+
+      gain1.gain.setValueAtTime(0.001, now);
+      gain1.gain.linearRampToValueAtTime(vol, now + 0.025);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+      osc1.connect(filter1);
+      filter1.connect(gain1);
+      gain1.connect(this.masterGain);
+
+      osc1.start(now);
+      osc1.stop(now + 0.26);
+
+      // 2. "DUB" (Second thump: slightly higher pitch, quick echo pulse)
       setTimeout(() => {
-        this.playTone(72, 0.28, 'sine', intensity * 0.85);
-      }, 130);
+        if (!this.ctx || this.isMuted) return;
+        const now2 = this.ctx.currentTime;
+        const osc2 = this.ctx.createOscillator();
+        const gain2 = this.ctx.createGain();
+        const filter2 = this.ctx.createBiquadFilter();
+
+        filter2.type = 'lowpass';
+        filter2.frequency.setValueAtTime(240, now2);
+
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(88, now2);
+        osc2.frequency.exponentialRampToValueAtTime(46, now2 + 0.25);
+
+        gain2.gain.setValueAtTime(0.001, now2);
+        gain2.gain.linearRampToValueAtTime(vol * 0.95, now2 + 0.025);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now2 + 0.28);
+
+        osc2.connect(filter2);
+        filter2.connect(gain2);
+        gain2.connect(this.masterGain);
+
+        osc2.start(now2);
+        osc2.stop(now2 + 0.29);
+      }, 140);
     } catch {
       // Audio context might be restricted
     }
@@ -136,17 +182,9 @@ class AudioEngine {
   playProposalSwell() {
     this.init();
     const deepChord = [130.81, 196.00, 261.63, 329.63, 392.00, 523.25];
-    deepChord.forEach((f, i) => {
+    chord: deepChord.forEach((f, i) => {
       setTimeout(() => this.playTone(f, 3.5, 'triangle', 0.1), i * 120);
     });
-  }
-
-  playHeartbeat() {
-    this.init();
-    this.playTone(72, 0.28, 'sine', 0.22);
-    setTimeout(() => {
-      this.playTone(58, 0.38, 'sine', 0.25);
-    }, 140);
   }
 
   // Taylor Swift — Paper Rings Upbeat Pop Chorus Synthesizer Hook
