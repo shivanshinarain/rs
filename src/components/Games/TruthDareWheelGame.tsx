@@ -1,69 +1,231 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 
-// Game database without any explicit labels
-export interface GameItem {
-  type: string;
-  heat: number;
+export interface GameCard {
   text: string;
 }
 
-export const gameData: Record<'truth' | 'dare' | 'situation', GameItem[]> = {
+// Complete database of all Truth, Dare, and Situation questions
+export const gameData: Record<'truth' | 'dare' | 'situation', GameCard[]> = {
   truth: [
-    { type: 'spicy', heat: 5, text: "Have you ever accidentally sent a sext to the wrong person?" },
-    { type: 'naughty', heat: 5, text: "Who would you like to sext right now? ...Why don’t you do it?" },
-    { type: 'extreme', heat: 5, text: "Have you ever faked an orgasm... with me?" },
-    { type: 'deep', heat: 3, text: "When did you first realize you were attracted to me?" },
-    { type: 'sweet', heat: 1, text: "What’s your favorite body part of mine?" },
-    { type: 'fantasy', heat: 4, text: "What’s your biggest roleplay fantasy?" },
-    { type: 'romantic', heat: 2, text: "What’s your most romantic memory of us?" },
-    { type: 'funny', heat: 2, text: "What’s the weirdest thing anyone has ever said to you during sex?" }
+    // List 1
+    { text: "Have you ever accidentally sent a sext to the wrong person?" },
+    { text: "Who would you like to sext right now? ...Why don’t you do it?" },
+    { text: "Who in your contact list would you most want us to have a threesome with?" },
+    { text: "What’s your favorite body part of mine?" },
+    { text: "What’s your biggest roleplay fantasy?" },
+    { text: "Who was the first person you had a crush on?" },
+    { text: "Where’s the craziest place you want to hook up with me?" },
+    { text: "Have you ever had a sex dream about me?" },
+    { text: "What’s the weirdest thing anyone has ever said to you during sex?" },
+    { text: "What’s the weirdest thing you’ve ever said to anyone during sex?" },
+    { text: "Would you like to make a sex tape with me?" },
+    { text: "Would you rather do a pole dance or a striptease?" },
+    { text: "What part of my body would you like to lick right now?" },
+    { text: "How many one-night stands have you had?" },
+    { text: "Have you ever put a sexy selfie on social media?" },
+    { text: "What’s your biggest turn-on when you think about me?" },
+    { text: "If I gave you whipped cream right now, what would you do with it?" },
+    { text: "What’s the dirtiest thing you’d like me to do to you?" },
+    { text: "Do you think my best friend is hot?" },
+    { text: "How soon after meeting someone have you slept with them for the first time?" },
+    { text: "Have you ever broken a bed during sex?" },
+    { text: "Would you rather only sext for the rest of your life, or only have phone sex?" },
+    { text: "What common turn-off really turns you on?" },
+    { text: "When did you first realize you were attracted to me?" },
+    { text: "Have you ever faked an orgasm?" },
+    { text: "Have you ever faked an orgasm... with me?" },
+    { text: "Have you ever slept with a co-worker?" },
+    { text: "Would you want a threesome with me and my best friend?" },
+    { text: "Would you want a threesome with me and your best friend?" },
+    { text: "What’s the craziest thing you’ve done in a sex dream?" },
+    { text: "Have you ever been turned on at work?" },
+    { text: "Have you ever been to a sex club? ...Would you like to?" },
+    { text: "When was the last time I turned you on?" },
+    { text: "Is there a sex toy you’d like to try on me?" },
+    { text: "Have you ever injured yourself during sex?" },
+    { text: "Have you ever had sex in a public place?" },
+    { text: "When was the last time you touched yourself? ...What were you thinking about?" },
+    { text: "Would you rather be dominant or submissive?" },
+    { text: "Have you ever fallen asleep during sex?" },
+    { text: "Have you ever been to a strip club?" },
+    { text: "Has anyone ever walked in on you during sex?" },
+    { text: "Would you rather only use your tongue or only use your fingers?" },
+    { text: "What’s your favorite thing about my body?" },
+    { text: "Would you rather only have morning sex for the rest of your life, or never have morning sex again?" },
+    { text: "What was your first sexual fantasy?" },
+    { text: "Have you ever tried swinging or partner swapping? ...Would you like to?" },
+    { text: "Which celebrity would you like to see me make out with?" },
+    { text: "Would you like to watch me make out with my best friend?" },
+    { text: "Would you like to watch me make out with your best friend?" },
+    { text: "How would you describe my sexual personality?" },
+    { text: "What’s your favorite memory of us having sex?" },
+    { text: "What’s the sexiest gift I could give you?" },
+    { text: "What’s the sexiest gift you’d like to give me?" },
+    { text: "Have you ever kept a relationship secret?" },
+    { text: "What’s your most romantic memory of me?" },
+    { text: "Have you ever experimented with people of different genders?" },
+    
+    // List 2 (Naughty/Party & Flirty & Sexy & Funny Truths)
+    { text: "Picture your partner or crush — what’s your favorite body part?" },
+    { text: "How old were you when you had sex for the first time?" },
+    { text: "Who was your first kiss?" },
+    { text: "What’s the most embarrassing thing that’s happened to you during sex?" },
+    { text: "What’s the dirtiest thing anyone’s ever asked you to do? …And did you do it?" },
+    { text: "What’s your steamiest sexual fantasy?" },
+    { text: "How often do you masturbate?" },
+    { text: "What’s your biggest turn-off?" },
+    { text: "What’s your favorite sex position?" },
+    { text: "Do you ever sext? …Can you read us one?" },
+    { text: "Who’s the sexiest person you’ve ever been with?" },
+    { text: "Have you ever fantasized about a co-worker?" },
+    { text: "Have you ever had an orgy? ...Would you like to?" },
+    { text: "What’s your best pick-up line?" },
+    { text: "If you could only do one sex position for the rest of your life, which would you choose?" },
+    { text: "What’s your favorite sexual guilty pleasure?" },
+    { text: "Who was your best sexual experience with? …What made it so good?" },
+    { text: "Have you ever cheated on someone?" },
+    { text: "Where’s the most unusual place you’ve had sex?" },
+    { text: "What’s the dirtiest thing you want someone to do to you?" },
+    { text: "Have you ever had sex in your parents’ bed?" },
+    { text: "What’s your kinkiest turn-on?" },
+    { text: "Have you ever used sex toys with a partner?" },
+    { text: "How many people have you slept with?" },
+    { text: "What was your first crush, and do you still remember why?" },
+    { text: "What’s your flirting style when you actually like someone?" },
+    { text: "What’s the biggest relationship green flag you look for early on?" },
+    { text: "What’s your ideal first date vibe?" },
+    { text: "What’s a romantic gesture that always works on you?" },
+    { text: "What’s your love language?" },
+    { text: "Have you ever caught feelings because of good banter alone?" },
+    { text: "What’s a texting habit that instantly makes you feel closer to someone?" },
+    { text: "Do you believe in instant chemistry, or does attraction grow for you?" },
+    { text: "What’s a compliment you secretly love hearing?" },
+    { text: "What’s the most attractive personality trait someone can have?" },
+    { text: "What’s something someone can do that gives you instant butterflies?" },
+    { text: "Have you ever kissed more than one person in the same day?" },
+    { text: "What’s the biggest age gap you’ve ever had in a relationship?" },
+    { text: "Have you ever had feelings for two people at once?" },
+    { text: "What’s the most embarrassing thing you’ve done on a date that still haunts you?" },
+    { text: "What’s the worst excuse you’ve ever used to cancel plans?" },
+    { text: "What’s the cringiest thing you’ve said while trying to flirt?" },
+    { text: "What is a secret you have never told anyone?" },
+    { text: "Do you have a hidden talent?" },
+    { text: "What is your most absurd dealbreaker?" },
+    { text: "What is something you’re glad your family doesn’t know about you?" },
+    { text: "What's the scariest thing you've ever done?" },
+    { text: "What's your biggest regret?" },
+    { text: "What's a bad habit you have?" },
+    { text: "What's one thing on your bucket list?" },
+    { text: "When was the last time you cried?" },
+    { text: "What is your guilty pleasure?" },
+    { text: "What is your biggest fear?" },
+    { text: "What’s your biggest insecurity?" },
+    { text: "What is the most annoying thing about me?" },
+    { text: "What is the last lie you told?" }
   ],
   dare: [
-    { type: 'spicy', heat: 5, text: "Put an ice cube in your underwear for one minute." },
-    { type: 'naughty', heat: 5, text: "Perform a sexy belly dance or pole dance using a broom/mop." },
-    { type: 'extreme', heat: 5, text: "Send a spicy/sexy text or selfie right now to your partner." },
-    { type: 'sweet', heat: 1, text: "Give a genuine compliment to your partner without overthinking it." },
-    { type: 'fantasy', heat: 4, text: "Share a fantasy that your loved one has never heard before." },
-    { type: 'romantic', heat: 3, text: "Kiss your partner passionately, like the climax of a movie (or via video call)." },
-    { type: 'funny', heat: 2, text: "Do your best impression of someone trying way too hard on a first date." }
+    // List 1 & Dares collection
+    { text: "Put an ice cube in your underwear for one minute." },
+    { text: "Perform a sexy belly dance for your partner." },
+    { text: "Blindfold your partner and guide them around your body using only touch." },
+    { text: "Undress your partner using only your teeth." },
+    { text: "Clean the house naked." },
+    { text: "Go about your normal day but with no underwear on." },
+    { text: "Give your partner a massage, blindfolded." },
+    { text: "Remove your partner’s underwear using only your feet." },
+    { text: "Use each other as a human plate with whipped cream or chocolate sauce!" },
+    { text: "Share a fantasy that your loved one’s never heard before." },
+    { text: "Handcuff your partner and treat them to their favorite turn-ons." },
+    { text: "Read an erotic bedtime story out loud." },
+    { text: "Set up a nude photo shoot and capture your favorite poses." },
+    { text: "Go skinny dipping in your local river or lake." },
+    { text: "Sext your partner during work." },
+    { text: "Touch yourselves while your partner watches." },
+    { text: "Give your partner a lap dance." },
+    { text: "Pick one part of your body and have your partner focus all their attention there." },
+    { text: "Choose a place you’ve never had sex and take your partner there." },
+    { text: "Draw a picture with whipped cream on your partner’s body, then lick it off." },
+    { text: "Try a new pick-up line on your partner." },
+    { text: "Re-enact an X-rated version of your first kiss." },
+    { text: "Play the rest of the game naked." },
+    { text: "Feed your partner using only your mouth." },
+    { text: "Give your significant other a full-body massage." },
+    { text: "Act out the first time you slept together." },
+    { text: "Have sex in a new part of the house for the first time." },
+    { text: "Kiss your partner passionately, like the climax of a movie." },
+    { text: "Perform a sexy pole dance with a broom or a mop." },
+    { text: "Use body paint to turn each other into a work of art." },
+    { text: "Twerk to the sexiest song you can think of." },
+    { text: "Confess your kinky guilty pleasure and try it together." },
+    { text: "Let your partner dress you up, then direct you in a striptease." },
+    { text: "Challenge your loved one to a sexy pillow fight." },
+    { text: "Spell out what you want to do to your partner using only emojis." },
+    { text: "Pretend you work at a phone sex line and have your partner call in." },
+    { text: "Blindfold yourself and guess which part of your partner’s body you’re touching." },
+    { text: "Hide chocolate or candy in your clothes and have your significant other find it." },
+    { text: "Send a sexy selfie when they least expect it." },
+    { text: "Balance an ice cube on your belly button for as long as you can bear it." },
+    { text: "Show your partner the last X-rated clip you watched and describe why it turned you on." },
+    { text: "Put on your significant other’s underwear and strut your stuff on the catwalk." },
+    { text: "Shave your partner’s body hair." },
+    { text: "Pretend to give oral sex to the nearest object you see." },
+    { text: "Try tantric sex." },
+    { text: "Leave a steamy voicemail for an ex or another friend." },
+    { text: "Lick peanut butter, whipped cream, or chocolate sauce off someone else’s finger." },
+    { text: "Fake an orgasm for one minute." },
+    { text: "Act out your favorite sex position with the person next to you." },
+    { text: "Send a sexy selfie to someone in your contact list." },
+    { text: "Take a body shot. Balance the glass in your cleavage or torso!" },
+    { text: "Transfer an ice cube from your mouth to someone else’s." },
+    { text: "Give a lap dance to a friend of your choice." },
+    { text: "Snap a photo of a mystery part of your body and have the others guess." },
+    { text: "Give someone in the room a genuine compliment without overthinking it." },
+    { text: "Make eye contact with the person to your left for 15 seconds without laughing." },
+    { text: "Send a random emoji to the last person you texted." },
+    { text: "Act out what your ideal first date looks like—no explaining." },
+    { text: "Pick a song you’d put on to set a flirty mood." },
+    { text: "Describe your perfect romantic movie moment in one sentence." },
+    { text: "Give your best confident walk across the room." },
+    { text: "Send a 😏 emoji to the person you’re playing with." },
+    { text: "Say one flirty sentence you’d feel confident texting someone." },
+    { text: "Send the last emoji you used to the group chat. No context." },
+    { text: "Do your best impression of someone trying way too hard on a first date." },
+    { text: "Read your last text out loud like you’re auditioning for a soap opera." },
+    { text: "Freestyle rap about our relationship." },
+    { text: "Go live on any social media account and declare your love for me." },
+    { text: "Let your partner give you a makeover." }
   ],
   situation: [
-    { type: 'romantic', heat: 3, text: "Scenario: If suddenly at midnight I showed up at your doorstep unannounced, what would your very first reaction be?" },
-    { type: 'fantasy', heat: 4, text: "Scenario: If we magically woke up inside our absolute dream apartment together tomorrow, what room would we check first?" },
-    { type: 'deep', heat: 3, text: "Scenario: If distance didn't exist for just 24 hours, how would we spend every single minute?" },
-    { type: 'spicy', heat: 5, text: "Scenario: If we were stuck in a private elevator for 3 hours right now, what would happen?" },
-    { type: 'sweet', heat: 1, text: "Scenario: If you could replay one single day of us all over again, which one would it be?" }
+    { text: "Scenario: If suddenly at midnight I showed up at your doorstep unannounced, what would your very first reaction be?" },
+    { text: "Scenario: If we magically woke up inside our absolute dream apartment together tomorrow, what room would we check first?" },
+    { text: "Scenario: If distance didn't exist for just 24 hours, how would we spend every single minute?" },
+    { text: "Scenario: If we were stuck in a private elevator for 3 hours right now, what would happen?" },
+    { text: "Scenario: If you could replay one single day of us all over again, which one would it be?" },
+    { text: "Scenario: If we got caught in the rain together with no umbrella, where would we run and what would we do?" },
+    { text: "Scenario: If we had a lazy Sunday with nowhere to be, how would we spend in bed together?" },
+    { text: "Scenario: If we were trapped on a remote island together with infinite supplies, what is the first thing we would do?" },
+    { text: "Scenario: If you had to describe our long-distance love story as a movie genre, what would it be and why?" },
+    { text: "Scenario: If we could teleport to any romantic city right this second, which place are we landing in?" }
   ]
 };
 
-export const heatLabels: Record<number, string> = {
-  1: "🌸 Sweet & Cute",
-  2: "💬 Fun & Flirty",
-  3: "🌙 Deep & Romantic",
-  4: "🔥 Spicy & Fantasy",
-  5: "🌶️ Extreme & Naughty"
-};
-
-export interface CleanTruthDareGameProps {
+export interface AllQuestionsTruthDareGameProps {
   isOpen?: boolean;
   onClose?: () => void;
   isModal?: boolean;
 }
 
-export default function CleanTruthDareGame({
+export default function AllQuestionsTruthDareGame({
   isOpen = true,
   onClose,
   isModal = false
-}: CleanTruthDareGameProps = {}) {
-  const [gameState, setGameState] = useState<'spinning' | 'choosing-category' | 'playing'>('spinning'); 
+}: AllQuestionsTruthDareGameProps = {}) {
+  const [gameState, setGameState] = useState<'spinning' | 'playing'>('spinning'); 
   const [selectedMode, setSelectedMode] = useState<'truth' | 'dare' | 'situation' | null>(null); 
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [currentCard, setCurrentCard] = useState<GameItem | null>(null);
+  const [currentCard, setCurrentCard] = useState<GameCard | null>(null);
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [spinAngle, setSpinAngle] = useState<number>(0);
-
-  const [heatLevel, setHeatLevel] = useState<number>(3); 
   const [isSyncMode, setIsSyncMode] = useState<boolean>(true); 
 
   if (isOpen === false) return null;
@@ -78,29 +240,15 @@ export default function CleanTruthDareGame({
     setTimeout(() => {
       setIsSpinning(false);
       const finalDeg = (spinAngle + randomExtra) % 360;
-      if (finalDeg < 120) setSelectedMode('truth');
-      else if (finalDeg < 240) setSelectedMode('dare');
-      else setSelectedMode('situation');
+      const modeKey = finalDeg < 120 ? 'truth' : finalDeg < 240 ? 'dare' : 'situation';
+      setSelectedMode(modeKey);
 
-      setGameState('choosing-category');
+      // Directly pick a random card from the selected mode's pool
+      const pool = gameData[modeKey];
+      const randomQ = pool[Math.floor(Math.random() * pool.length)];
+      setCurrentCard(randomQ);
+      setGameState('playing');
     }, 3000);
-  };
-
-  const handleCategorySelect = (catType: string) => {
-    setSelectedCategory(catType);
-    if (!selectedMode || !gameData[selectedMode]) return;
-    
-    const pool = gameData[selectedMode].filter(item => {
-      const matchesCat = (catType === 'all' || item.type === catType);
-      const matchesHeat = item.heat <= heatLevel;
-      return matchesCat && matchesHeat;
-    });
-
-    const finalPool = pool.length > 0 ? pool : gameData[selectedMode];
-    const randomQ = finalPool[Math.floor(Math.random() * finalPool.length)];
-    
-    setCurrentCard(randomQ);
-    setGameState('playing');
   };
 
   const resetGame = () => {
@@ -110,7 +258,7 @@ export default function CleanTruthDareGame({
   };
 
   const gameContent = (
-    <div className="relative w-full flex flex-col items-center justify-center p-6 font-sans">
+    <div className="relative w-full flex flex-col items-center justify-center p-6 font-sans select-none">
       {/* Optional Close Button for Modal */}
       {isModal && onClose && (
         <button
@@ -140,39 +288,14 @@ export default function CleanTruthDareGame({
         </div>
       </div>
 
-      {/* Heat Level Slider */}
-      <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md max-w-md w-full mb-6 text-center">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-xs text-pink-400 font-semibold uppercase tracking-wider">Heat Level Intensity</span>
-          <span className="text-xs font-bold text-white bg-pink-500/20 px-2.5 py-0.5 rounded-md border border-pink-500/30">
-            {heatLabels[heatLevel]}
-          </span>
-        </div>
-        <input 
-          type="range" 
-          min="1" 
-          max="5" 
-          value={heatLevel} 
-          onChange={(e) => setHeatLevel(Number(e.target.value))}
-          className="w-full accent-pink-500 cursor-pointer bg-gray-700 h-2 rounded-lg"
-        />
-        <div className="flex justify-between text-[10px] text-gray-400 mt-1">
-          <span>Sweet</span>
-          <span>Flirty</span>
-          <span>Romantic</span>
-          <span>Spicy</span>
-          <span>Extreme</span>
-        </div>
-      </div>
-
-      {/* STAGE 1: SPIN THE WHEEL (Fixed Triangle Slices) */}
+      {/* STAGE 1: SPIN THE WHEEL (Triangle Slices with SVG) */}
       {gameState === 'spinning' && (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center my-6">
           <div className="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center">
-            {/* Pointer at the top */}
+            {/* Top Pointer */}
             <div className="absolute -top-3 z-30 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[18px] border-pink-500 filter drop-shadow-[0_0_8px_rgba(236,72,153,0.9)]"></div>
             
-            {/* Spinning Wheel with Clean Triangle Slices */}
+            {/* Wheel Container */}
             <div 
               className="w-full h-full rounded-full border-4 border-pink-500/50 relative overflow-hidden shadow-[0_0_35px_rgba(139,92,246,0.35)] transition-all ease-out duration-[3000ms]"
               style={{
@@ -180,18 +303,11 @@ export default function CleanTruthDareGame({
                 background: 'conic-gradient(#1e1b4b 0deg 120deg, #31103f 120deg 240deg, #0f172a 240deg 360deg)'
               }}
             >
-              {/* TRUTH Label (Centered inside 0° - 120° triangle sector) */}
-              <div className="absolute inset-0 flex items-start justify-center pt-8 text-sm font-black tracking-widest text-pink-300 transform rotate-[60deg]">
-                TRUTH
-              </div>
-              {/* DARE Label (Centered inside 120° - 240° triangle sector) */}
-              <div className="absolute inset-0 flex items-start justify-center pt-8 text-sm font-black tracking-widest text-purple-300 transform rotate-[180deg]">
-                DARE
-              </div>
-              {/* SITUATION Label (Centered inside 240° - 360° triangle sector) */}
-              <div className="absolute inset-0 flex items-start justify-center pt-8 text-sm font-black tracking-widest text-indigo-300 transform rotate-[300deg]">
-                SITUATION
-              </div>
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
+                <text x="50" y="28" fill="#f472b6" fontSize="8" fontWeight="900" textAnchor="middle" transform="rotate(60 50 50)" letterSpacing="1">TRUTH</text>
+                <text x="50" y="28" fill="#c084fc" fontSize="8" fontWeight="900" textAnchor="middle" transform="rotate(180 50 50)" letterSpacing="1">DARE</text>
+                <text x="50" y="28" fill="#818cf8" fontSize="7" fontWeight="900" textAnchor="middle" transform="rotate(300 50 50)" letterSpacing="0.5">SITUATION</text>
+              </svg>
             </div>
 
             {/* Center Spin Button */}
@@ -209,39 +325,13 @@ export default function CleanTruthDareGame({
         </div>
       )}
 
-      {/* STAGE 2: CHOOSE CATEGORY */}
-      {gameState === 'choosing-category' && selectedMode && (
-        <div className="flex flex-col items-center bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-md max-w-md w-full text-center shadow-2xl">
-          <span className="text-xs uppercase tracking-widest text-pink-400 font-semibold mb-1">Wheel Landed On</span>
-          <h2 className="text-3xl font-black text-white uppercase mb-4 tracking-wide">
-            ✨ {selectedMode} ✨
-          </h2>
-          <p className="text-gray-300 text-xs mb-4">Current Heat Level filter applied: <span className="text-pink-300 font-bold">{heatLabels[heatLevel]}</span></p>
-          
-          <div className="grid grid-cols-2 gap-2.5 w-full">
-            {['sweet', 'deep', 'romantic', 'spicy', 'naughty', 'fantasy', 'all'].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => handleCategorySelect(cat)}
-                className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-pink-600/30 hover:border-pink-500 border border-white/10 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* STAGE 3: PLAYING */}
+      {/* STAGE 2: PLAYING QUESTION */}
       {gameState === 'playing' && currentCard && selectedMode && (
-        <div className="flex flex-col items-center max-w-lg w-full">
+        <div className="flex flex-col items-center max-w-lg w-full my-6">
           <div className="w-full bg-gradient-to-br from-white/10 to-white/5 p-8 rounded-2xl border border-pink-500/30 shadow-[0_0_40px_rgba(236,72,153,0.15)] backdrop-blur-xl text-center relative">
-            <div className="flex justify-between items-center mb-6">
-              <span className="text-[10px] uppercase tracking-widest bg-pink-500/20 text-pink-300 px-3 py-1 rounded-full border border-pink-500/30">
-                {selectedMode} • {currentCard.type}
-              </span>
-              <span className="text-[10px] bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30">
-                Intensity: {currentCard.heat}/5
+            <div className="flex justify-center mb-4">
+              <span className="text-[10px] uppercase tracking-widest bg-pink-500/20 text-pink-300 px-4 py-1 rounded-full border border-pink-500/30 font-bold">
+                {selectedMode}
               </span>
             </div>
 
@@ -253,7 +343,11 @@ export default function CleanTruthDareGame({
 
             <div className="flex gap-4 justify-center mt-6">
               <button 
-                onClick={() => handleCategorySelect(selectedCategory)}
+                onClick={() => {
+                  const pool = gameData[selectedMode];
+                  const randomQ = pool[Math.floor(Math.random() * pool.length)];
+                  setCurrentCard(randomQ);
+                }}
                 className="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg cursor-pointer"
               >
                 Next Question
@@ -288,5 +382,6 @@ export default function CleanTruthDareGame({
   );
 }
 
-// Export aliases so existing imports continue to function without any friction
-export const TruthDareWheelGame = CleanTruthDareGame;
+// Aliases for seamless imports
+export const TruthDareWheelGame = AllQuestionsTruthDareGame;
+export const CleanTruthDareGame = AllQuestionsTruthDareGame;

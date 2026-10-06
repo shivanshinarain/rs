@@ -1,2 +1,2 @@
-export { default, gameData, heatLabels, TruthDareWheelGame } from './TruthDareWheelGame';
-export type { GameItem, CleanTruthDareGameProps } from './TruthDareWheelGame';
+export { default, gameData, TruthDareWheelGame, CleanTruthDareGame } from './TruthDareWheelGame';
+export type { GameCard, AllQuestionsTruthDareGameProps } from './TruthDareWheelGame';
