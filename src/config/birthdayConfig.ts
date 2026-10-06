@@ -54,17 +54,7 @@ export const BIRTHDAY_STORAGE_KEY = 'aucu_birthday_unlocked_v21';
  * Check if current local time has reached or passed 12 November 2026
  */
 export function isBirthdayReached(): boolean {
-  if (typeof window === 'undefined') return false;
-  const now = new Date();
-  const target = new Date(
-    BIRTHDAY_CONFIG.targetYear,
-    BIRTHDAY_CONFIG.targetMonth,
-    BIRTHDAY_CONFIG.targetDay,
-    0,
-    0,
-    0
-  );
-  return now.getTime() >= target.getTime();
+  return true; // Always unlocked and open as requested
 }
 
 /**
@@ -83,12 +73,7 @@ export function verifyBirthdayPassword(candidate: string): boolean {
  * Check if the birthday section is already unlocked in this session
  */
 export function isBirthdaySessionUnlocked(): boolean {
-  if (typeof window === 'undefined') return false;
-  try {
-    return sessionStorage.getItem(BIRTHDAY_STORAGE_KEY) === 'true';
-  } catch {
-    return false;
-  }
+  return true; // Always unlocked and open by default
 }
 
 /**

@@ -218,10 +218,10 @@ interface BirthdayWorldProps {
 }
 
 export default function BirthdayWorld({ onUnlockChange }: BirthdayWorldProps = {}) {
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(true);
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState<string | null>(null);
-  const [testBypass, setTestBypass] = useState(false); // Testing toggle
+  const [testBypass, setTestBypass] = useState(true); // Default open
 
   const [litStarCount, setLitStarCount] = useState(0);
   const [countdownPhase, setCountdownPhase] = useState<'stars' | 'R' | 'heart' | 'banner'>('stars');
@@ -230,7 +230,7 @@ export default function BirthdayWorld({ onUnlockChange }: BirthdayWorldProps = {
   const [transitioningToLetter, setTransitioningToLetter] = useState(false);
 
   // Check if target date (12 Nov 2026) has arrived in local time
-  const [dateReached, setDateReached] = useState(false);
+  const [dateReached, setDateReached] = useState(true);
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
@@ -239,11 +239,8 @@ export default function BirthdayWorld({ onUnlockChange }: BirthdayWorldProps = {
   }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    // Check session unlock
-    if (isBirthdaySessionUnlocked()) {
-      setIsUnlocked(true);
-      onUnlockChange?.(true);
-    }
+    // Notify parent that birthday section is unlocked and open
+    onUnlockChange?.(true);
 
     const checkDate = () => {
       const reached = isBirthdayReached();
@@ -279,23 +276,16 @@ export default function BirthdayWorld({ onUnlockChange }: BirthdayWorldProps = {
   // Handle password unlock on 12 Nov
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!passwordInput.trim()) return;
-
-    if (verifyBirthdayPassword(passwordInput)) {
-      sound.playMatchSound();
-      setIsUnlocked(true);
-      onUnlockChange?.(true);
-      setBirthdaySessionUnlocked();
-      setPasswordError(null);
-      confetti({
-        particleCount: 100,
-        spread: 80,
-        colors: ['#ff285e', '#f5b8c6', '#ffd166', '#ffffff']
-      });
-    } else {
-      sound.playTone(180, 0.25);
-      setPasswordError('hmm… you know this one, baby.');
-    }
+    sound.playMatchSound();
+    setIsUnlocked(true);
+    onUnlockChange?.(true);
+    setBirthdaySessionUnlocked();
+    setPasswordError(null);
+    confetti({
+      particleCount: 100,
+      spread: 80,
+      colors: ['#ff285e', '#f5b8c6', '#ffd166', '#ffffff']
+    });
   };
 
   // 21 Stars Ignition Countdown
@@ -479,12 +469,31 @@ export default function BirthdayWorld({ onUnlockChange }: BirthdayWorldProps = {
                 </p>
               )}
 
-              <button
-                type="submit"
-                className="w-full py-3.5 rounded-full bg-gradient-to-r from-universe-crimson via-universe-glowingRed to-universe-crimson text-white text-xs font-mono uppercase tracking-widest font-bold shadow-glow-red hover:scale-105 active:scale-95 transition-all"
-              >
-                Unlock My 21st Universe ♡
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  type="submit"
+                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-universe-crimson via-universe-glowingRed to-universe-crimson text-white text-xs font-mono uppercase tracking-widest font-bold shadow-glow-red hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                >
+                  Unlock My 21st Universe ♡
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    sound.playMatchSound();
+                    setIsUnlocked(true);
+                    onUnlockChange?.(true);
+                    setBirthdaySessionUnlocked();
+                    confetti({
+                      particleCount: 100,
+                      spread: 80,
+                      colors: ['#ff285e', '#f5b8c6', '#ffd166', '#ffffff']
+                    });
+                  }}
+                  className="w-full py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-universe-gold/40 text-universe-gold text-xs font-mono transition-all cursor-pointer"
+                >
+                  Enter Directly Without Password ♡
+                </button>
+              </div>
             </form>
 
             {testBypass && !dateReached && (

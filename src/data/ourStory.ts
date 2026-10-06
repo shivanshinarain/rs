@@ -146,19 +146,18 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
   },
   {
     id: 4,
-    category: 'PUZZLE-WORTHY',
-    title: 'The Secret WhatsApp Cipher',
+    category: 'FUNNY',
+    title: 'The 2 AM Maggi & Late Night Laughs',
     date: 'Month 2',
-    tagline: 'A dialect composed of half-words and custom stickers',
-    excerpt: 'Inside jokes that would look like alien hieroglyphics to anyone else.',
-    details: 'Our chats became a constellation of custom stickers, memes, and unspoken codes where one punctuation mark explains everything.',
-    image: '/assets/moment_04_whatsapp_cipher.jpg',
-    secretKey: 'CIPHER',
+    tagline: 'Fighting over extra cheese and burning the midnight oil',
+    excerpt: '"Main banaungi nahi, bas khaungi!" and Shivi giggling at 2 AM.',
+    details: 'Midnight food cravings across video calls. Debating whose turn it is to cook while eating cheese Maggi straight from the bowl and laughing until our stomachs hurt.',
+    image: '/assets/shivi_rashi_stickers.jpg',
     unlockedItem: {
-      name: 'Decoder Ring',
-      icon: '🔍',
-      description: 'The key that translates silence into love.',
-      keyPiece: 'CODE'
+      name: 'Midnight Maggi Bowl',
+      icon: '🍜',
+      description: 'The taste of comforting 2 AM laughter.',
+      keyPiece: 'MAGGI'
     }
   },
   {
@@ -326,18 +325,18 @@ export const TWENTY_MOMENTS: StoryMoment[] = [
   },
   {
     id: 15,
-    category: 'PUZZLE-WORTHY',
-    title: 'The Gomti Nagar Studio Memory',
+    category: 'ROMANTIC',
+    title: 'Unplanned Video Calls & Warm Smiles',
     date: 'Reunion Day',
-    tagline: '"I\'m near Gomti nagar studio p aai hu wanna meet?"',
-    excerpt: 'The spontaneous message that made the heart skip a beat.',
-    details: 'Looking at the screen and realizing that 800 miles were suddenly down to zero. The fastest sprint to meet the girl with the lavender hoodie.',
-    image: '/assets/moment_15_gomti_nagar_studio.jpg',
+    tagline: 'When a quick check-in turned into an all-night connection',
+    excerpt: 'Distance felt like nothing the second your tired smile lit up the screen.',
+    details: 'Looking at the screen and realizing that hundreds of miles were suddenly down to zero. Just watching each other study or work while sharing comfortable silence.',
+    image: '/assets/shivi_rashi_doodle_couch.jpg',
     unlockedItem: {
-      name: 'Studio Key',
+      name: 'Silent Company',
       icon: '✨',
       description: 'Proof that distance melts the moment we are near.',
-      keyPiece: 'MEET'
+      keyPiece: 'SMILE'
     }
   },
   {

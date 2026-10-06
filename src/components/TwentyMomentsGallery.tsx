@@ -58,7 +58,6 @@ export default function TwentyMomentsGallery() {
     'ROMANTIC',
     'FUNNY',
     'EMOTIONAL',
-    'PUZZLE-WORTHY',
     'MILESTONES',
     'PROPOSAL-WORTHY'
   ];

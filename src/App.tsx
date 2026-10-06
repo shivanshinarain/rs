@@ -189,6 +189,7 @@ function MainUniverseApp() {
         onToggleAudio={handleToggleAudio}
         onOpenUniverseGame={() => setIsUniverseGameOpen(true)}
         onOpenTaylorSwift={() => handleNavigateToChapter('chapter-11', 'WORLD_05_BIRTHDAY')}
+        onOpenVoiceNotes={() => handleNavigateToChapter('chapter-12', 'WORLD_05_BIRTHDAY')}
       />
 
       {/* Global Permanent Red Thread of Fate */}

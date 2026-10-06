@@ -157,11 +157,11 @@ export default function UniverseApp({
   onClose,
   isModal = false
 }: UniverseAppProps) {
-  const [currentSection, setCurrentSection] = useState<'welcome' | 'hub'>('welcome'); // welcome, hub
+  const [currentSection, setCurrentSection] = useState<'welcome' | 'hub'>('hub'); // Start directly in the game hub
   
   // Main Password Gate State
   const [mainPassword, setMainPassword] = useState('');
-  const [mainUnlocked, setMainUnlocked] = useState(false);
+  const [mainUnlocked, setMainUnlocked] = useState(true);
   const [mainError, setMainError] = useState(false);
 
   // Open When State
@@ -172,9 +172,9 @@ export default function UniverseApp({
   const [failedEnvelopeAttempts, setFailedEnvelopeAttempts] = useState<Record<string, number>>({});
 
   // Birthday State & Date Gate
-  const [isBirthdayUnlockedDate, setIsBirthdayUnlockedDate] = useState(false);
+  const [isBirthdayUnlockedDate, setIsBirthdayUnlockedDate] = useState(true);
   const [birthdayPasswordInput, setBirthdayPasswordInput] = useState('');
-  const [birthdayAuthenticated, setBirthdayAuthenticated] = useState(false);
+  const [birthdayAuthenticated, setBirthdayAuthenticated] = useState(true);
   const [birthdayError, setBirthdayError] = useState(false);
   
   // 21 Reasons State
@@ -187,47 +187,17 @@ export default function UniverseApp({
 
   // Check Date on Load (Simulated or Real Local Time)
   useEffect(() => {
-    const checkDate = () => {
-      const today = new Date();
-      const target = new Date(CONFIG.celebrationDate);
-      const isDev = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV);
-      if (today >= target || isDev) {
-        setIsBirthdayUnlockedDate(true);
-      } else {
-        setIsBirthdayUnlockedDate(true); // Default to true for easy reviewing in preview mode
-      }
-    };
-    checkDate();
+    setIsBirthdayUnlockedDate(true);
+    setBirthdayAuthenticated(true);
   }, []);
 
   if (isOpen === false) return null;
 
-  const handleMainPasswordSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const clean = mainPassword.toLowerCase().trim();
-    const norm = clean.replace(/[^a-z0-9]/g, '');
-    const valid = [
-      'rashi',
-      'shivirashi',
-      'shivi rashi',
-      'shivi',
-      'chotu penguin',
-      'chotupenguin',
-      'chotupenguin21',
-      'chotu',
-      'penguin',
-      'love',
-      'baby'
-    ];
-    if (valid.includes(clean) || valid.some(v => v.replace(/[^a-z0-9]/g, '') === norm)) {
-      sound.playMatchSound();
-      setMainUnlocked(true);
-      setCurrentSection('hub');
-    } else {
-      sound.playTone(180, 0.25);
-      setMainError(true);
-      setTimeout(() => setMainError(false), 2000);
-    }
+  const handleMainPasswordSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    sound.playMatchSound();
+    setMainUnlocked(true);
+    setCurrentSection('hub');
   };
 
   const handleRiddleSubmit = (e: React.FormEvent, envId: string) => {
@@ -237,7 +207,20 @@ export default function UniverseApp({
 
     const cleanInput = riddleInput.toLowerCase().trim();
     const normInput = cleanInput.replace(/[^a-z0-9]/g, '');
-    if (!normInput) return;
+    if (!normInput) {
+      sound.playMatchSound();
+      confetti({
+        particleCount: 60,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#f43f5e', '#ec4899', '#ffd166', '#ffffff']
+      });
+      setEnvelopes(prev => prev.map(item => item.id === envId ? { ...item, unlocked: true } : item));
+      setActiveEnvelope(prev => (prev && prev.id === envId ? { ...prev, unlocked: true } : prev));
+      setRiddleError('');
+      setRiddleInput('');
+      return;
+    }
 
     const accepted = (env.acceptedAnswers || [env.answer]).map(a => a.toLowerCase().trim());
     const normAccepted = accepted.map(a => a.replace(/[^a-z0-9]/g, ''));
@@ -407,24 +390,31 @@ export default function UniverseApp({
               <div className="relative max-w-sm mx-auto">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
                 <input
-                  type="password"
+                  type="text"
                   value={mainPassword}
                   onChange={(e) => setMainPassword(e.target.value)}
-                  placeholder="Your secret word..."
-                  className="w-full bg-black/40 border border-white/15 rounded-xl py-3 pl-12 pr-4 text-center text-sm tracking-wider text-white placeholder-white/20 focus:outline-none focus:border-rose-400 transition-all shadow-inner"
+                  placeholder="Password: shivirashi"
+                  className="w-full bg-black/40 border border-white/15 rounded-xl py-3 pl-12 pr-4 text-center text-sm tracking-wider text-white placeholder-white/40 focus:outline-none focus:border-rose-400 transition-all shadow-inner font-mono"
                 />
               </div>
-              {mainError && (
-                <p className="text-rose-400 text-xs animate-shake">
-                  not this word, my love ♡ try again.
-                </p>
-              )}
-              <button
-                type="submit"
-                className="mt-4 px-8 py-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white text-sm font-medium tracking-wide shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                Unlock Our Universe
-              </button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white text-sm font-medium tracking-wide shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                >
+                  Unlock Our Universe
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleMainPasswordSubmit()}
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-rose-200 text-xs font-mono transition-all cursor-pointer"
+                >
+                  Enter Directly Without Password ♡
+                </button>
+              </div>
+              <p className="text-[11px] font-mono text-white/50 pt-1">
+                Universal Password: <span className="text-rose-300 font-semibold">shivirashi</span>
+              </p>
             </form>
           </div>
         </main>
@@ -535,57 +525,8 @@ export default function UniverseApp({
           <section className="bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
-            {!isBirthdayUnlockedDate ? (
-              // BEFORE 12 NOVEMBER
-              <div className="text-center space-y-6 py-12">
-                <Moon className="w-10 h-10 text-rose-400 mx-auto animate-pulse" />
-                <h3 className="text-2xl md:text-4xl font-serif font-light text-white">
-                  TODAY, THE UNIVERSE IS ABOUT YOU
-                </h3>
-                <p className="text-white/60 max-w-md mx-auto text-sm">
-                  not yet, love. there's a little universe waiting for your birthday.
-                </p>
-                <div className="text-xl font-mono text-rose-300 tracking-widest">
-                  12 &bull; 11 &bull; 2026
-                </div>
-                <p className="text-xs text-white/40">come back on your day, my birthday girl ♡</p>
-              </div>
-            ) : !birthdayAuthenticated ? (
-              // ON 12 NOVEMBER - PASSWORD GATE
-              <div className="max-w-md mx-auto text-center space-y-6 py-6">
-                <Star className="w-8 h-8 text-rose-400 mx-auto animate-spin" style={{ animationDuration: '10s' }} />
-                <div>
-                  <h3 className="text-2xl font-serif text-white mb-2">today is your day.</h3>
-                  <p className="text-white/60 text-sm">
-                    but there's one little door only you can open, {CONFIG.partnerName}.
-                  </p>
-                </div>
-
-                <form onSubmit={handleBirthdayPasswordSubmit} className="space-y-4">
-                  <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
-                    <input
-                      type="password"
-                      value={birthdayPasswordInput}
-                      onChange={(e) => setBirthdayPasswordInput(e.target.value)}
-                      placeholder="Enter birthday door password..."
-                      className="w-full bg-black/40 border border-white/15 rounded-xl py-3 pl-12 pr-4 text-center text-sm tracking-wider text-white placeholder-white/20 focus:outline-none focus:border-rose-400 transition-all shadow-inner"
-                    />
-                  </div>
-                  {birthdayError && (
-                    <p className="text-rose-400 text-xs">not this password, birthday girl ♡ try again.</p>
-                  )}
-                  <button
-                    type="submit"
-                    className="w-full py-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white text-sm font-medium tracking-wide shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-all cursor-pointer"
-                  >
-                    Open Birthday Universe
-                  </button>
-                </form>
-              </div>
-            ) : (
-              // UNLOCKED BIRTHDAY WORLD: 21 LITTLE REASONS
-              <div className="space-y-8">
+            {/* UNLOCKED BIRTHDAY WORLD: 21 LITTLE REASONS (Fully Open & Unlocked) */}
+            <div className="space-y-8">
                 <div className="text-center space-y-2">
                   <div className="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs">
                     <Sparkles className="w-3.5 h-3.5" />
@@ -634,7 +575,6 @@ export default function UniverseApp({
                   </div>
                 )}
               </div>
-            )}
           </section>
 
           {/* ================= SECTION 3: FINAL LOVE LETTER & PROPOSAL ================= */}
@@ -776,12 +716,33 @@ export default function UniverseApp({
                     </div>
                   )}
 
-                  <button
-                    type="submit"
-                    className="w-full py-3 rounded-xl bg-rose-500 text-white text-sm font-medium hover:bg-rose-600 transition-all shadow-lg shadow-rose-500/20 cursor-pointer"
-                  >
-                    Unlock Envelope ♡
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                    <button
+                      type="submit"
+                      className="flex-1 py-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white text-sm font-medium hover:from-rose-600 hover:to-pink-700 transition-all shadow-lg shadow-rose-500/20 cursor-pointer"
+                    >
+                      Unlock Envelope ♡
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        sound.playMatchSound();
+                        confetti({
+                          particleCount: 60,
+                          spread: 70,
+                          origin: { y: 0.6 },
+                          colors: ['#f43f5e', '#ec4899', '#ffd166', '#ffffff']
+                        });
+                        setEnvelopes(prev => prev.map(item => item.id === activeEnv.id ? { ...item, unlocked: true } : item));
+                        setActiveEnvelope(prev => (prev ? { ...prev, unlocked: true } : null));
+                        setRiddleError('');
+                        setRiddleInput('');
+                      }}
+                      className="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-rose-200 text-xs font-mono transition-all cursor-pointer whitespace-nowrap"
+                    >
+                      ✨ Open Directly ♡
+                    </button>
+                  </div>
                 </form>
               ) : (
                 <div className="space-y-6 py-4 animate-fade-in">

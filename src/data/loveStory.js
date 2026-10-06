@@ -226,7 +226,7 @@ export const loveStoryData = {
       subtitle: "Our own private world",
       description: "The glances across screens, the shared memes, the way you know what I'm thinking before I speak.",
       tag: "Bond",
-      image: "/assets/moment_04_whatsapp_cipher.jpg"
+      image: "/assets/shivi_rashi_stickers.jpg"
     },
     {
       id: 10,

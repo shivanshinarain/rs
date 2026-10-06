@@ -9,7 +9,8 @@ import {
   VolumeX,
   Lock,
   BookOpen,
-  Music
+  Music,
+  Mic
 } from 'lucide-react';
 import { sound } from '../../utils/audioEngine';
 
@@ -29,6 +30,7 @@ interface WorldNavigationDockProps {
   onToggleAudio: () => void;
   onOpenUniverseGame?: () => void;
   onOpenTaylorSwift?: () => void;
+  onOpenVoiceNotes?: () => void;
 }
 
 const WORLDS = [
@@ -47,7 +49,8 @@ export default function WorldNavigationDock({
   isPlayingAudio,
   onToggleAudio,
   onOpenUniverseGame,
-  onOpenTaylorSwift
+  onOpenTaylorSwift,
+  onOpenVoiceNotes
 }: WorldNavigationDockProps) {
   return (
     <div className="sticky top-16 z-30 flex justify-center py-2 px-3 sm:px-4 bg-universe-black/75 backdrop-blur-md border-b border-universe-wine/30 select-none">
@@ -107,6 +110,22 @@ export default function WorldNavigationDock({
             <Music className="w-3.5 h-3.5 text-rose-300 animate-pulse" />
             <span className="hidden sm:inline">Paper Rings 🎵</span>
             <span className="inline sm:hidden">Music 🎵</span>
+          </button>
+        )}
+
+        {/* Voice Notes Direct Access */}
+        {onOpenVoiceNotes && (
+          <button
+            onClick={() => {
+              sound.playHeartClick();
+              onOpenVoiceNotes();
+            }}
+            className="flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-mono transition-all whitespace-nowrap bg-purple-950/60 hover:bg-purple-900/80 border border-purple-500/50 text-purple-200 hover:text-white hover:scale-105 cursor-pointer touch-manipulation shadow-glow-red/20"
+            title="Listen to all Voice Notes from Shivi & Rashi (Chapter 12)"
+          >
+            <Mic className="w-3.5 h-3.5 text-rose-300 animate-pulse" />
+            <span className="hidden sm:inline">Voice Notes 🎙️</span>
+            <span className="inline sm:hidden">Notes 🎙️</span>
           </button>
         )}
 
