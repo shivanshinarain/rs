@@ -5,10 +5,9 @@ export interface GameCard {
   text: string;
 }
 
-// Complete database of all Truth, Dare, and Situation questions
+// Saare ke saare original questions yahan fully loaded hain
 export const gameData: Record<'truth' | 'dare' | 'situation', GameCard[]> = {
   truth: [
-    // List 1
     { text: "Have you ever accidentally sent a sext to the wrong person?" },
     { text: "Who would you like to sext right now? ...Why don’t you do it?" },
     { text: "Who in your contact list would you most want us to have a threesome with?" },
@@ -65,8 +64,6 @@ export const gameData: Record<'truth' | 'dare' | 'situation', GameCard[]> = {
     { text: "Have you ever kept a relationship secret?" },
     { text: "What’s your most romantic memory of me?" },
     { text: "Have you ever experimented with people of different genders?" },
-    
-    // List 2 (Naughty/Party & Flirty & Sexy & Funny Truths)
     { text: "Picture your partner or crush — what’s your favorite body part?" },
     { text: "How old were you when you had sex for the first time?" },
     { text: "Who was your first kiss?" },
@@ -125,7 +122,6 @@ export const gameData: Record<'truth' | 'dare' | 'situation', GameCard[]> = {
     { text: "What is the last lie you told?" }
   ],
   dare: [
-    // List 1 & Dares collection
     { text: "Put an ice cube in your underwear for one minute." },
     { text: "Perform a sexy belly dance for your partner." },
     { text: "Blindfold your partner and guide them around your body using only touch." },
@@ -194,7 +190,54 @@ export const gameData: Record<'truth' | 'dare' | 'situation', GameCard[]> = {
     { text: "Read your last text out loud like you’re auditioning for a soap opera." },
     { text: "Freestyle rap about our relationship." },
     { text: "Go live on any social media account and declare your love for me." },
-    { text: "Let your partner give you a makeover." }
+    { text: "Let your partner give you a makeover." },
+    { text: "I dare you to make-out with me, without feeling me up, for ten minutes straight." },
+    { text: "I dare you to tease me by going down on me for as long as you can without making me orgasm." },
+    { text: "I dare you to whisper the naughtiest thing you can think of into my ear." },
+    { text: "I dare you to go online and order us the kinkiest sex toy you can find." },
+    { text: "I dare you to unhook my bra with one hand." },
+    { text: "I dare you to masturbate to a picture of me that you have stored in your phone." },
+    { text: "I dare you to fuck me on the nearest surface we can find." },
+    { text: "I dare you to cover one of your body parts in whipped cream, and then let me lick it off of you." },
+    { text: "I dare you to go in the bathroom and take the sexiest nudes you can and then send them to me." },
+    { text: "I dare you to take erotic pictures of me while I suck your dick." },
+    { text: "I dare you to make me as horny as you possibly can without touching me." },
+    { text: "I dare you to put on a porno I can watch while you eat me out." },
+    { text: "I dare you to try on my underwear." },
+    { text: "I dare you to spank me as hard as you possibly can." },
+    { text: "I dare you to handcuff me to the bed and have your way with me." },
+    { text: "I dare you to use one of my sex toys on your own body." },
+    { text: "I dare you to do as many push-ups as you can. While naked." },
+    { text: "I dare you to kiss me anywhere, except on my lips." },
+    { text: "I dare you to fuck me in a position we’ve never tried before." },
+    { text: "I dare you to send me the dirtiest sext you can come up with." },
+    { text: "I dare you to make me orgasm, just by using your hands." },
+    { text: "I dare you to guess what color underwear I’m wearing." },
+    { text: "I dare you to be as loud as you can when you fuck me tonight." },
+    { text: "I dare you to sketch a picture of me naked." },
+    { text: "I dare you to bring me into the living room and fuck me in the middle of floor." },
+    { text: "I dare you to go skinny dipping with me." },
+    { text: "I dare you to blindfold me, and then kiss me somewhere I wouldn’t expect." },
+    { text: "I dare you to take all of your clothes off, and keep them off for the rest of the game." },
+    { text: "I dare you to strike the most seductive pose that you can." },
+    { text: "I dare you to remove my underwear with your teeth." },
+    { text: "I dare you to turn on the sexiest song on your iPod and give me a strip tease." },
+    { text: "I dare you to make me orgasm before you orgasm tonight." },
+    { text: "I dare you to watch me masturbate for as long as you can before grabbing me and fucking me yourself." },
+    { text: "I dare you to make the most authentic orgasm sounds that you can." },
+    { text: "I dare you to have sex with me for at least a half-hour before you orgasm." },
+    { text: "I dare you to run your tongue across any area of my body that you choose." },
+    { text: "I dare you to search through your closet and put on the sexiest item of clothing you own." },
+    { text: "I dare you to put on your favorite porno, so I can see what you’re into." },
+    { text: "I dare you to turn me on as much as you can by removing only one piece of your clothing." },
+    { text: "I dare you to try your best to orgasm at the same time as me tonight." },
+    { text: "I dare you to undress, and let me take a body shot off of you." },
+    { text: "I dare you to write me an erotic story about what you want to do to me." },
+    { text: "I dare you to masturbate at the same time as me." },
+    { text: "I dare you to kiss me on your favorite area of my body." },
+    { text: "I dare you to eat a banana as seductively as you can." },
+    { text: "I dare you to role play as a celebrity who wants to bang me." },
+    { text: "I dare you to make me orgasm harder than you ever have before." }
   ],
   situation: [
     { text: "Scenario: If suddenly at midnight I showed up at your doorstep unannounced, what would your very first reaction be?" },
@@ -216,7 +259,7 @@ export interface AllQuestionsTruthDareGameProps {
   isModal?: boolean;
 }
 
-export default function AllQuestionsTruthDareGame({
+export default function CompleteGameComponent({
   isOpen = true,
   onClose,
   isModal = false
@@ -240,11 +283,12 @@ export default function AllQuestionsTruthDareGame({
     setTimeout(() => {
       setIsSpinning(false);
       const finalDeg = (spinAngle + randomExtra) % 360;
-      const modeKey = finalDeg < 120 ? 'truth' : finalDeg < 240 ? 'dare' : 'situation';
-      setSelectedMode(modeKey);
+      let mode: 'truth' | 'dare' | 'situation' = 'truth';
+      if (finalDeg >= 120 && finalDeg < 240) mode = 'dare';
+      else if (finalDeg >= 240) mode = 'situation';
 
-      // Directly pick a random card from the selected mode's pool
-      const pool = gameData[modeKey];
+      setSelectedMode(mode);
+      const pool = gameData[mode];
       const randomQ = pool[Math.floor(Math.random() * pool.length)];
       setCurrentCard(randomQ);
       setGameState('playing');
@@ -271,7 +315,6 @@ export default function AllQuestionsTruthDareGame({
         </button>
       )}
 
-      {/* Top Header */}
       <div className="text-center mb-6 max-w-xl w-full">
         <h1 className="text-2xl md:text-3xl font-extrabold tracking-wider bg-gradient-to-r from-pink-400 via-purple-300 to-indigo-400 bg-clip-text text-transparent">
           A UNIVERSE CALLED US — OUR COSMIC GAME
@@ -288,14 +331,11 @@ export default function AllQuestionsTruthDareGame({
         </div>
       </div>
 
-      {/* STAGE 1: SPIN THE WHEEL (Triangle Slices with SVG) */}
       {gameState === 'spinning' && (
         <div className="flex flex-col items-center my-6">
           <div className="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center">
-            {/* Top Pointer */}
             <div className="absolute -top-3 z-30 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[18px] border-pink-500 filter drop-shadow-[0_0_8px_rgba(236,72,153,0.9)]"></div>
             
-            {/* Wheel Container */}
             <div 
               className="w-full h-full rounded-full border-4 border-pink-500/50 relative overflow-hidden shadow-[0_0_35px_rgba(139,92,246,0.35)] transition-all ease-out duration-[3000ms]"
               style={{
@@ -310,7 +350,6 @@ export default function AllQuestionsTruthDareGame({
               </svg>
             </div>
 
-            {/* Center Spin Button */}
             <button 
               onClick={spinTheWheel}
               disabled={isSpinning}
@@ -325,7 +364,6 @@ export default function AllQuestionsTruthDareGame({
         </div>
       )}
 
-      {/* STAGE 2: PLAYING QUESTION */}
       {gameState === 'playing' && currentCard && selectedMode && (
         <div className="flex flex-col items-center max-w-lg w-full my-6">
           <div className="w-full bg-gradient-to-br from-white/10 to-white/5 p-8 rounded-2xl border border-pink-500/30 shadow-[0_0_40px_rgba(236,72,153,0.15)] backdrop-blur-xl text-center relative">
@@ -382,6 +420,7 @@ export default function AllQuestionsTruthDareGame({
   );
 }
 
-// Aliases for seamless imports
-export const TruthDareWheelGame = AllQuestionsTruthDareGame;
-export const CleanTruthDareGame = AllQuestionsTruthDareGame;
+// Aliases for seamless imports across all components
+export const TruthDareWheelGame = CompleteGameComponent;
+export const CleanTruthDareGame = CompleteGameComponent;
+export const AllQuestionsTruthDareGame = CompleteGameComponent;
