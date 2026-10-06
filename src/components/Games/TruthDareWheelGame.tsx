@@ -165,28 +165,40 @@ export default function CleanTruthDareGame({
         </div>
       </div>
 
-      {/* STAGE 1: SPIN THE WHEEL */}
+      {/* STAGE 1: SPIN THE WHEEL (Fixed Triangle Slices) */}
       {gameState === 'spinning' && (
         <div className="flex flex-col items-center">
           <div className="relative w-72 h-72 md:w-80 md:h-80 flex items-center justify-center">
-            <div className="absolute -top-4 z-20 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-pink-500 filter drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]"></div>
+            {/* Pointer at the top */}
+            <div className="absolute -top-3 z-30 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[18px] border-pink-500 filter drop-shadow-[0_0_8px_rgba(236,72,153,0.9)]"></div>
             
+            {/* Spinning Wheel with Clean Triangle Slices */}
             <div 
-              className="w-full h-full rounded-full border-4 border-pink-500/40 relative overflow-hidden shadow-[0_0_30px_rgba(139,92,246,0.3)] transition-all ease-out duration-[3000ms]"
+              className="w-full h-full rounded-full border-4 border-pink-500/50 relative overflow-hidden shadow-[0_0_35px_rgba(139,92,246,0.35)] transition-all ease-out duration-[3000ms]"
               style={{
                 transform: `rotate(${spinAngle}deg)`,
                 background: 'conic-gradient(#1e1b4b 0deg 120deg, #31103f 120deg 240deg, #0f172a 240deg 360deg)'
               }}
             >
-              <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-pink-300 translate-y-[-70px]">TRUTH</div>
-              <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-purple-300 rotate-[120deg] translate-y-[-70px]">DARE</div>
-              <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-indigo-300 rotate-[240deg] translate-y-[-70px]">SITUATION</div>
+              {/* TRUTH Label (Centered inside 0° - 120° triangle sector) */}
+              <div className="absolute inset-0 flex items-start justify-center pt-8 text-sm font-black tracking-widest text-pink-300 transform rotate-[60deg]">
+                TRUTH
+              </div>
+              {/* DARE Label (Centered inside 120° - 240° triangle sector) */}
+              <div className="absolute inset-0 flex items-start justify-center pt-8 text-sm font-black tracking-widest text-purple-300 transform rotate-[180deg]">
+                DARE
+              </div>
+              {/* SITUATION Label (Centered inside 240° - 360° triangle sector) */}
+              <div className="absolute inset-0 flex items-start justify-center pt-8 text-sm font-black tracking-widest text-indigo-300 transform rotate-[300deg]">
+                SITUATION
+              </div>
             </div>
 
+            {/* Center Spin Button */}
             <button 
               onClick={spinTheWheel}
               disabled={isSpinning}
-              className="absolute z-10 w-24 h-24 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-sm shadow-[0_0_20px_rgba(236,72,153,0.6)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center border-4 border-[#0B0F19] cursor-pointer"
+              className="absolute z-20 w-24 h-24 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 text-white font-extrabold text-sm shadow-[0_0_20px_rgba(236,72,153,0.7)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center border-4 border-[#0B0F19] cursor-pointer"
             >
               {isSpinning ? 'SPINNING...' : 'SPIN!'}
             </button>
