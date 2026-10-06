@@ -61,7 +61,7 @@ export default function Navbar({
     { num: '11', title: 'Taylor Swift: Paper Rings 🎵', id: 'chapter-11', world: 'WORLD_05_BIRTHDAY', isFeatured: true },
     { num: '12', title: 'Voices From Our Hearts 🎙️', id: 'chapter-12', world: 'WORLD_05_BIRTHDAY', isFeatured: true },
     { num: '13', title: 'The Future (4 Doors)', id: 'chapter-13', world: 'WORLD_05_BIRTHDAY' },
-    { num: '14', title: 'The Proposal & Sacred Vow 💍', id: 'chapter-14', world: 'WORLD_05_BIRTHDAY', isFeatured: true },
+    { num: '14', title: 'The Proposal & Sacred Vow 💍 (Love Story 🎵)', id: 'chapter-14', world: 'WORLD_05_BIRTHDAY', isFeatured: true },
   ];
 
   const allVoiceNotes = [

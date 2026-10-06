@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
-import { Heart, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Heart, Sparkles, CheckCircle2, Music } from 'lucide-react';
 import { ShiviAvatar, RashiAvatar, CoupleHugAnimation } from './Avatars';
 import { loveStoryData } from '../data/loveStory';
 import { sound } from '../utils/audioEngine';
@@ -9,12 +9,59 @@ import TinyCharacters from './Effects/TinyCharacters';
 
 export default function Chapter14_TheProposal() {
   const [accepted, setAccepted] = useState(false);
+  const sectionRef = useRef(null);
 
   const proposal = loveStoryData.proposal;
 
+  // Auto-play Taylor Swift — Love Story as requested:
+  // "jaise hi ye page open ho Chapter 14, turant ke turant wo on ho jaye...
+  // usko click nahi karna pade, bas wo open ho jaye turant...
+  // uska koi pause aur resume buttons nahi hone chahiye"
+  useEffect(() => {
+    // 1. Immediate auto-play when Chapter 14 is opened
+    sound.playLoveStoryTrack();
+
+    // 2. IntersectionObserver for seamless in-view detection
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            sound.playLoveStoryTrack();
+          } else {
+            sound.stopLoveStoryTrack();
+            sound.resumePaperRingsTrack();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    const el = sectionRef.current || document.getElementById('chapter-14');
+    if (el) {
+      observer.observe(el);
+    }
+
+    // 3. Fallback for strict browser autoplay permissions: plays on first window interaction
+    const instantAudioTrigger = () => {
+      sound.playLoveStoryTrack();
+    };
+    window.addEventListener('scroll', instantAudioTrigger, { once: true, passive: true });
+    window.addEventListener('click', instantAudioTrigger, { once: true, passive: true });
+    window.addEventListener('touchstart', instantAudioTrigger, { once: true, passive: true });
+
+    return () => {
+      if (el) observer.unobserve(el);
+      observer.disconnect();
+      sound.stopLoveStoryTrack();
+      sound.resumePaperRingsTrack();
+      window.removeEventListener('scroll', instantAudioTrigger);
+      window.removeEventListener('click', instantAudioTrigger);
+      window.removeEventListener('touchstart', instantAudioTrigger);
+    };
+  }, []);
+
   const handleAcceptProposal = () => {
     sound.playProposalSwell();
-    sound.playPaperRingsHook();
     setAccepted(true);
 
     // Multi-stage celebratory confetti fireworks
@@ -44,7 +91,11 @@ export default function Chapter14_TheProposal() {
   };
 
   return (
-    <section id="chapter-14" className="min-h-screen py-16 sm:py-24 px-4 sm:px-6 flex flex-col justify-center items-center relative z-20 select-none">
+    <section
+      id="chapter-14"
+      ref={sectionRef}
+      className="min-h-screen py-16 sm:py-24 px-4 sm:px-6 flex flex-col justify-center items-center relative z-20 select-none"
+    >
       <div className="max-w-3xl w-full text-center space-y-8 sm:space-y-12">
         
         {/* Header */}
@@ -55,6 +106,14 @@ export default function Chapter14_TheProposal() {
           <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-universe-cream text-glow-crimson font-medium">
             {proposal.recipient}
           </h2>
+
+          {/* Automatic Soundtrack Indicator (No pause/resume buttons as requested) */}
+          <div className="pt-1">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-universe-crimson/25 border border-universe-glowingRed/40 text-universe-cream text-[11px] font-mono tracking-wider shadow-glow-red/20 select-none">
+              <Music className="w-3.5 h-3.5 text-universe-glowingRed animate-pulse" />
+              <span>Playing: Taylor Swift — Love Story 🎵</span>
+            </div>
+          </div>
 
           <div className="hidden sm:block absolute -top-3 right-6">
             <HeartDoodle className="w-8 h-8 text-universe-glowingRed" />

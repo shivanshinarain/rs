@@ -12,6 +12,8 @@ class AudioEngine {
     this.isMuted = false;
     this.masterGain = null;
     this.currentMode = 'ambient'; // 'ambient' or 'paper-rings'
+    this.isPlayingLoveStory = false;
+    this.loveStoryAudio = null;
   }
 
   init() {
@@ -33,6 +35,12 @@ class AudioEngine {
     this.isMuted = !this.isMuted;
     if (this.masterGain && this.ctx) {
       this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 1.0, this.ctx.currentTime);
+    }
+    if (this.paperRingsAudio) {
+      this.paperRingsAudio.volume = this.isMuted ? 0 : 0.9;
+    }
+    if (this.loveStoryAudio) {
+      this.loveStoryAudio.volume = this.isMuted ? 0 : 0.9;
     }
     return this.isMuted;
   }
@@ -381,6 +389,78 @@ class AudioEngine {
 
   toggleAmbientMusic() {
     return this.togglePaperRingsTrack();
+  }
+
+  // Taylor Swift — Love Story Audio Track (Dedicated Proposal Anthem for Chapter 14)
+  getLoveStoryAudio() {
+    if (!this.loveStoryAudio) {
+      this.loveStoryAudio = new Audio('/assets/love_story.mp3');
+      this.loveStoryAudio.loop = true;
+      this.loveStoryAudio.preload = 'auto';
+      this.loveStoryAudio.volume = this.isMuted ? 0 : 0.95;
+
+      this.loveStoryAudio.addEventListener('play', () => {
+        this.isPlayingLoveStory = true;
+        this.notifyListeners();
+      });
+      this.loveStoryAudio.addEventListener('pause', () => {
+        this.isPlayingLoveStory = false;
+        this.notifyListeners();
+      });
+      this.loveStoryAudio.addEventListener('ended', () => {
+        this.isPlayingLoveStory = false;
+        this.notifyListeners();
+      });
+    }
+    return this.loveStoryAudio;
+  }
+
+  playLoveStoryTrack() {
+    this.init();
+    // Pause Paper Rings so tracks never clash
+    if (this.isPlayingPaperRings) {
+      this.pausePaperRingsTrack();
+    }
+    const audio = this.getLoveStoryAudio();
+    audio.volume = this.isMuted ? 0 : 0.95;
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          this.isPlayingLoveStory = true;
+          this.notifyListeners();
+        })
+        .catch(() => {
+          // Fallback if browser requires first user interaction on the window
+          const autoPlayOnInteraction = () => {
+            audio.play().then(() => {
+              this.isPlayingLoveStory = true;
+              this.notifyListeners();
+            }).catch(() => {});
+            ['click', 'touchstart', 'scroll', 'keydown', 'pointerdown'].forEach((evt) => {
+              window.removeEventListener(evt, autoPlayOnInteraction, true);
+            });
+          };
+          ['click', 'touchstart', 'scroll', 'keydown', 'pointerdown'].forEach((evt) => {
+            window.addEventListener(evt, autoPlayOnInteraction, { once: true, capture: true });
+          });
+        });
+    }
+    this.isPlayingLoveStory = true;
+    this.notifyListeners();
+  }
+
+  stopLoveStoryTrack() {
+    this.isPlayingLoveStory = false;
+    if (this.loveStoryAudio) {
+      this.loveStoryAudio.pause();
+    }
+    this.notifyListeners();
+  }
+
+  pauseLoveStoryTrack() {
+    this.stopLoveStoryTrack();
   }
 }
 
