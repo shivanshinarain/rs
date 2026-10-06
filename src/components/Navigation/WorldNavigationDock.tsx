@@ -31,6 +31,7 @@ interface WorldNavigationDockProps {
   onOpenUniverseGame?: () => void;
   onOpenTaylorSwift?: () => void;
   onOpenVoiceNotes?: () => void;
+  onOpenTruthDare?: () => void;
 }
 
 const WORLDS = [
@@ -50,7 +51,8 @@ export default function WorldNavigationDock({
   onToggleAudio,
   onOpenUniverseGame,
   onOpenTaylorSwift,
-  onOpenVoiceNotes
+  onOpenVoiceNotes,
+  onOpenTruthDare
 }: WorldNavigationDockProps) {
   return (
     <div className="sticky top-16 z-30 flex justify-center py-2 px-3 sm:px-4 bg-universe-black/75 backdrop-blur-md border-b border-universe-wine/30 select-none">
@@ -126,6 +128,22 @@ export default function WorldNavigationDock({
             <Mic className="w-3.5 h-3.5 text-rose-300 animate-pulse" />
             <span className="hidden sm:inline">Voice Notes 🎙️</span>
             <span className="inline sm:hidden">Notes 🎙️</span>
+          </button>
+        )}
+
+        {/* Truth & Dare Cosmic Wheel Direct Access */}
+        {onOpenTruthDare && (
+          <button
+            onClick={() => {
+              sound.playHeartClick();
+              onOpenTruthDare();
+            }}
+            className="flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-mono transition-all whitespace-nowrap bg-gradient-to-r from-pink-950/60 to-purple-950/60 hover:from-pink-900/80 hover:to-purple-900/80 border border-pink-500/50 text-pink-200 hover:text-white hover:scale-105 cursor-pointer touch-manipulation shadow-glow-red/20"
+            title="Spin the Cosmic Wheel: Truth & Dare WLW Game"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-pink-300 animate-spin" style={{ animationDuration: '6s' }} />
+            <span className="hidden sm:inline">Truth & Dare 🎡</span>
+            <span className="inline sm:hidden">Wheel 🎡</span>
           </button>
         )}
 

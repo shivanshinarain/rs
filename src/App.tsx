@@ -31,6 +31,7 @@ import TwentyMomentsGallery from './components/TwentyMomentsGallery';
 import PermanentRedThread from './components/Effects/PermanentRedThread';
 import HeartbeatSoundManager from './components/Effects/HeartbeatSoundManager';
 import UniverseGameExperience from './components/Games/UniverseGameExperience';
+import TruthDareWheelGame from './components/Games/TruthDareWheelGame';
 import TaylorSwiftMusicBar from './components/Audio/TaylorSwiftMusicBar';
 import { sound } from './utils/audioEngine';
 import { Sparkles, BookOpen } from 'lucide-react';
@@ -52,6 +53,7 @@ function MainUniverseApp() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [shootingStarTrigger, setShootingStarTrigger] = useState<number>(0);
   const [isUniverseGameOpen, setIsUniverseGameOpen] = useState<boolean>(false);
+  const [isTruthDareOpen, setIsTruthDareOpen] = useState<boolean>(false);
 
   // Detect mobile
   useEffect(() => {
@@ -190,6 +192,7 @@ function MainUniverseApp() {
         onOpenUniverseGame={() => setIsUniverseGameOpen(true)}
         onOpenTaylorSwift={() => handleNavigateToChapter('chapter-11', 'WORLD_05_BIRTHDAY')}
         onOpenVoiceNotes={() => handleNavigateToChapter('chapter-12', 'WORLD_05_BIRTHDAY')}
+        onOpenTruthDare={() => setIsTruthDareOpen(true)}
       />
 
       {/* Global Permanent Red Thread of Fate */}
@@ -287,6 +290,13 @@ function MainUniverseApp() {
       <UniverseGameExperience
         isOpen={isUniverseGameOpen}
         onClose={() => setIsUniverseGameOpen(false)}
+        isModal={true}
+      />
+
+      {/* Cosmic Truth & Dare Wheel Modal */}
+      <TruthDareWheelGame
+        isOpen={isTruthDareOpen}
+        onClose={() => setIsTruthDareOpen(false)}
         isModal={true}
       />
 
